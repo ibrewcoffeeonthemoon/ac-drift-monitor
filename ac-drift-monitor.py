@@ -22,7 +22,13 @@ triangleWidth = 10
 
 
 class GIndicator:
-    def __init__(self, app, x, y, name):
+    def __init__(
+        self,
+        app: int,
+        x: int,
+        y: int,
+        name: str,
+    ) -> None:
         self.xPosition = x
         self.yPosition = y
         self.counter = 0
@@ -37,7 +43,7 @@ class GIndicator:
         self.indicatorWidth = 10
         self.indicatorPosition = 0
 
-    def setCurrentValue(self, value):
+    def setCurrentValue(self, value: float) -> None:
         global maxG, barLength
         self.currentValue = min(max(value, -maxG), maxG)
         # filtering the values
@@ -53,7 +59,7 @@ class GIndicator:
 
 # This function gets called by AC when the Plugin is initialised
 # The function has to return a string with the plugin name
-def acMain(ac_version):
+def acMain(ac_version: str) -> str:
     global longitudinalGIndicator, appWindow, lateralGIndicator
     appWindow = ac.newApp("AC Drift Monitor")
     ac.setSize(appWindow, 333, 173)
@@ -66,7 +72,7 @@ def acMain(ac_version):
     return "AC Drift Monitor"
 
 
-def onFormRender(deltaT):
+def onFormRender(deltaT: float) -> None:
     global longitudinalGIndicator, lateralGIndicator, barLength
     drawHTriangleIn(167 + (lateralGIndicator.indicatorPosition*(barLength/2)))
     drawLTriangleIn(167 + (longitudinalGIndicator.indicatorPosition*(barLength/2)))
@@ -75,14 +81,14 @@ def onFormRender(deltaT):
     lateralGIndicator.setCurrentValue(x)
 
 
-def drawBar():
+def drawBar() -> None:
     ac.glColor4f(1, 1, 1, 1)
     ac.glQuad(0, 55, 300, 7)
     ac.glColor4f(1, 1, 1, 1)
     ac.glQuad(148, 45, 4, 27)
 
 
-def drawLTriangleIn(x):
+def drawLTriangleIn(x: float) -> None:
     global triangleWidth
     ac.glColor4f(1, 0, 0, 1)
     ac.glBegin(acsys.GL.Triangles)
@@ -93,7 +99,7 @@ def drawLTriangleIn(x):
     ac.glQuad(x-(triangleWidth/2), 109+triangleWidth, triangleWidth, triangleWidth/2)
 
 
-def drawHTriangleIn(x):
+def drawHTriangleIn(x: float) -> None:
     global triangleWidth
     ac.glColor4f(1, 0, 0, 1)
     ac.glBegin(acsys.GL.Triangles)
