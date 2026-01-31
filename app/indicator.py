@@ -42,20 +42,21 @@ class Indicator:
         self.indicatorPosition = self.currentValue/self.maxG
 
     def drawLTriangleIn(self, x: float) -> None:
+        w = self.triangleWidth
         ac.glColor4f(1, 0, 0, 1)
         ac.glBegin(acsys.GL.Triangles)
         ac.glVertex2f(x, 109)
-        ac.glVertex2f(x-(self.triangleWidth/2), 109+self.triangleWidth)
-        ac.glVertex2f(x+(self.triangleWidth/2), 109+self.triangleWidth)
+        ac.glVertex2f(x-(w/2), 109+w)
+        ac.glVertex2f(x+(w/2), 109+w)
         ac.glEnd()
-        ac.glQuad(x-(self.triangleWidth/2), 109+self.triangleWidth, self.triangleWidth, self.triangleWidth/2)
+        ac.glQuad(x-(w/2), 109+w, w, w/2)
 
     def drawHTriangleIn(self, x: float) -> None:
+        w = self.triangleWidth
         ac.glColor4f(1, 0, 0, 1)
         ac.glBegin(acsys.GL.Triangles)
         ac.glVertex2f(x, 104)
-        ac.glVertex2f(x-(self.triangleWidth/2), 104-self.triangleWidth)
-        ac.glVertex2f(x+(self.triangleWidth/2), 104-self.triangleWidth)
+        ac.glVertex2f(x-(w/2), 104-w)
+        ac.glVertex2f(x+(w/2), 104-w)
         ac.glEnd()
-        ac.glQuad(x-(self.triangleWidth/2), 104-(self.triangleWidth +
-                  self.triangleWidth/2), self.triangleWidth, self.triangleWidth/2)
+        ac.glQuad(x-(w/2), 104-(w + w/2), w, w/2)
