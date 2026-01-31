@@ -19,11 +19,11 @@ class Indicator:
         self.arrow_on_top = arrow_on_top
 
         # value
-        self._value = 0
-        self._old_value = 0
+        self._value = 0.0
+        self._old_value = 0.0
 
         # indicator position
-        self._ind_pos = 0
+        self._ind_pos = 0.0
 
         # labels
         self.name_label = ac.addLabel(window, name)
@@ -31,7 +31,12 @@ class Indicator:
         ac.setPosition(self.name_label, x_pos, y_pos)
         ac.setPosition(self.value_label, x_pos+50, y_pos)
 
-    def set_value(self, value: float) -> None:
+    @property
+    def value(self) -> float:
+        return self._value
+
+    @value.setter
+    def value(self, value: float) -> None:
         # clip value
         self._value = min(max(value, -self.maxG), self.maxG)
 
