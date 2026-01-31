@@ -32,5 +32,5 @@ class App:
         x, y, z = ac.getCarState(self.car_id, acsys.CS.AccG)
 
         # set indicator values
-        self.ind_latG.set_value(x)
-        self.ind_longG.set_value(z)
+        self.ind_latG.value = x
+        self.ind_longG.value = z
