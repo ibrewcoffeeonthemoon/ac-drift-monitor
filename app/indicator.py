@@ -9,7 +9,7 @@ class Indicator:
 
     def __init__(
         self,
-        appWindow: int,
+        window: int,
         x: int,
         y: int,
         name: str,
@@ -19,29 +19,36 @@ class Indicator:
         self.yPosition = y
         self.counter = 0
         self.secondsToFade = 3
-        self.currentValue = 0
+        self.value = 0
         self.oldValue = 0
         self.maxValue = 0
         self.arrow_on_top = arrow_on_top
 
-        ac.setPosition(ac.addLabel(appWindow, name), x, y)
-        self.currentValueLabel = ac.addLabel(appWindow, "0.0g")
+        ac.setPosition(ac.addLabel(window, name), x, y)
+        self.currentValueLabel = ac.addLabel(window, "0.0g")
         ac.setPosition(self.currentValueLabel, x+50, y)
         self.indicatorWidth = 10
         self.indicatorPosition = 0
 
-    def setCurrentValue(self, value: float) -> None:
-        self.currentValue = min(max(value, -self.maxG), self.maxG)
-        # filtering the values
-        filter = 0.2
-        self.currentValue = self.oldValue*(filter) + self.currentValue*(1-filter)
-        self.currentValue = round(self.currentValue*100)/100
-        ac.setText(self.currentValueLabel, "{0}g".format(abs(self.currentValue)))
-        if (abs(self.currentValue) < 0.1):
-            self.currentValue = 0
+    def set_value(self, value: float) -> None:
+        # clip value
+        self.value = min(max(value, -self.maxG), self.maxG)
+
+        # smooth value
+        weight = 0.2
+        self.value = self.oldValue*weight + self.value*(1-weight)
+
+        # round value
+        self.value = round(self.value*100)/100
+
+        # display
+        ac.setText(self.currentValueLabel, "{0}g".format(abs(self.value)))
+        if (abs(self.value) < 0.1):
+            self.value = 0
             ac.setText(self.currentValueLabel, "0.0g")
 
-        self.indicatorPosition = self.currentValue/self.maxG
+        # calc indicator position
+        self.indicatorPosition = self.value/self.maxG
 
         # draw triangle
         if self.arrow_on_top:

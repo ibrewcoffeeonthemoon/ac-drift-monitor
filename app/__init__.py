@@ -29,5 +29,5 @@ class App:
         x, y, z = ac.getCarState(0, acsys.CS.AccG)
 
         # set indicator values
-        self.ind_latG.setCurrentValue(x)
-        self.ind_longG.setCurrentValue(z)
+        self.ind_latG.set_value(x)
+        self.ind_longG.set_value(z)
