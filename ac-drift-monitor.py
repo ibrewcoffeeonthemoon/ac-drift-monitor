@@ -14,7 +14,6 @@ from app.indicator import Indicator
 
 longitudinalGIndicator = 0
 lateralGIndicator = 0
-barLength = 322
 
 
 # This function gets called by AC when the Plugin is initialised
@@ -33,7 +32,8 @@ def acMain(ac_version: str) -> str:
 
 
 def onFormRender(deltaT: float) -> None:
-    global longitudinalGIndicator, lateralGIndicator, barLength
+    global longitudinalGIndicator, lateralGIndicator
+    barLength = Indicator.barLength
     drawHTriangleIn(167 + (lateralGIndicator.indicatorPosition*(barLength/2)))
     drawLTriangleIn(167 + (longitudinalGIndicator.indicatorPosition*(barLength/2)))
     x, y, z = ac.getCarState(0, acsys.CS.AccG)
