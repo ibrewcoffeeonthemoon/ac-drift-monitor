@@ -55,15 +55,15 @@ class GIndicator:
 # The function has to return a string with the plugin name
 def acMain(ac_version):
     global longitudinalGIndicator, appWindow, lateralGIndicator
-    appWindow = ac.newApp("G Meter")
+    appWindow = ac.newApp("AC Drift Monitor")
     ac.setSize(appWindow, 333, 173)
     ac.drawBorder(appWindow, 0)
     ac.setBackgroundOpacity(appWindow, 0)
-    ac.setBackgroundTexture(appWindow, "apps/python/gMeter/gmeterBackground.png")
+    ac.setBackgroundTexture(appWindow, "apps/python/ac-drift-monitor/bg.png")
     lateralGIndicator = GIndicator(appWindow, 22, 62, "Lat.")
     longitudinalGIndicator = GIndicator(appWindow, 22, 136, "Lon.")
     ac.addRenderCallback(appWindow, onFormRender)
-    return "G Meter"
+    return "AC Drift Monitor"
 
 
 def onFormRender(deltaT):
