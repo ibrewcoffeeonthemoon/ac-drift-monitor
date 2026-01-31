@@ -10,6 +10,7 @@
 import ac
 import acsys
 
+from app import App
 from app.indicator import Indicator
 
 longitudinalGIndicator = 0
@@ -20,15 +21,11 @@ lateralGIndicator = 0
 # The function has to return a string with the plugin name
 def acMain(ac_version: str) -> str:
     global longitudinalGIndicator, lateralGIndicator
-    appWindow = ac.newApp("AC Drift Monitor")
-    ac.setSize(appWindow, 333, 173)
-    ac.drawBorder(appWindow, False)
-    ac.setBackgroundOpacity(appWindow, 0)
-    ac.setBackgroundTexture(appWindow, "apps/python/ac-drift-monitor/bg.png")
-    lateralGIndicator = Indicator(appWindow, 22, 62, "Lat.")
-    longitudinalGIndicator = Indicator(appWindow, 22, 136, "Lon.")
-    ac.addRenderCallback(appWindow, onFormRender)
-    return "AC Drift Monitor"
+    app = App()
+    lateralGIndicator = Indicator(app.win, 22, 62, "Lat.")
+    longitudinalGIndicator = Indicator(app.win, 22, 136, "Lon.")
+    ac.addRenderCallback(app.win, onFormRender)
+    return app.name
 
 
 def onFormRender(deltaT: float) -> None:
