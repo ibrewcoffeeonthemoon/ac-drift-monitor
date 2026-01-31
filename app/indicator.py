@@ -10,25 +10,25 @@ class Indicator:
     def __init__(
         self,
         window: int,
-        x: int,
-        y: int,
+        x_pos: int,
+        y_pos: int,
         name: str,
         arrow_on_top: bool,
     ) -> None:
-        self.xPosition = x
-        self.yPosition = y
+        self.x_pos = x_pos
+        self.y_pos = y_pos
         self.counter = 0
-        self.secondsToFade = 3
+        self.seconds_to_fade = 3
         self.value = 0
-        self.oldValue = 0
-        self.maxValue = 0
+        self.old_value = 0
+        self.max_value = 0
         self.arrow_on_top = arrow_on_top
 
-        ac.setPosition(ac.addLabel(window, name), x, y)
-        self.currentValueLabel = ac.addLabel(window, "0.0g")
-        ac.setPosition(self.currentValueLabel, x+50, y)
-        self.indicatorWidth = 10
-        self.indicatorPosition = 0
+        ac.setPosition(ac.addLabel(window, name), x_pos, y_pos)
+        self.value_label = ac.addLabel(window, "0.0g")
+        ac.setPosition(self.value_label, x_pos+50, y_pos)
+        self.ind_width = 10
+        self.ind_pos = 0
 
     def set_value(self, value: float) -> None:
         # clip value
@@ -36,25 +36,25 @@ class Indicator:
 
         # smooth value
         weight = 0.2
-        self.value = self.oldValue*weight + self.value*(1-weight)
+        self.value = self.old_value*weight + self.value*(1-weight)
 
         # round value
         self.value = round(self.value*100)/100
 
         # display
-        ac.setText(self.currentValueLabel, "{0}g".format(abs(self.value)))
+        ac.setText(self.value_label, "{0}g".format(abs(self.value)))
         if (abs(self.value) < 0.1):
             self.value = 0
-            ac.setText(self.currentValueLabel, "0.0g")
+            ac.setText(self.value_label, "0.0g")
 
         # calc indicator position
-        self.indicatorPosition = self.value/self.maxG
+        self.ind_pos = self.value/self.maxG
 
         # draw triangle
         if self.arrow_on_top:
-            self.drawHTriangleIn(167 + (self.indicatorPosition*(self.barLength/2)))
+            self.drawHTriangleIn(167 + (self.ind_pos*(self.barLength/2)))
         else:
-            self.drawLTriangleIn(167 + (self.indicatorPosition*(self.barLength/2)))
+            self.drawLTriangleIn(167 + (self.ind_pos*(self.barLength/2)))
 
     def drawLTriangleIn(self, x: float) -> None:
         w = self.triangleWidth
