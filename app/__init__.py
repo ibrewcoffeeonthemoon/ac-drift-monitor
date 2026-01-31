@@ -1,4 +1,5 @@
 import ac
+import acsys
 
 from app.indicator import Indicator
 
@@ -18,3 +19,8 @@ class App:
 
         self.lateralGIndicator = Indicator(self.win, 22, 62, "Lat.", arrow_on_top=True)
         self.longitudinalGIndicator = Indicator(self.win, 22, 136, "Lon.", arrow_on_top=False)
+
+    def render(self) -> None:
+        x, y, z = ac.getCarState(0, acsys.CS.AccG)
+        self.longitudinalGIndicator.setCurrentValue(z)
+        self.lateralGIndicator.setCurrentValue(x)

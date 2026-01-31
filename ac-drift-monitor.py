@@ -8,7 +8,6 @@
 #############################################################
 
 import ac
-import acsys
 
 from app import App
 
@@ -24,6 +23,4 @@ def acMain(ac_version: str) -> str:
 
 def onFormRender(deltaT: float) -> None:
     global app
-    x, y, z = ac.getCarState(0, acsys.CS.AccG)
-    app.longitudinalGIndicator.setCurrentValue(z)
-    app.lateralGIndicator.setCurrentValue(x)
+    app.render()
