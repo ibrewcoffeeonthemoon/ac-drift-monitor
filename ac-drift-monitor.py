@@ -26,11 +26,12 @@ def acMain(ac_version: str) -> str:
 def onFormRender(deltaT: float) -> None:
     global app
     barLength = Indicator.barLength
-    app.lateralGIndicator.drawHTriangleIn(167 + (app.lateralGIndicator.indicatorPosition*(barLength/2)))
-    app.longitudinalGIndicator.drawLTriangleIn(167 + (app.longitudinalGIndicator.indicatorPosition*(barLength/2)))
     x, y, z = ac.getCarState(0, acsys.CS.AccG)
     app.longitudinalGIndicator.setCurrentValue(z)
     app.lateralGIndicator.setCurrentValue(x)
+
+    app.lateralGIndicator.drawHTriangleIn(167 + (app.lateralGIndicator.indicatorPosition*(barLength/2)))
+    app.longitudinalGIndicator.drawLTriangleIn(167 + (app.longitudinalGIndicator.indicatorPosition*(barLength/2)))
 
 
 def drawBar() -> None:
