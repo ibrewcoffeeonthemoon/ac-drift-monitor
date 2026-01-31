@@ -1,12 +1,3 @@
-##############################################################
-# Kunos Simulazioni
-# AC Python tutorial 04 : Get data from AC
-#
-# To activate create a folder with the same name as this file
-# in apps/python. Ex apps/python/tutorial01
-# Then copy this file inside it and launch AC
-#############################################################
-
 import ac
 
 from app import App
