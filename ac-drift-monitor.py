@@ -12,49 +12,13 @@ import math
 import ac
 import acsys
 
+from app.indicator import Indicator
+
 appWindow = 0
 longitudinalGIndicator = 0
 lateralGIndicator = 0
 barLength = 322
-filter = 0.2
-maxG = 2
 triangleWidth = 10
-
-
-class GIndicator:
-    def __init__(
-        self,
-        app: int,
-        x: int,
-        y: int,
-        name: str,
-    ) -> None:
-        self.xPosition = x
-        self.yPosition = y
-        self.counter = 0
-        self.secondsToFade = 3
-        self.currentValue = 0
-        self.oldValue = 0
-        self.maxValue = 0
-
-        ac.setPosition(ac.addLabel(appWindow, name), x, y)
-        self.currentValueLabel = ac.addLabel(appWindow, "0.0g")
-        ac.setPosition(self.currentValueLabel, x+50, y)
-        self.indicatorWidth = 10
-        self.indicatorPosition = 0
-
-    def setCurrentValue(self, value: float) -> None:
-        global maxG, barLength
-        self.currentValue = min(max(value, -maxG), maxG)
-        # filtering the values
-        self.currentValue = self.oldValue*(filter) + self.currentValue*(1-filter)
-        self.currentValue = round(self.currentValue*100)/100
-        ac.setText(self.currentValueLabel, "{0}g".format(abs(self.currentValue)))
-        if (abs(self.currentValue) < 0.1):
-            self.currentValue = 0
-            ac.setText(self.currentValueLabel, "0.0g")
-
-        self.indicatorPosition = self.currentValue/maxG
 
 
 # This function gets called by AC when the Plugin is initialised
@@ -66,8 +30,8 @@ def acMain(ac_version: str) -> str:
     ac.drawBorder(appWindow, False)
     ac.setBackgroundOpacity(appWindow, 0)
     ac.setBackgroundTexture(appWindow, "apps/python/ac-drift-monitor/bg.png")
-    lateralGIndicator = GIndicator(appWindow, 22, 62, "Lat.")
-    longitudinalGIndicator = GIndicator(appWindow, 22, 136, "Lon.")
+    lateralGIndicator = Indicator(appWindow, 22, 62, "Lat.")
+    longitudinalGIndicator = Indicator(appWindow, 22, 136, "Lon.")
     ac.addRenderCallback(appWindow, onFormRender)
     return "AC Drift Monitor"
 
