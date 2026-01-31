@@ -13,6 +13,7 @@ class Indicator:
         x: int,
         y: int,
         name: str,
+        arrow_on_top: bool,
     ) -> None:
         self.xPosition = x
         self.yPosition = y
@@ -21,6 +22,7 @@ class Indicator:
         self.currentValue = 0
         self.oldValue = 0
         self.maxValue = 0
+        self.arrow_on_top = arrow_on_top
 
         ac.setPosition(ac.addLabel(appWindow, name), x, y)
         self.currentValueLabel = ac.addLabel(appWindow, "0.0g")
@@ -40,6 +42,12 @@ class Indicator:
             ac.setText(self.currentValueLabel, "0.0g")
 
         self.indicatorPosition = self.currentValue/self.maxG
+
+        # draw triangle
+        if self.arrow_on_top:
+            self.drawHTriangleIn(167 + (self.indicatorPosition*(self.barLength/2)))
+        else:
+            self.drawLTriangleIn(167 + (self.indicatorPosition*(self.barLength/2)))
 
     def drawLTriangleIn(self, x: float) -> None:
         w = self.triangleWidth

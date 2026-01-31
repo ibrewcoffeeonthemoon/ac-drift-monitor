@@ -16,5 +16,5 @@ class App:
         ac.setBackgroundOpacity(self.win, 0)
         ac.setBackgroundTexture(self.win, self.bg_path)
 
-        self.lateralGIndicator = Indicator(self.win, 22, 62, "Lat.")
-        self.longitudinalGIndicator = Indicator(self.win, 22, 136, "Lon.")
+        self.lateralGIndicator = Indicator(self.win, 22, 62, "Lat.", arrow_on_top=True)
+        self.longitudinalGIndicator = Indicator(self.win, 22, 136, "Lon.", arrow_on_top=False)
