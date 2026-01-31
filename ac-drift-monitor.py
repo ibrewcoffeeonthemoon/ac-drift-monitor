@@ -7,24 +7,20 @@
 # Then copy this file inside it and launch AC
 #############################################################
 
-import math
-
 import ac
 import acsys
 
 from app.indicator import Indicator
 
-appWindow = 0
 longitudinalGIndicator = 0
 lateralGIndicator = 0
 barLength = 322
-triangleWidth = 10
 
 
 # This function gets called by AC when the Plugin is initialised
 # The function has to return a string with the plugin name
 def acMain(ac_version: str) -> str:
-    global longitudinalGIndicator, appWindow, lateralGIndicator
+    global longitudinalGIndicator, lateralGIndicator
     appWindow = ac.newApp("AC Drift Monitor")
     ac.setSize(appWindow, 333, 173)
     ac.drawBorder(appWindow, False)
@@ -53,7 +49,7 @@ def drawBar() -> None:
 
 
 def drawLTriangleIn(x: float) -> None:
-    global triangleWidth
+    triangleWidth = 10
     ac.glColor4f(1, 0, 0, 1)
     ac.glBegin(acsys.GL.Triangles)
     ac.glVertex2f(x, 109)
@@ -64,7 +60,7 @@ def drawLTriangleIn(x: float) -> None:
 
 
 def drawHTriangleIn(x: float) -> None:
-    global triangleWidth
+    triangleWidth = 10
     ac.glColor4f(1, 0, 0, 1)
     ac.glBegin(acsys.GL.Triangles)
     ac.glVertex2f(x, 104)
