@@ -13,29 +13,24 @@ import acsys
 from app import App
 from app.indicator import Indicator
 
-longitudinalGIndicator = 0
-lateralGIndicator = 0
-
 
 # This function gets called by AC when the Plugin is initialised
 # The function has to return a string with the plugin name
 def acMain(ac_version: str) -> str:
-    global longitudinalGIndicator, lateralGIndicator
+    global app
     app = App()
-    lateralGIndicator = Indicator(app.win, 22, 62, "Lat.")
-    longitudinalGIndicator = Indicator(app.win, 22, 136, "Lon.")
     ac.addRenderCallback(app.win, onFormRender)
     return app.name
 
 
 def onFormRender(deltaT: float) -> None:
-    global longitudinalGIndicator, lateralGIndicator
+    global app
     barLength = Indicator.barLength
-    drawHTriangleIn(167 + (lateralGIndicator.indicatorPosition*(barLength/2)))
-    drawLTriangleIn(167 + (longitudinalGIndicator.indicatorPosition*(barLength/2)))
+    drawHTriangleIn(167 + (app.lateralGIndicator.indicatorPosition*(barLength/2)))
+    drawLTriangleIn(167 + (app.longitudinalGIndicator.indicatorPosition*(barLength/2)))
     x, y, z = ac.getCarState(0, acsys.CS.AccG)
-    longitudinalGIndicator.setCurrentValue(z)
-    lateralGIndicator.setCurrentValue(x)
+    app.longitudinalGIndicator.setCurrentValue(z)
+    app.lateralGIndicator.setCurrentValue(x)
 
 
 def drawBar() -> None:
