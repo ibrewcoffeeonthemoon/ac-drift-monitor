@@ -20,7 +20,7 @@ def acMain(ac_version: str) -> str:
     app = App()
 
     # register render callback
-    ac.addRenderCallback(app.win, onRender)
+    ac.addRenderCallback(app.window, onRender)
 
     # return App name
     return app.name
