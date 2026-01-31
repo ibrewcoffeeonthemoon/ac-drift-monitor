@@ -15,6 +15,7 @@ class Indicator:
         name: str,
         arrow_on_top: bool,
     ) -> None:
+        self.name = name
         self.arrow_on_top = arrow_on_top
 
         # value
@@ -25,8 +26,9 @@ class Indicator:
         self.ind_pos = 0
 
         # labels
-        ac.setPosition(ac.addLabel(window, name), x_pos, y_pos)
+        self.name_label = ac.addLabel(window, name)
         self.value_label = ac.addLabel(window, "0.0g")
+        ac.setPosition(self.name_label, x_pos, y_pos)
         ac.setPosition(self.value_label, x_pos+50, y_pos)
 
     def set_value(self, value: float) -> None:
