@@ -68,3 +68,9 @@ class Indicator:
         ac.glVertex2f(x+(w/2), 104-w)
         ac.glEnd()
         ac.glQuad(x-(w/2), 104-(w + w/2), w, w/2)
+
+    def drawBar(self) -> None:
+        ac.glColor4f(1, 1, 1, 1)
+        ac.glQuad(0, 55, 300, 7)
+        ac.glColor4f(1, 1, 1, 1)
+        ac.glQuad(148, 45, 4, 27)
