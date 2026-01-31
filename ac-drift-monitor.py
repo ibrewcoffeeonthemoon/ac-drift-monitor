@@ -63,7 +63,7 @@ def acMain(ac_version: str) -> str:
     global longitudinalGIndicator, appWindow, lateralGIndicator
     appWindow = ac.newApp("AC Drift Monitor")
     ac.setSize(appWindow, 333, 173)
-    ac.drawBorder(appWindow, 0)
+    ac.drawBorder(appWindow, False)
     ac.setBackgroundOpacity(appWindow, 0)
     ac.setBackgroundTexture(appWindow, "apps/python/ac-drift-monitor/bg.png")
     lateralGIndicator = GIndicator(appWindow, 22, 62, "Lat.")
