@@ -15,14 +15,19 @@ class Indicator:
         name: str,
         arrow_on_top: bool,
     ) -> None:
-        self.value = 0
-        self.old_value = 0
         self.arrow_on_top = arrow_on_top
 
+        # value
+        self.value = 0
+        self.old_value = 0
+
+        # indicator position
+        self.ind_pos = 0
+
+        # labels
         ac.setPosition(ac.addLabel(window, name), x_pos, y_pos)
         self.value_label = ac.addLabel(window, "0.0g")
         ac.setPosition(self.value_label, x_pos+50, y_pos)
-        self.ind_pos = 0
 
     def set_value(self, value: float) -> None:
         # clip value
