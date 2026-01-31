@@ -15,19 +15,13 @@ class Indicator:
         name: str,
         arrow_on_top: bool,
     ) -> None:
-        self.x_pos = x_pos
-        self.y_pos = y_pos
-        self.counter = 0
-        self.seconds_to_fade = 3
         self.value = 0
         self.old_value = 0
-        self.max_value = 0
         self.arrow_on_top = arrow_on_top
 
         ac.setPosition(ac.addLabel(window, name), x_pos, y_pos)
         self.value_label = ac.addLabel(window, "0.0g")
         ac.setPosition(self.value_label, x_pos+50, y_pos)
-        self.ind_width = 10
         self.ind_pos = 0
 
     def set_value(self, value: float) -> None:
