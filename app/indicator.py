@@ -52,21 +52,11 @@ class Indicator:
 
         # draw triangle
         if self.arrow_on_top:
-            self.drawHTriangleIn(167 + (self.ind_pos*(self.barLength/2)))
+            self.draw_upper_triangle(167 + (self.ind_pos*(self.barLength/2)))
         else:
-            self.drawLTriangleIn(167 + (self.ind_pos*(self.barLength/2)))
+            self.draw_lower_triangle(167 + (self.ind_pos*(self.barLength/2)))
 
-    def drawLTriangleIn(self, x: float) -> None:
-        w = self.triangleWidth
-        ac.glColor4f(1, 0, 0, 1)
-        ac.glBegin(acsys.GL.Triangles)
-        ac.glVertex2f(x, 109)
-        ac.glVertex2f(x-(w/2), 109+w)
-        ac.glVertex2f(x+(w/2), 109+w)
-        ac.glEnd()
-        ac.glQuad(x-(w/2), 109+w, w, w/2)
-
-    def drawHTriangleIn(self, x: float) -> None:
+    def draw_upper_triangle(self, x: float) -> None:
         w = self.triangleWidth
         ac.glColor4f(1, 0, 0, 1)
         ac.glBegin(acsys.GL.Triangles)
@@ -76,7 +66,17 @@ class Indicator:
         ac.glEnd()
         ac.glQuad(x-(w/2), 104-(w + w/2), w, w/2)
 
-    def drawBar(self) -> None:
+    def draw_lower_triangle(self, x: float) -> None:
+        w = self.triangleWidth
+        ac.glColor4f(1, 0, 0, 1)
+        ac.glBegin(acsys.GL.Triangles)
+        ac.glVertex2f(x, 109)
+        ac.glVertex2f(x-(w/2), 109+w)
+        ac.glVertex2f(x+(w/2), 109+w)
+        ac.glEnd()
+        ac.glQuad(x-(w/2), 109+w, w, w/2)
+
+    def draw_bar(self) -> None:
         ac.glColor4f(1, 1, 1, 1)
         ac.glQuad(0, 55, 300, 7)
         ac.glColor4f(1, 1, 1, 1)
