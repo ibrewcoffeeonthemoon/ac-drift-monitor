@@ -1,9 +1,11 @@
 import ac
+import acsys
 
 
 class Indicator:
     maxG = 2
     barLength = 322
+    triangleWidth = 10
 
     def __init__(
         self,
@@ -38,3 +40,22 @@ class Indicator:
             ac.setText(self.currentValueLabel, "0.0g")
 
         self.indicatorPosition = self.currentValue/self.maxG
+
+    def drawLTriangleIn(self, x: float) -> None:
+        ac.glColor4f(1, 0, 0, 1)
+        ac.glBegin(acsys.GL.Triangles)
+        ac.glVertex2f(x, 109)
+        ac.glVertex2f(x-(self.triangleWidth/2), 109+self.triangleWidth)
+        ac.glVertex2f(x+(self.triangleWidth/2), 109+self.triangleWidth)
+        ac.glEnd()
+        ac.glQuad(x-(self.triangleWidth/2), 109+self.triangleWidth, self.triangleWidth, self.triangleWidth/2)
+
+    def drawHTriangleIn(self, x: float) -> None:
+        ac.glColor4f(1, 0, 0, 1)
+        ac.glBegin(acsys.GL.Triangles)
+        ac.glVertex2f(x, 104)
+        ac.glVertex2f(x-(self.triangleWidth/2), 104-self.triangleWidth)
+        ac.glVertex2f(x+(self.triangleWidth/2), 104-self.triangleWidth)
+        ac.glEnd()
+        ac.glQuad(x-(self.triangleWidth/2), 104-(self.triangleWidth +
+                  self.triangleWidth/2), self.triangleWidth, self.triangleWidth/2)

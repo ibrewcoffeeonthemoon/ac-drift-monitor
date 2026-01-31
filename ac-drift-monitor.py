@@ -26,8 +26,8 @@ def acMain(ac_version: str) -> str:
 def onFormRender(deltaT: float) -> None:
     global app
     barLength = Indicator.barLength
-    drawHTriangleIn(167 + (app.lateralGIndicator.indicatorPosition*(barLength/2)))
-    drawLTriangleIn(167 + (app.longitudinalGIndicator.indicatorPosition*(barLength/2)))
+    app.lateralGIndicator.drawHTriangleIn(167 + (app.lateralGIndicator.indicatorPosition*(barLength/2)))
+    app.longitudinalGIndicator.drawLTriangleIn(167 + (app.longitudinalGIndicator.indicatorPosition*(barLength/2)))
     x, y, z = ac.getCarState(0, acsys.CS.AccG)
     app.longitudinalGIndicator.setCurrentValue(z)
     app.lateralGIndicator.setCurrentValue(x)
@@ -38,25 +38,3 @@ def drawBar() -> None:
     ac.glQuad(0, 55, 300, 7)
     ac.glColor4f(1, 1, 1, 1)
     ac.glQuad(148, 45, 4, 27)
-
-
-def drawLTriangleIn(x: float) -> None:
-    triangleWidth = 10
-    ac.glColor4f(1, 0, 0, 1)
-    ac.glBegin(acsys.GL.Triangles)
-    ac.glVertex2f(x, 109)
-    ac.glVertex2f(x-(triangleWidth/2), 109+triangleWidth)
-    ac.glVertex2f(x+(triangleWidth/2), 109+triangleWidth)
-    ac.glEnd()
-    ac.glQuad(x-(triangleWidth/2), 109+triangleWidth, triangleWidth, triangleWidth/2)
-
-
-def drawHTriangleIn(x: float) -> None:
-    triangleWidth = 10
-    ac.glColor4f(1, 0, 0, 1)
-    ac.glBegin(acsys.GL.Triangles)
-    ac.glVertex2f(x, 104)
-    ac.glVertex2f(x-(triangleWidth/2), 104-triangleWidth)
-    ac.glVertex2f(x+(triangleWidth/2), 104-triangleWidth)
-    ac.glEnd()
-    ac.glQuad(x-(triangleWidth/2), 104-(triangleWidth + triangleWidth/2), triangleWidth, triangleWidth/2)
