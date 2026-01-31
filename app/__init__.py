@@ -8,7 +8,7 @@ class App:
     name = 'AC Drift Monitor'
     width = 333
     height = 173
-    bg_path = 'apps/python/ac-drift-monitor/bg.png'
+    bg_img_path = 'apps/python/ac-drift-monitor/bg.png'
 
     def __init__(self) -> None:
         # create app window
@@ -18,7 +18,7 @@ class App:
         ac.setSize(self.window, self.width, self.height)
         ac.drawBorder(self.window, False)
         ac.setBackgroundOpacity(self.window, 0)
-        ac.setBackgroundTexture(self.window, self.bg_path)
+        ac.setBackgroundTexture(self.window, self.bg_img_path)
 
         # create indicators
         self.ind_latG = Indicator(self.window, 22, 62, "Lat.", arrow_on_top=True)

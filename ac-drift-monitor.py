@@ -11,13 +11,13 @@ def acMain(ac_version: str) -> str:
     app = App()
 
     # register render callback
-    ac.addRenderCallback(app.window, onRender)
+    ac.addRenderCallback(app.window, on_render)
 
     # return App name
     return app.name
 
 
-def onRender(deltaT: float) -> None:
+def on_render(deltaT: float) -> None:
     # render
     global app
     app.render()
