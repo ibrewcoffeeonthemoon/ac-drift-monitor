@@ -1,11 +1,12 @@
 import ac
 import acsys
 
+from app.window import window
+
 
 class Indicator:
     def __init__(
         self,
-        window: int,
         x_pos: int,
         y_pos: int,
         max_value: float,

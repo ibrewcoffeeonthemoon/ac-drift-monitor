@@ -14,14 +14,12 @@ class AccG_Bar:
 
         # create indicators
         self._latG = Indicator(
-            window,
             x_pos=22,
             y_pos=62,
             max_value=1.5,
             name="Lat.",
         )
         self._longG = Indicator(
-            window,
             x_pos=22,
             y_pos=136,
             max_value=1.5,
