@@ -11,8 +11,8 @@ class Indicator:
         y_pos: int,
         max_value: float,
         name: str,
+        bar_len: int,
         arrow_on_top: bool = True,
-        bar_len: int = 322,
         triangle_width: int = 10,
     ) -> None:
         self.name = name

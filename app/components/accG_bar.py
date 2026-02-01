@@ -12,19 +12,27 @@ class AccG_Bar:
         height: int,
     ) -> None:
         # shapes
-        self._line = Rectangle(x_pos, y_pos+height//2, width, 5)
+        line_height = 6
+        self._line = Rectangle(
+            x_pos=x_pos,
+            y_pos=y_pos+height//2-line_height//2,
+            width=width,
+            height=line_height,
+        )
 
         # create indicators
         self._latG = Indicator(
-            x_pos=22,
-            y_pos=62,
+            x_pos=x_pos,
+            y_pos=y_pos+62,
             max_value=1.5,
+            bar_len=width,
             name="Lat.",
         )
         self._longG = Indicator(
-            x_pos=22,
-            y_pos=136,
+            x_pos=x_pos,
+            y_pos=y_pos+136,
             max_value=1.5,
+            bar_len=width,
             name="Lon.",
             arrow_on_top=False
         )
