@@ -12,20 +12,24 @@ class App:
 
     def __init__(self) -> None:
         # create app window
-        self.window = ac.newApp(self.name)
+        self._window = ac.newApp(self.name)
 
         # set layouts, styles
-        ac.setSize(self.window, self.width, self.height)
-        ac.drawBorder(self.window, False)
-        ac.setBackgroundOpacity(self.window, 0)
-        ac.setBackgroundTexture(self.window, self.bg_img_path)
+        ac.setSize(self._window, self.width, self.height)
+        ac.drawBorder(self._window, False)
+        ac.setBackgroundOpacity(self._window, 0)
+        ac.setBackgroundTexture(self._window, self.bg_img_path)
 
         # create indicators
-        self._ind_latG = Indicator(self.window, 22, 62, "Lat.", arrow_on_top=True)
-        self._ind_longG = Indicator(self.window, 22, 136, "Lon.", arrow_on_top=False)
+        self._ind_latG = Indicator(self._window, 22, 62, "Lat.", arrow_on_top=True)
+        self._ind_longG = Indicator(self._window, 22, 136, "Lon.", arrow_on_top=False)
 
         # init
         self._car_id = ac.getFocusedCar()
+
+    @property
+    def window(self) -> int:
+        return self._window
 
     def render(self) -> None:
         # fetch car state values
