@@ -26,7 +26,7 @@ class Indicator:
 
         # labels
         self._name_label = ac.addLabel(window, name)
-        self._value_label = ac.addLabel(window, "0.00g")
+        self._value_label = ac.addLabel(window, '')
         ac.setPosition(self._name_label, x_pos, y_pos)
         ac.setPosition(self._value_label, x_pos+50, y_pos)
 
