@@ -1,7 +1,7 @@
 import ac
 
+from app.components.accG_bar import AccG_Bar
 from app.data import Telemetry
-from app.indicator import Indicator
 
 
 class App:
@@ -23,22 +23,8 @@ class App:
         ac.setBackgroundOpacity(win, 0)
         ac.setBackgroundTexture(win, self.bg_img_path)
 
-        # create indicators
-        self._latG = Indicator(
-            win,
-            x_pos=22,
-            y_pos=62,
-            max_value=1.5,
-            name="Lat.",
-        )
-        self._longG = Indicator(
-            win,
-            x_pos=22,
-            y_pos=136,
-            max_value=1.5,
-            name="Lon.",
-            arrow_on_top=False
-        )
+        # create components
+        self.accG_Bar = AccG_Bar(win, self.telemetry)
 
         # init
         self._car_id = ac.getFocusedCar()
@@ -49,4 +35,4 @@ class App:
 
     def render(self) -> None:
         # set indicator values
-        self._latG.value, _, self._longG.value = self.telemetry.accG
+        self.accG_Bar.render()
