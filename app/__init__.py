@@ -1,7 +1,7 @@
 import ac
 
 from app.components.accG_bar import AccG_Bar
-from app.window import HEIGHT, WIDTH, window
+from app.window import window
 
 
 class _App:
@@ -34,6 +34,6 @@ class _App:
 
 # export
 app = _App(
-    width=WIDTH,
-    height=HEIGHT,
+    width=340,
+    height=200,
 )
