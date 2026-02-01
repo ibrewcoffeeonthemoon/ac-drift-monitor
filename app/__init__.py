@@ -25,6 +25,7 @@ class App:
             win,
             x_pos=22,
             y_pos=62,
+            max_value=2,
             name="Lat.",
             arrow_on_top=True
         )
@@ -32,6 +33,7 @@ class App:
             win,
             x_pos=22,
             y_pos=136,
+            max_value=2,
             name="Lon.",
             arrow_on_top=False
         )

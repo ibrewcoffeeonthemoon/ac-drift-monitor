@@ -3,7 +3,6 @@ import acsys
 
 
 class Indicator:
-    maxG = 2
     bar_len = 322
     triangle_width = 10
 
@@ -12,10 +11,12 @@ class Indicator:
         window: int,
         x_pos: int,
         y_pos: int,
+        max_value: float,
         name: str,
         arrow_on_top: bool,
     ) -> None:
         self.name = name
+        self._max_value = max_value
         self._arrow_on_top = arrow_on_top
 
         # value
@@ -35,7 +36,7 @@ class Indicator:
     @value.setter
     def value(self, value: float) -> None:
         # clip value
-        self._value = min(max(value, -self.maxG), self.maxG)
+        self._value = min(max(value, -self._max_value), self._max_value)
 
         # smooth value
         weight = 0.2
@@ -51,7 +52,7 @@ class Indicator:
             ac.setText(self._value_label, "0.0g")
 
         # calc indicator percentage position
-        pct = self._value/self.maxG
+        pct = self._value/self._max_value
 
         # draw triangle
         if self._arrow_on_top:
