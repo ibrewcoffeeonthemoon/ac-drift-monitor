@@ -4,10 +4,15 @@ from app.data import telemetry
 
 
 class AccG_Bar:
-
-    def __init__(self) -> None:
+    def __init__(
+        self,
+        x_pos: int,
+        y_pos: int,
+        width: int,
+        height: int,
+    ) -> None:
         # shapes
-        self._line = Rectangle(0, 99, 333, 5)
+        self._line = Rectangle(x_pos, y_pos+height//2, width, 5)
 
         # create indicators
         self._latG = Indicator(

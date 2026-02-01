@@ -17,7 +17,12 @@ class _App:
         ac.drawBorder(window, False)
 
         # create components
-        self.accG_Bar = AccG_Bar()
+        self.accG_Bar = AccG_Bar(
+            x_pos=0,
+            y_pos=0,
+            width=width,
+            height=height
+        )
 
         # init
         self._car_id = ac.getFocusedCar()
