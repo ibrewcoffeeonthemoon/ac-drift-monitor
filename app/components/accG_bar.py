@@ -1,5 +1,5 @@
+from app.components.lib.indicator import Indicator
 from app.data import Telemetry
-from app.indicator import Indicator
 
 
 class AccG_Bar:
