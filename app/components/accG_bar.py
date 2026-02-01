@@ -4,24 +4,39 @@ from app.data import telemetry
 
 
 class AccG_Bar:
-
-    def __init__(self) -> None:
+    def __init__(
+        self,
+        x_pos: int,
+        y_pos: int,
+        width: int,
+        height: int,
+    ) -> None:
         # shapes
-        self._line = Rectangle(0, 99, 333, 5)
+        line_height = 6
+        self._line = Rectangle(
+            x_pos=x_pos,
+            y_pos=y_pos+height//2-line_height//2,
+            width=width,
+            height=line_height,
+        )
 
         # create indicators
         self._latG = Indicator(
-            x_pos=22,
-            y_pos=62,
+            x_pos=x_pos,
+            y_pos=y_pos,
+            width=width,
+            height=height//2,
             max_value=1.5,
             name="Lat.",
         )
         self._longG = Indicator(
-            x_pos=22,
-            y_pos=136,
+            x_pos=x_pos,
+            y_pos=y_pos+height//2,
+            width=width,
+            height=height//2,
             max_value=1.5,
             name="Lon.",
-            arrow_on_top=False
+            arrow_on_top=False,
         )
 
     def render(self) -> None:

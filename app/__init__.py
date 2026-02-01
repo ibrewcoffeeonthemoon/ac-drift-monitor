@@ -1,7 +1,7 @@
 import ac
 
 from app.components.accG_bar import AccG_Bar
-from app.window import HEIGHT, WIDTH, window
+from app.window import window
 
 
 class _App:
@@ -17,7 +17,12 @@ class _App:
         ac.drawBorder(window, False)
 
         # create components
-        self.accG_Bar = AccG_Bar()
+        self.accG_Bar = AccG_Bar(
+            x_pos=0,
+            y_pos=0,
+            width=width,
+            height=160,
+        )
 
         # init
         self._car_id = ac.getFocusedCar()
@@ -29,6 +34,6 @@ class _App:
 
 # export
 app = _App(
-    width=WIDTH,
-    height=HEIGHT,
+    width=340,
+    height=200,
 )
