@@ -1,7 +1,7 @@
 import ac
 
 from app.components.lib.indicator import Indicator
-from app.data import Telemetry
+from app.data import telemetry
 
 
 class AccG_Bar:
@@ -10,11 +10,7 @@ class AccG_Bar:
     def __init__(
         self,
         win: int,
-        telemetry: Telemetry,
     ) -> None:
-        # data
-        self.telemetry = telemetry
-
         # set layouts, styles
         ac.setBackgroundTexture(win, self.bg_img_path)
 
@@ -37,4 +33,4 @@ class AccG_Bar:
 
     def render(self) -> None:
         # set indicator values
-        self._latG.value, _, self._longG.value = self.telemetry.accG
+        self._latG.value, _, self._longG.value = telemetry.accG
