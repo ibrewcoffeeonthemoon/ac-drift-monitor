@@ -1,6 +1,7 @@
 import ac
 
 from app import App
+from app.data import telemetry
 
 
 # This function gets called by AC when the Plugin is initialised
@@ -20,7 +21,7 @@ def acMain(ac_version: str) -> str:
 def acUpdate(deltaT: float) -> None:
     # fetch car state values
     global app
-    app.telemetry.fetch()
+    telemetry.fetch()
 
 
 def on_render(deltaT: float) -> None:
