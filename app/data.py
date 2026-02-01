@@ -17,7 +17,7 @@ class _AccG:
         yield self.z
 
 
-class Telemetry:
+class _Telemetry:
 
     def __init__(self) -> None:
         # data
@@ -28,3 +28,7 @@ class Telemetry:
 
     def fetch(self) -> None:
         self.accG.fetch(self._car_id)
+
+
+# export
+telemetry = _Telemetry()
