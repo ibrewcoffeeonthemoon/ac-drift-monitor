@@ -26,7 +26,7 @@ class Indicator:
 
         # labels
         self._name_label = ac.addLabel(window, name)
-        self._value_label = ac.addLabel(window, "0.0g")
+        self._value_label = ac.addLabel(window, "0.00g")
         ac.setPosition(self._name_label, x_pos, y_pos)
         ac.setPosition(self._value_label, x_pos+50, y_pos)
 
@@ -43,14 +43,11 @@ class Indicator:
         weight = 0.2
         self._value = self._old_value*weight + self._value*(1-weight)
 
-        # round value
-        self._value = round(self._value*100)/100
-
         # display
-        ac.setText(self._value_label, "{0}g".format(abs(self._value)))
+        ac.setText(self._value_label, "{:.2f}g".format(abs(self._value)))
         if (abs(self._value) < 0.1):
             self._value = 0
-            ac.setText(self._value_label, "0.0g")
+            ac.setText(self._value_label, "0.00g")
 
         # calc indicator percentage position
         pct = self._value/self._max_value
