@@ -12,6 +12,8 @@ class _App:
     ) -> None:
         # set layouts, styles
         ac.setSize(window, width, height)
+        ac.setTitle(window, '')
+        ac.setIconPosition(window, 0, -10000)
         ac.drawBorder(window, False)
 
         # create components
