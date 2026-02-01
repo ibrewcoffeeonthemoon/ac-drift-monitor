@@ -2,7 +2,7 @@ import ac
 
 from app import app
 from app.data import telemetry
-from app.window import name, window
+from app.window import NAME, window
 
 
 # This function gets called by AC when the Plugin is initialised
@@ -12,7 +12,7 @@ def acMain(ac_version: str) -> str:
     ac.addRenderCallback(window, on_render)
 
     # return App name
-    return name
+    return NAME
 
 
 def acUpdate(deltaT: float) -> None:
