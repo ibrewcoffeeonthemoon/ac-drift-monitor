@@ -36,6 +36,7 @@ class AccG_Bar:
             height=height//2,
             max_value=1.5,
             name="Lon.",
+            arrow_on_top=False,
         )
 
     def render(self) -> None:
