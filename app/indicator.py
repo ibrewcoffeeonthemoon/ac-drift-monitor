@@ -22,9 +22,6 @@ class Indicator:
         self._value = 0.0
         self._old_value = 0.0
 
-        # indicator position
-        self._ind_pos = 0.0
-
         # labels
         self._name_label = ac.addLabel(window, name)
         self._value_label = ac.addLabel(window, "0.0g")
@@ -53,14 +50,14 @@ class Indicator:
             self._value = 0
             ac.setText(self._value_label, "0.0g")
 
-        # calc indicator position
-        self._ind_pos = self._value/self.maxG
+        # calc indicator percentage position
+        pct = self._value/self.maxG
 
         # draw triangle
         if self._arrow_on_top:
-            self._draw_upper_triangle(167 + (self._ind_pos*(self.bar_len/2)))
+            self._draw_upper_triangle(167 + (pct*(self.bar_len/2)))
         else:
-            self._draw_lower_triangle(167 + (self._ind_pos*(self.bar_len/2)))
+            self._draw_lower_triangle(167 + (pct*(self.bar_len/2)))
 
     def _draw_upper_triangle(self, x: float) -> None:
         w = self.triangle_width
