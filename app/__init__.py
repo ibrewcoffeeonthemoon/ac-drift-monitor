@@ -21,8 +21,21 @@ class App:
         ac.setBackgroundTexture(win, self.bg_img_path)
 
         # create indicators
-        self._ind_latG = Indicator(win, 22, 62, "Lat.", arrow_on_top=True)
-        self._ind_longG = Indicator(win, 22, 136, "Lon.", arrow_on_top=False)
+        self._ind_latG = Indicator(
+            win,
+            x_pos=22,
+            y_pos=62,
+            max_value=1.5,
+            name="Lat.",
+        )
+        self._ind_longG = Indicator(
+            win,
+            x_pos=22,
+            y_pos=136,
+            max_value=1.5,
+            name="Lon.",
+            arrow_on_top=False
+        )
 
         # init
         self._car_id = ac.getFocusedCar()
