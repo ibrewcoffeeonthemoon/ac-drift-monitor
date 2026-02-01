@@ -58,11 +58,11 @@ class Indicator:
 
         # draw triangle
         if self.arrow_on_top:
-            self.draw_upper_triangle(167 + (self._ind_pos*(self.bar_len/2)))
+            self._draw_upper_triangle(167 + (self._ind_pos*(self.bar_len/2)))
         else:
-            self.draw_lower_triangle(167 + (self._ind_pos*(self.bar_len/2)))
+            self._draw_lower_triangle(167 + (self._ind_pos*(self.bar_len/2)))
 
-    def draw_upper_triangle(self, x: float) -> None:
+    def _draw_upper_triangle(self, x: float) -> None:
         w = self.triangle_width
         ac.glColor4f(1, 0, 0, 1)
         ac.glBegin(acsys.GL.Triangles)
@@ -72,7 +72,7 @@ class Indicator:
         ac.glEnd()
         ac.glQuad(x-(w/2), 104-(w + w/2), w, w/2)
 
-    def draw_lower_triangle(self, x: float) -> None:
+    def _draw_lower_triangle(self, x: float) -> None:
         w = self.triangle_width
         ac.glColor4f(1, 0, 0, 1)
         ac.glBegin(acsys.GL.Triangles)
@@ -82,7 +82,7 @@ class Indicator:
         ac.glEnd()
         ac.glQuad(x-(w/2), 109+w, w, w/2)
 
-    def draw_bar(self) -> None:
+    def _draw_bar(self) -> None:
         ac.glColor4f(1, 1, 1, 1)
         ac.glQuad(0, 55, 300, 7)
         ac.glColor4f(1, 1, 1, 1)
