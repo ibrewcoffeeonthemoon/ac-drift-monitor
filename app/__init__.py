@@ -15,7 +15,7 @@ class _App:
         ac.setBackgroundOpacity(window, 0)
 
         # create components
-        self.accG_Bar = AccG_Bar(window)
+        self.accG_Bar = AccG_Bar()
 
         # init
         self._car_id = ac.getFocusedCar()
