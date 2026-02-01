@@ -13,7 +13,6 @@ class _App:
         # set layouts, styles
         ac.setSize(window, width, height)
         ac.drawBorder(window, False)
-        # ac.setBackgroundOpacity(window, 0)
 
         # create components
         self.accG_Bar = AccG_Bar()
