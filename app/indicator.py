@@ -16,7 +16,7 @@ class Indicator:
         arrow_on_top: bool,
     ) -> None:
         self.name = name
-        self.arrow_on_top = arrow_on_top
+        self._arrow_on_top = arrow_on_top
 
         # value
         self._value = 0.0
@@ -26,10 +26,10 @@ class Indicator:
         self._ind_pos = 0.0
 
         # labels
-        self.name_label = ac.addLabel(window, name)
-        self.value_label = ac.addLabel(window, "0.0g")
-        ac.setPosition(self.name_label, x_pos, y_pos)
-        ac.setPosition(self.value_label, x_pos+50, y_pos)
+        self._name_label = ac.addLabel(window, name)
+        self._value_label = ac.addLabel(window, "0.0g")
+        ac.setPosition(self._name_label, x_pos, y_pos)
+        ac.setPosition(self._value_label, x_pos+50, y_pos)
 
     @property
     def value(self) -> float:
@@ -48,16 +48,16 @@ class Indicator:
         self._value = round(self._value*100)/100
 
         # display
-        ac.setText(self.value_label, "{0}g".format(abs(self._value)))
+        ac.setText(self._value_label, "{0}g".format(abs(self._value)))
         if (abs(self._value) < 0.1):
             self._value = 0
-            ac.setText(self.value_label, "0.0g")
+            ac.setText(self._value_label, "0.0g")
 
         # calc indicator position
         self._ind_pos = self._value/self.maxG
 
         # draw triangle
-        if self.arrow_on_top:
+        if self._arrow_on_top:
             self._draw_upper_triangle(167 + (self._ind_pos*(self.bar_len/2)))
         else:
             self._draw_lower_triangle(167 + (self._ind_pos*(self.bar_len/2)))

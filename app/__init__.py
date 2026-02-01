@@ -25,11 +25,11 @@ class App:
         self._ind_longG = Indicator(self.window, 22, 136, "Lon.", arrow_on_top=False)
 
         # init
-        self.car_id = ac.getFocusedCar()
+        self._car_id = ac.getFocusedCar()
 
     def render(self) -> None:
         # fetch car state values
-        x, y, z = ac.getCarState(self.car_id, acsys.CS.AccG)
+        x, y, z = ac.getCarState(self._car_id, acsys.CS.AccG)
 
         # set indicator values
         self._ind_latG.value = x
