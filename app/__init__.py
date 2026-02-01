@@ -12,17 +12,17 @@ class App:
 
     def __init__(self) -> None:
         # create app window
-        self._window = ac.newApp(self.name)
+        self._window = win = ac.newApp(self.name)
 
         # set layouts, styles
-        ac.setSize(self._window, self.width, self.height)
-        ac.drawBorder(self._window, False)
-        ac.setBackgroundOpacity(self._window, 0)
-        ac.setBackgroundTexture(self._window, self.bg_img_path)
+        ac.setSize(win, self.width, self.height)
+        ac.drawBorder(win, False)
+        ac.setBackgroundOpacity(win, 0)
+        ac.setBackgroundTexture(win, self.bg_img_path)
 
         # create indicators
-        self._ind_latG = Indicator(self._window, 22, 62, "Lat.", arrow_on_top=True)
-        self._ind_longG = Indicator(self._window, 22, 136, "Lon.", arrow_on_top=False)
+        self._ind_latG = Indicator(win, 22, 62, "Lat.", arrow_on_top=True)
+        self._ind_longG = Indicator(win, 22, 136, "Lon.", arrow_on_top=False)
 
         # init
         self._car_id = ac.getFocusedCar()
