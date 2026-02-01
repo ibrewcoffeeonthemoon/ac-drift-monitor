@@ -9,16 +9,21 @@ class Indicator:
         self,
         x_pos: int,
         y_pos: int,
+        width: int,
+        height: int,
         max_value: float,
         name: str,
-        bar_len: int,
         arrow_on_top: bool = True,
         triangle_width: int = 10,
     ) -> None:
         self.name = name
+        self._x_pos = x_pos
+        self._y_pos = y_pos
+        self._width = width
+        self._height = height
         self._max_value = max_value
         self._arrow_on_top = arrow_on_top
-        self._bar_len = bar_len
+        self._bar_len = width
         self._triangle_width = triangle_width
 
         # value
@@ -79,9 +84,3 @@ class Indicator:
         ac.glVertex2f(x+(w/2), 109+w)
         ac.glEnd()
         ac.glQuad(x-(w/2), 109+w, w, w/2)
-
-    def _draw_bar(self) -> None:
-        ac.glColor4f(1, 1, 1, 1)
-        ac.glQuad(0, 55, 300, 7)
-        ac.glColor4f(1, 1, 1, 1)
-        ac.glQuad(148, 45, 4, 27)

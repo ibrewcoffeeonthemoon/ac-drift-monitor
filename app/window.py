@@ -1,8 +1,8 @@
 import ac
 
 NAME = 'AC Drift Monitor'
-WIDTH = 333
-HEIGHT = 173
+WIDTH = 340
+HEIGHT = 200
 
 # app window, shared to all
 window = ac.newApp(NAME)

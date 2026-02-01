@@ -23,18 +23,19 @@ class AccG_Bar:
         # create indicators
         self._latG = Indicator(
             x_pos=x_pos,
-            y_pos=y_pos+62,
+            y_pos=y_pos,
+            width=width,
+            height=height//2,
             max_value=1.5,
-            bar_len=width,
             name="Lat.",
         )
         self._longG = Indicator(
             x_pos=x_pos,
-            y_pos=y_pos+136,
+            y_pos=y_pos+height//2,
+            width=width,
+            height=height//2,
             max_value=1.5,
-            bar_len=width,
             name="Lon.",
-            arrow_on_top=False
         )
 
     def render(self) -> None:

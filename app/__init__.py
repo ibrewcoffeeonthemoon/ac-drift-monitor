@@ -21,7 +21,7 @@ class _App:
             x_pos=0,
             y_pos=0,
             width=width,
-            height=height
+            height=160,
         )
 
         # init
