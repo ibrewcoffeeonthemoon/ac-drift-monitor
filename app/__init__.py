@@ -24,14 +24,14 @@ class App:
         ac.setBackgroundTexture(win, self.bg_img_path)
 
         # create indicators
-        self._ind_latG = Indicator(
+        self._latG = Indicator(
             win,
             x_pos=22,
             y_pos=62,
             max_value=1.5,
             name="Lat.",
         )
-        self._ind_longG = Indicator(
+        self._longG = Indicator(
             win,
             x_pos=22,
             y_pos=136,
@@ -49,4 +49,4 @@ class App:
 
     def render(self) -> None:
         # set indicator values
-        self._ind_latG.value, _, self._ind_longG.value = self.telemetry.accG
+        self._latG.value, _, self._longG.value = self.telemetry.accG
