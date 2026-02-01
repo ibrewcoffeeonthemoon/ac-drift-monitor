@@ -1,16 +1,12 @@
 import ac
 
-from app import App
+from app import app
 from app.data import telemetry
 
 
 # This function gets called by AC when the Plugin is initialised
 # The function has to return a string with the plugin name
 def acMain(ac_version: str) -> str:
-    # create App
-    global app
-    app = App()
-
     # register render callback
     ac.addRenderCallback(app.window, on_render)
 
@@ -20,11 +16,9 @@ def acMain(ac_version: str) -> str:
 
 def acUpdate(deltaT: float) -> None:
     # fetch car state values
-    global app
     telemetry.fetch()
 
 
 def on_render(deltaT: float) -> None:
     # render
-    global app
     app.render()

@@ -1,10 +1,9 @@
 import ac
 
 from app.components.accG_bar import AccG_Bar
-from app.data import telemetry
 
 
-class App:
+class _App:
     name = 'AC Drift Monitor'
     width = 333
     height = 173
@@ -31,3 +30,7 @@ class App:
     def render(self) -> None:
         # set indicator values
         self.accG_Bar.render()
+
+
+# export
+app = _App()
