@@ -8,7 +8,7 @@ class App:
     name = 'AC Drift Monitor'
     width = 333
     height = 173
-    bg_img_path = 'apps/python/ac-drift-monitor/bg.png'
+    bg_img_path = 'apps/python/ac-drift-monitor/assets/bg.png'
 
     def __init__(self) -> None:
         # create app window
