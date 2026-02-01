@@ -49,5 +49,4 @@ class App:
 
     def render(self) -> None:
         # set indicator values
-        self._ind_latG.value = self.telemetry.accG.x
-        self._ind_longG.value = self.telemetry.accG.z
+        self._ind_latG.value, _, self._ind_longG.value = self.telemetry.accG

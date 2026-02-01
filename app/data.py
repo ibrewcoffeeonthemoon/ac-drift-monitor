@@ -11,6 +11,11 @@ class _AccG:
     def fetch(self, car_id: int) -> None:
         self.x, self.y, self.z = ac.getCarState(car_id, acsys.CS.AccG)
 
+    def __iter__(self):
+        yield self.x
+        yield self.y
+        yield self.z
+
 
 class Telemetry:
 
