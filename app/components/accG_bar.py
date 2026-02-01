@@ -1,14 +1,22 @@
+import ac
+
 from app.components.lib.indicator import Indicator
 from app.data import Telemetry
 
 
 class AccG_Bar:
+    bg_img_path = 'apps/python/ac-drift-monitor/assets/bg.png'
+
     def __init__(
         self,
         win: int,
         telemetry: Telemetry,
     ) -> None:
+        # data
         self.telemetry = telemetry
+
+        # set layouts, styles
+        ac.setBackgroundTexture(win, self.bg_img_path)
 
         # create indicators
         self._latG = Indicator(
