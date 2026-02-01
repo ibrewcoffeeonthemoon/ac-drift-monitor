@@ -43,11 +43,12 @@ class Indicator:
         weight = 0.2
         self._value = self._old_value*weight + self._value*(1-weight)
 
-        # display
-        ac.setText(self._value_label, "{:.2f}g".format(abs(self._value)))
+        # deadzone
         if (abs(self._value) < 0.1):
             self._value = 0
-            ac.setText(self._value_label, "0.00g")
+
+        # display
+        ac.setText(self._value_label, "{:.2f}g".format(abs(self._value)))
 
         # calc indicator percentage position
         pct = self._value/self._max_value
