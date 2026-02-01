@@ -1,7 +1,7 @@
 import ac
 
 from app.components.accG_bar import AccG_Bar
-from app.data import Telemetry
+from app.data import telemetry
 
 
 class App:
@@ -10,9 +10,6 @@ class App:
     height = 173
 
     def __init__(self) -> None:
-        # telemetry data
-        self.telemetry = Telemetry()
-
         # create app window
         self._window = win = ac.newApp(self.name)
 
@@ -22,7 +19,7 @@ class App:
         ac.setBackgroundOpacity(win, 0)
 
         # create components
-        self.accG_Bar = AccG_Bar(win, self.telemetry)
+        self.accG_Bar = AccG_Bar(win)
 
         # init
         self._car_id = ac.getFocusedCar()
