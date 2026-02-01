@@ -33,8 +33,9 @@ class Indicator:
         # labels
         self._name_label = ac.addLabel(window, name)
         self._value_label = ac.addLabel(window, '')
-        ac.setPosition(self._name_label, x_pos, y_pos)
-        ac.setPosition(self._value_label, x_pos+50, y_pos)
+        y_label_pos = y_pos+height-40 if arrow_on_top else y_pos+20
+        ac.setPosition(self._name_label, x_pos+20, y_label_pos)
+        ac.setPosition(self._value_label, x_pos+50, y_label_pos)
 
     @property
     def value(self) -> float:
