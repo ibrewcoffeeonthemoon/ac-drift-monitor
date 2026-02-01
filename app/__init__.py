@@ -12,25 +12,29 @@ class App:
 
     def __init__(self) -> None:
         # create app window
-        self.window = ac.newApp(self.name)
+        self._window = win = ac.newApp(self.name)
 
         # set layouts, styles
-        ac.setSize(self.window, self.width, self.height)
-        ac.drawBorder(self.window, False)
-        ac.setBackgroundOpacity(self.window, 0)
-        ac.setBackgroundTexture(self.window, self.bg_img_path)
+        ac.setSize(win, self.width, self.height)
+        ac.drawBorder(win, False)
+        ac.setBackgroundOpacity(win, 0)
+        ac.setBackgroundTexture(win, self.bg_img_path)
 
         # create indicators
-        self.ind_latG = Indicator(self.window, 22, 62, "Lat.", arrow_on_top=True)
-        self.ind_longG = Indicator(self.window, 22, 136, "Lon.", arrow_on_top=False)
+        self._ind_latG = Indicator(win, 22, 62, "Lat.", arrow_on_top=True)
+        self._ind_longG = Indicator(win, 22, 136, "Lon.", arrow_on_top=False)
 
         # init
-        self.car_id = ac.getFocusedCar()
+        self._car_id = ac.getFocusedCar()
+
+    @property
+    def window(self) -> int:
+        return self._window
 
     def render(self) -> None:
         # fetch car state values
-        x, y, z = ac.getCarState(self.car_id, acsys.CS.AccG)
+        x, y, z = ac.getCarState(self._car_id, acsys.CS.AccG)
 
         # set indicator values
-        self.ind_latG.value = x
-        self.ind_longG.value = z
+        self._ind_latG.value = x
+        self._ind_longG.value = z
