@@ -17,6 +17,12 @@ def acMain(ac_version: str) -> str:
     return app.name
 
 
+def acUpdate(deltaT: float) -> None:
+    # fetch car state values
+    global app
+    app.telemetry.fetch()
+
+
 def on_render(deltaT: float) -> None:
     # render
     global app

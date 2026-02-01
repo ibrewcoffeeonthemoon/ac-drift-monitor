@@ -1,6 +1,6 @@
 import ac
-import acsys
 
+from app.data import Telemetry
 from app.indicator import Indicator
 
 
@@ -11,6 +11,9 @@ class App:
     bg_img_path = 'apps/python/ac-drift-monitor/assets/bg.png'
 
     def __init__(self) -> None:
+        # telemetry data
+        self.telemetry = Telemetry()
+
         # create app window
         self._window = win = ac.newApp(self.name)
 
@@ -21,14 +24,14 @@ class App:
         ac.setBackgroundTexture(win, self.bg_img_path)
 
         # create indicators
-        self._ind_latG = Indicator(
+        self._latG = Indicator(
             win,
             x_pos=22,
             y_pos=62,
             max_value=1.5,
             name="Lat.",
         )
-        self._ind_longG = Indicator(
+        self._longG = Indicator(
             win,
             x_pos=22,
             y_pos=136,
@@ -45,9 +48,5 @@ class App:
         return self._window
 
     def render(self) -> None:
-        # fetch car state values
-        x, y, z = ac.getCarState(self._car_id, acsys.CS.AccG)
-
         # set indicator values
-        self._ind_latG.value = x
-        self._ind_longG.value = z
+        self._latG.value, _, self._longG.value = self.telemetry.accG
