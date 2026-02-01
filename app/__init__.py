@@ -1,18 +1,18 @@
 import ac
 
 from app.components.accG_bar import AccG_Bar
-from app.window import window
+from app.window import HEIGHT, WIDTH, window
 
 
 class _App:
-    width = 333
-    height = 173
-
-    def __init__(self) -> None:
+    def __init__(
+        self,
+        width: int,
+        height: int,
+    ) -> None:
         # set layouts, styles
-        ac.setSize(window, self.width, self.height)
+        ac.setSize(window, width, height)
         ac.drawBorder(window, False)
-        ac.setBackgroundOpacity(window, 0)
 
         # create components
         self.accG_Bar = AccG_Bar()
@@ -26,4 +26,7 @@ class _App:
 
 
 # export
-app = _App()
+app = _App(
+    width=WIDTH,
+    height=HEIGHT,
+)
