@@ -25,15 +25,14 @@ class App:
             win,
             x_pos=22,
             y_pos=62,
-            max_value=2,
+            max_value=1.5,
             name="Lat.",
-            arrow_on_top=True
         )
         self._ind_longG = Indicator(
             win,
             x_pos=22,
             y_pos=136,
-            max_value=2,
+            max_value=1.5,
             name="Lon.",
             arrow_on_top=False
         )

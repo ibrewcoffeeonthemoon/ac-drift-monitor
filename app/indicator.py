@@ -3,9 +3,6 @@ import acsys
 
 
 class Indicator:
-    bar_len = 322
-    triangle_width = 10
-
     def __init__(
         self,
         window: int,
@@ -13,11 +10,15 @@ class Indicator:
         y_pos: int,
         max_value: float,
         name: str,
-        arrow_on_top: bool,
+        arrow_on_top: bool = True,
+        bar_len: int = 322,
+        triangle_width: int = 10,
     ) -> None:
         self.name = name
         self._max_value = max_value
         self._arrow_on_top = arrow_on_top
+        self._bar_len = bar_len
+        self._triangle_width = triangle_width
 
         # value
         self._value = 0.0
@@ -56,12 +57,12 @@ class Indicator:
 
         # draw triangle
         if self._arrow_on_top:
-            self._draw_upper_triangle(167 + (pct*(self.bar_len/2)))
+            self._draw_upper_triangle(167 + (pct*(self._bar_len/2)))
         else:
-            self._draw_lower_triangle(167 + (pct*(self.bar_len/2)))
+            self._draw_lower_triangle(167 + (pct*(self._bar_len/2)))
 
     def _draw_upper_triangle(self, x: float) -> None:
-        w = self.triangle_width
+        w = self._triangle_width
         ac.glColor4f(1, 0, 0, 1)
         ac.glBegin(acsys.GL.Triangles)
         ac.glVertex2f(x, 104)
@@ -71,7 +72,7 @@ class Indicator:
         ac.glQuad(x-(w/2), 104-(w + w/2), w, w/2)
 
     def _draw_lower_triangle(self, x: float) -> None:
-        w = self.triangle_width
+        w = self._triangle_width
         ac.glColor4f(1, 0, 0, 1)
         ac.glBegin(acsys.GL.Triangles)
         ac.glVertex2f(x, 109)
