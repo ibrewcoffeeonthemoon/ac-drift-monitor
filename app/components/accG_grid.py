@@ -1,8 +1,5 @@
-import ac
-
-from app.components.lib import chart
+from app.components.lib.chart import Chart
 from app.data import telemetry
-from app.window import window
 
 
 class AccG_Grid:
@@ -16,30 +13,25 @@ class AccG_Grid:
         max_value: float = 1.5,
         bg_opacity: float = 0.2,
     ) -> None:
-        self._x_pos = x_pos
-        self._y_pos = y_pos
-        self._width = width
-        self._height = height
-        self._dot_size = dot_size
         self._max_value = max_value
         self._bg_opacity = bg_opacity
         self._x_old = 0.0
         self._z_old = 0.0
+        self._chart = Chart(
+            x_pos,
+            y_pos,
+            width,
+            height,
+            dot_size=dot_size,
+            marker_count=3,
+            x_axis_marker_length=height,
+            y_axis_marker_length=width,
+            bg_opacity=bg_opacity,
+        )
 
     def render(self) -> None:
-        # set layouts, styles
-        ac.setBackgroundOpacity(window, self._bg_opacity)
-
         # draw axes
-        chart.draw_axes(
-            self._x_pos,
-            self._y_pos,
-            self._width,
-            self._height,
-            marker_count=3,
-            x_axis_marker_length=self._height,
-            y_axis_marker_length=self._width,
-        )
+        self._chart.draw_axes()
 
         # fetch telemetry
         x_raw, _, z_raw = telemetry.accG
@@ -59,15 +51,5 @@ class AccG_Grid:
         self._x_old = x_clipped
         self._z_old = z_clipped
 
-        # draw a centered box on a 2D grid, visualize the g-force
-        def box_pos(val: float, start: int, width: int, box_width: int) -> int:
-            scale = width/2
-            pos = start + scale + val*scale - box_width/2
-            return round(pos)
-        ac.glColor4f(1, 0, 0, 1)
-        ac.glQuad(
-            box_pos(x, self._x_pos, self._width, self._dot_size),
-            box_pos(z, self._y_pos, self._height, self._dot_size),
-            self._dot_size,
-            self._dot_size,
-        )
+        # plot the G-force value on chart
+        self._chart.plot(x=x, y=z)
