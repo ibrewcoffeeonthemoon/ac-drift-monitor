@@ -23,6 +23,7 @@ class _App:
             width=width,
             height=height,
             dot_size=30,
+            max_value=1.25,
         )
 
         # init
