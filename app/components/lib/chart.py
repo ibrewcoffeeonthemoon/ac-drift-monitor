@@ -36,13 +36,13 @@ class Chart:
 
     def _draw_label(self) -> None:
         # draw big label
-        self._label = ac.addLabel(window, 'G')
+        label = ac.addLabel(window, 'G')
         font_size = 360
-        ac.setFont(self._label, 'arial')
-        ac.setFontSize(self._label, font_size)
-        ac.setFontColor(self._label, 1, 1, 1, 0.1)
+        ac.setFont(label, 'arial')
+        ac.setFontSize(label, font_size)
+        ac.setFontColor(label, 1, 1, 1, 0.1)
         ac.setPosition(
-            self._label,
+            label,
             self._x_pos+25,
             self._y_pos-110,
         )
