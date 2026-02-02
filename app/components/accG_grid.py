@@ -21,7 +21,7 @@ class AccG_Grid:
     def render(self) -> None:
         ac.glColor4f(1, 0, 0, 1)
         x, _, z = telemetry.accG
-        x_pos = self._x_pos + self._width//2 * (1+x)
-        y_pos = self._y_pos + self._height//2 * (1+z)
         dot_width = dot_height = self._dot_size
+        x_pos = self._x_pos - dot_width//2 + self._width//2 * (1+x)
+        y_pos = self._y_pos - dot_height//2 + self._height//2 * (1+z)
         ac.glQuad(x_pos, y_pos, dot_width, dot_height)

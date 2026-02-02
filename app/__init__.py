@@ -36,6 +36,6 @@ class _App:
 
 # export
 app = _App(
-    width=340,
-    height=200,
+    width=300,
+    height=300,
 )
