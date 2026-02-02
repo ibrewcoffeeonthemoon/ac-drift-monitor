@@ -31,6 +31,7 @@ class AccG_Grid:
             y_pos,
             width,
             height,
+            dot_size=30,
             marker_count=3,
             x_axis_marker_length=self._height,
             y_axis_marker_length=self._width,
@@ -61,12 +62,5 @@ class AccG_Grid:
         self._x_old = x_clipped
         self._z_old = z_clipped
 
-        # draw a centered box on a 2D grid, visualize the g-force
-        square(
-            (
-                self._x_pos + self._width//2 + x*self._width//2,
-                self._y_pos + self._height//2 + z*self._height//2
-            ),
-            length=self._dot_size,
-            color4f=(1, 0, 0, 1)
-        )
+        # plot the G-force value on chart
+        self._chart.plot(x=x, y=z)

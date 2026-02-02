@@ -1,4 +1,5 @@
 from app.components.lib.gl.line import horizontal_line, vertical_line
+from app.components.lib.gl.shape import square
 
 
 class Chart:
@@ -8,6 +9,7 @@ class Chart:
         y_pos: int,
         width: int,
         height: int,
+        dot_size: int = 30,
         color4f_primary: tuple = (1, 1, 1, 0.7),
         color4f_secondary: tuple = (1, 1, 1, 0.1),
         marker_count: int = 4,
@@ -18,6 +20,7 @@ class Chart:
         self._y_pos = y_pos
         self._width = width
         self._height = height
+        self._dot_size = dot_size
         self._color4f_primary = color4f_primary
         self._color4f_secondary = color4f_secondary
         self._marker_count = marker_count
@@ -45,3 +48,13 @@ class Chart:
                 self._y_axis_marker_length,
                 self._color4f_secondary
             )
+
+    def plot(self, x, y) -> None:
+        square(
+            (
+                self._x_pos + self._width//2 + x*self._width//2,
+                self._y_pos + self._height//2 + y*self._height//2
+            ),
+            length=self._dot_size,
+            color4f=(1, 0, 0, 1)
+        )
