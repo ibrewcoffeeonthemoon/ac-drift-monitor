@@ -17,11 +17,6 @@ class AccG_Grid:
         max_value: float = 1.5,
         bg_opacity: float = 0.2,
     ) -> None:
-        self._x_pos = x_pos
-        self._y_pos = y_pos
-        self._width = width
-        self._height = height
-        self._dot_size = dot_size
         self._max_value = max_value
         self._bg_opacity = bg_opacity
         self._x_old = 0.0
@@ -31,10 +26,10 @@ class AccG_Grid:
             y_pos,
             width,
             height,
-            dot_size=30,
+            dot_size=dot_size,
             marker_count=3,
-            x_axis_marker_length=self._height,
-            y_axis_marker_length=self._width,
+            x_axis_marker_length=height,
+            y_axis_marker_length=width,
         )
 
     def render(self) -> None:
