@@ -26,9 +26,13 @@ class AccG_Grid:
         # fetch telemetry
         x_raw, _, z_raw = telemetry.accG
 
+        # normalize
+        x_normalized = x_raw/self._max_value
+        z_normalized = z_raw/self._max_value
+
         # clipping
-        x_clipped = min(max(x_raw, -self._max_value), self._max_value)
-        z_clipped = min(max(z_raw, -self._max_value), self._max_value)
+        x_clipped = min(max(x_normalized, -1.0), +1.0)
+        z_clipped = min(max(z_normalized, -1.0), +1.0)
 
         # smoothing
         weight = 0.8
