@@ -1,5 +1,8 @@
+import ac
+
 from app.components.lib.gl.line import horizontal_line, vertical_line
 from app.components.lib.gl.shape import square
+from app.window import window
 
 
 class Chart:
@@ -15,6 +18,7 @@ class Chart:
         marker_count: int = 4,
         x_axis_marker_length: int = 10,
         y_axis_marker_length: int = 10,
+        bg_opacity: float = 0.2,
     ) -> None:
         self._x_pos = x_pos
         self._y_pos = y_pos
@@ -26,8 +30,12 @@ class Chart:
         self._marker_count = marker_count
         self._x_axis_marker_length = x_axis_marker_length
         self._y_axis_marker_length = y_axis_marker_length
+        self._bg_opacity = bg_opacity
 
     def draw_axes(self) -> None:
+        # set layouts, styles
+        ac.setBackgroundOpacity(window, self._bg_opacity)
+
         # x-axis
         horizontal_line((self._x_pos, self._y_pos+self._height//2), self._width, self._color4f_primary)
         # y-axis

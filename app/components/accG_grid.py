@@ -1,9 +1,5 @@
-import ac
-
 from app.components.lib.chart import Chart
-from app.components.lib.gl.shape import square
 from app.data import telemetry
-from app.window import window
 
 
 class AccG_Grid:
@@ -30,12 +26,10 @@ class AccG_Grid:
             marker_count=3,
             x_axis_marker_length=height,
             y_axis_marker_length=width,
+            bg_opacity=bg_opacity,
         )
 
     def render(self) -> None:
-        # set layouts, styles
-        ac.setBackgroundOpacity(window, self._bg_opacity)
-
         # draw axes
         self._chart.draw_axes()
 
