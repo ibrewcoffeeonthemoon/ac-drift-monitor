@@ -1,5 +1,6 @@
 from app.components.lib.chart import Chart
 from app.data import telemetry
+from app.lib.stats import MovingAverage
 
 
 class AccG_Grid:
@@ -28,6 +29,8 @@ class AccG_Grid:
             y_axis_marker_length=width,
             bg_opacity=bg_opacity,
         )
+        self._x_accG = MovingAverage()
+        self._z_accG = MovingAverage()
 
     def render(self) -> None:
         # draw axes
@@ -37,19 +40,25 @@ class AccG_Grid:
         x_raw, _, z_raw = telemetry.accG
 
         # normalize
-        x_normalized = x_raw/self._max_value
-        z_normalized = z_raw/self._max_value
-
-        # clipping
-        x_clipped = min(max(x_normalized, -1.0), +1.0)
-        z_clipped = min(max(z_normalized, -1.0), +1.0)
-
-        # smoothing
-        weight = 0.8
-        x = weight * x_clipped + (1-weight) * self._x_old
-        z = weight * z_clipped + (1-weight) * self._z_old
-        self._x_old = x_clipped
-        self._z_old = z_clipped
+        # x_normalized = x_raw/self._max_value
+        # z_normalized = z_raw/self._max_value
+        #
+        # # clipping
+        # x_clipped = min(max(x_normalized, -1.0), +1.0)
+        # z_clipped = min(max(z_normalized, -1.0), +1.0)
+        #
+        # # smoothing
+        # weight = 0.8
+        # x = weight * x_clipped + (1-weight) * self._x_old
+        # z = weight * z_clipped + (1-weight) * self._z_old
+        # self._x_old = x_clipped
+        # self._z_old = z_clipped
+        self._x_accG.update(x_raw)
+        self._z_accG.update(z_raw)
 
         # plot the G-force value on chart
-        self._chart.plot(x=x, y=z)
+        # self._chart.plot(x=x, y=z)
+        self._chart.plot(
+            x=self._x_accG.simple_average,
+            y=self._z_accG.simple_average,
+        )
