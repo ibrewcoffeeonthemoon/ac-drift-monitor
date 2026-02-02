@@ -24,6 +24,8 @@ class AccG_Grid:
             x_axis_marker_length=height,
             y_axis_marker_length=width,
             bg_opacity=bg_opacity,
+            bg_char='G',
+            bg_char_font_size=360,
         )
         self._x_accG = MovingAverage(max_value)
         self._z_accG = MovingAverage(max_value)
