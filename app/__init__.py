@@ -1,6 +1,6 @@
 import ac
 
-from app.components.accG_bar import AccG_Bar
+from app.components.accG_grid import AccG_Grid
 from app.window import window
 
 
@@ -17,11 +17,12 @@ class _App:
         ac.drawBorder(window, False)
 
         # create components
-        self.accG_Bar = AccG_Bar(
+        self.accG_grid = AccG_Grid(
             x_pos=0,
             y_pos=0,
             width=width,
-            height=160,
+            height=height,
+            dot_size=30,
         )
 
         # init
@@ -29,11 +30,11 @@ class _App:
 
     def render(self) -> None:
         # set indicator values
-        self.accG_Bar.render()
+        self.accG_grid.render()
 
 
 # export
 app = _App(
-    width=340,
-    height=200,
+    width=300,
+    height=300,
 )
