@@ -19,6 +19,8 @@ class Chart:
         x_axis_marker_length: int = 10,
         y_axis_marker_length: int = 10,
         bg_opacity: float = 0.2,
+        bg_char: str = '',
+        bg_char_font_size: int = 120,
     ) -> None:
         self._x_pos = x_pos
         self._y_pos = y_pos
@@ -31,15 +33,16 @@ class Chart:
         self._x_axis_marker_length = x_axis_marker_length
         self._y_axis_marker_length = y_axis_marker_length
         self._bg_opacity = bg_opacity
+        self._bg_char = bg_char
+        self._bg_char_font_size = bg_char_font_size
 
         self._draw_label()
 
     def _draw_label(self) -> None:
         # draw big label
-        label = ac.addLabel(window, 'G')
-        font_size = 360
+        label = ac.addLabel(window, self._bg_char)
         ac.setFont(label, 'arial')
-        ac.setFontSize(label, font_size)
+        ac.setFontSize(label, self._bg_char_font_size)
         ac.setFontColor(label, 1, 1, 1, 0.1)
         ac.setPosition(
             label,
