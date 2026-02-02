@@ -1,6 +1,7 @@
 import ac
 
 from app.data import telemetry
+from app.window import window
 
 
 class AccG_Grid:
@@ -12,6 +13,7 @@ class AccG_Grid:
         height: int,
         dot_size: int,
         max_value: float = 2.0,
+        bg_opacity: float = 0.2,
     ) -> None:
         self._x_pos = x_pos
         self._y_pos = y_pos
@@ -19,10 +21,14 @@ class AccG_Grid:
         self._height = height
         self._dot_size = dot_size
         self._max_value = max_value
+        self._bg_opacity = bg_opacity
         self._x_old = 0.0
         self._z_old = 0.0
 
     def render(self) -> None:
+        # set layouts, styles
+        ac.setBackgroundOpacity(window, self._bg_opacity)
+
         # fetch telemetry
         x_raw, _, z_raw = telemetry.accG
 

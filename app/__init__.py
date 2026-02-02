@@ -1,6 +1,5 @@
 import ac
 
-from app.components.accG_bar import AccG_Bar
 from app.components.accG_grid import AccG_Grid
 from app.window import window
 
