@@ -23,6 +23,7 @@ class _App:
             y_pos=0,
             width=width,
             height=height,
+            dot_size=30,
         )
 
         # init
