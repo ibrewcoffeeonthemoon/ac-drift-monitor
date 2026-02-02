@@ -12,7 +12,7 @@ class AccG_Grid:
         width: int,
         height: int,
         dot_size: int,
-        max_value: float = 2.0,
+        max_value: float = 1.5,
         bg_opacity: float = 0.2,
     ) -> None:
         self._x_pos = x_pos
