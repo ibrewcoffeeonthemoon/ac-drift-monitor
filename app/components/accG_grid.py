@@ -19,9 +19,18 @@ class AccG_Grid:
         self._dot_size = dot_size
 
     def render(self) -> None:
-        ac.glColor4f(1, 0, 0, 1)
+        # fetch telemetry
         x, _, z = telemetry.accG
-        dot_width = dot_height = self._dot_size
-        x_pos = self._x_pos - dot_width//2 + self._width//2 * (1+x)
-        y_pos = self._y_pos - dot_height//2 + self._height//2 * (1+z)
-        ac.glQuad(x_pos, y_pos, dot_width, dot_height)
+
+        # draw a centered box on a 2D grid, visualize the g-force
+        def box_pos(val: float, start: int, width: int, box_width: int) -> int:
+            scale = width/2
+            pos = start + scale + val*scale - box_width/2
+            return round(pos)
+        ac.glColor4f(1, 0, 0, 1)
+        ac.glQuad(
+            box_pos(x, self._x_pos, self._width, self._dot_size),
+            box_pos(z, self._y_pos, self._height, self._dot_size),
+            self._dot_size,
+            self._dot_size,
+        )
