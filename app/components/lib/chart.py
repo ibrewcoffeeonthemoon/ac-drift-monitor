@@ -32,6 +32,21 @@ class Chart:
         self._y_axis_marker_length = y_axis_marker_length
         self._bg_opacity = bg_opacity
 
+        self._draw_label()
+
+    def _draw_label(self) -> None:
+        # draw big label
+        self._label = ac.addLabel(window, 'G')
+        font_size = 360
+        ac.setFont(self._label, 'arial')
+        ac.setFontSize(self._label, font_size)
+        ac.setFontColor(self._label, 1, 1, 1, 0.1)
+        ac.setPosition(
+            self._label,
+            self._x_pos+25,
+            self._y_pos-110,
+        )
+
     def draw_axes(self) -> None:
         # set layouts, styles
         ac.setBackgroundOpacity(window, self._bg_opacity)
