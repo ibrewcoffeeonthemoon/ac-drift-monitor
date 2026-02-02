@@ -1,6 +1,7 @@
 import ac
 
 from app.components.lib import chart
+from app.components.lib.gl.shape import square
 from app.data import telemetry
 from app.window import window
 
@@ -60,14 +61,11 @@ class AccG_Grid:
         self._z_old = z_clipped
 
         # draw a centered box on a 2D grid, visualize the g-force
-        def box_pos(val: float, start: int, width: int, box_width: int) -> int:
-            scale = width/2
-            pos = start + scale + val*scale - box_width/2
-            return round(pos)
-        ac.glColor4f(1, 0, 0, 1)
-        ac.glQuad(
-            box_pos(x, self._x_pos, self._width, self._dot_size),
-            box_pos(z, self._y_pos, self._height, self._dot_size),
-            self._dot_size,
-            self._dot_size,
+        square(
+            (
+                self._x_pos + self._width//2 + x*self._width//2,
+                self._y_pos + self._height//2 + z*self._height//2
+            ),
+            length=self._dot_size,
+            color4f=(1, 0, 0, 1)
         )
