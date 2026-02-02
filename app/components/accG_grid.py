@@ -11,7 +11,7 @@ class AccG_Grid:
         width: int,
         height: int,
         dot_size: int,
-        max_value: float = 1.5,
+        max_value: float,
         bg_opacity: float = 0.2,
     ) -> None:
         self._chart = Chart(
@@ -41,6 +41,6 @@ class AccG_Grid:
 
         # plot the G-force value on chart
         self._chart.plot(
-            x=self._x_accG.simple_average,
-            y=self._z_accG.simple_average,
+            x=self._x_accG.weighted_average,
+            y=self._z_accG.weighted_average,
         )
