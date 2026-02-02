@@ -31,7 +31,15 @@ class AccG_Grid:
         ac.setBackgroundOpacity(window, self._bg_opacity)
 
         # draw axes
-        chart.draw_axes(self._x_pos, self._y_pos, self._width, self._height)
+        chart.draw_axes(
+            self._x_pos,
+            self._y_pos,
+            self._width,
+            self._height,
+            marker_count=3,
+            x_axis_marker_length=self._height,
+            y_axis_marker_length=self._width,
+        )
 
         # fetch telemetry
         x_raw, _, z_raw = telemetry.accG
