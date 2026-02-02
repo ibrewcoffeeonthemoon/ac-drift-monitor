@@ -1,6 +1,6 @@
 import ac
 
-from app.components.lib import draw
+from app.components.lib import chart
 from app.data import telemetry
 from app.window import window
 
@@ -30,9 +30,8 @@ class AccG_Grid:
         # set layouts, styles
         ac.setBackgroundOpacity(window, self._bg_opacity)
 
-        # draw axis
-        draw.horizontal_line((self._x_pos, self._y_pos+self._height//2), self._width)
-        draw.vertical_line((self._x_pos+self._width//2, self._y_pos), self._height)
+        # draw axes
+        chart.draw_axes(self._x_pos, self._y_pos, self._width, self._height)
 
         # fetch telemetry
         x_raw, _, z_raw = telemetry.accG
