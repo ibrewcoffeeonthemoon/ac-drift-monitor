@@ -19,31 +19,28 @@ class _AccG:
 
 class _SlipRatio:
     def __init__(self) -> None:
-        self.fl = 0.0
-        self.fr = 0.0
-        self.rl = 0.0
-        self.rr = 0.0
+        self._data = (0.0, 0.0, 0.0, 0.0)
 
     def fetch(self, car_id: int) -> None:
-        self.fl, self.fr, self.rl, self.rr = ac.getCarState(car_id, acsys.CS.SlipRatio)
+        self._data = ac.getCarState(car_id, acsys.CS.SlipRatio)
 
     def __iter__(self):
-        yield self.fl
-        yield self.fr
-        yield self.rl
-        yield self.rr
+        yield from self._data
 
     def __getitem__(self, index: int) -> float:
-        if index == 0:
-            return self.fl
-        elif index == 1:
-            return self.fr
-        elif index == 2:
-            return self.rl
-        elif index == 3:
-            return self.rr
-        else:
-            raise IndexError
+        return self._data[index]
+
+    @property
+    def fl(self) -> float: return self._data[0]
+
+    @property
+    def fr(self) -> float: return self._data[1]
+
+    @property
+    def rl(self) -> float: return self._data[2]
+
+    @property
+    def rr(self) -> float: return self._data[3]
 
 
 class _Telemetry:
