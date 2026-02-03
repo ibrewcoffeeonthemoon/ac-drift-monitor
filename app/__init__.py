@@ -27,9 +27,20 @@ class _App:
             max_value=1.20,
         )
 
+        # button with whole area, click to toggle settings
+        btn = ac.addButton(window, '')
+        ac.setPosition(btn, 0, 0)
+        ac.setSize(btn, width, height)
+        ac.addOnClickedListener(btn, on_click)
+
     def render(self) -> None:
         # set indicator values
         self.accG_grid.render()
+
+
+def on_click(name: str, state: int) -> None:
+    # handler must be a root scoped funciton with two args
+    settings.toggle_visible()
 
 
 # export
