@@ -44,5 +44,5 @@ class Slip_Grid:
         # plot the G-force value on chart
         self._chart.plot(
             x=0.0,
-            y=self._slipRatio.last,
+            y=self._slipRatio.weighted_average,
         )
