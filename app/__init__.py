@@ -1,6 +1,7 @@
 import ac
 
 from app.components.accG_grid import AccG_Grid
+from app.components.slip_grid import Slip_Grid
 from app.window import window
 
 
@@ -25,6 +26,14 @@ class _App:
             dot_size=30,
             max_value=1.20,
         )
+        self.rl_slipRatio_grid = Slip_Grid(
+            x_pos=0,
+            y_pos=height//2,
+            width=width//4,
+            height=height//2,
+            dot_size=15,
+            max_value=1.0,
+        )
 
         # init
         self._car_id = ac.getFocusedCar()
@@ -32,6 +41,7 @@ class _App:
     def render(self) -> None:
         # set indicator values
         self.accG_grid.render()
+        self.rl_slipRatio_grid.render()
 
 
 # export
