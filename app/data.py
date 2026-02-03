@@ -4,17 +4,22 @@ import acsys
 
 class _AccG:
     def __init__(self) -> None:
-        self.x = 0.0
-        self.y = 0.0
-        self.z = 0.0
+        self._data = (0.0, 0.0, 0.0)
 
     def fetch(self, car_id: int) -> None:
-        self.x, self.y, self.z = ac.getCarState(car_id, acsys.CS.AccG)
+        self._data = ac.getCarState(car_id, acsys.CS.AccG)
 
     def __iter__(self):
-        yield self.x
-        yield self.y
-        yield self.z
+        yield from self._data
+
+    @property
+    def x(self) -> float: return self._data[0]
+
+    @property
+    def y(self) -> float: return self._data[1]
+
+    @property
+    def z(self) -> float: return self._data[2]
 
 
 class _SlipRatio:
