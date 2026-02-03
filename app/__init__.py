@@ -18,9 +18,9 @@ class _App:
 
         # create components
         self.accG_grid = AccG_Grid(
-            x_pos=0,
+            x_pos=width//4,
             y_pos=0,
-            width=width,
+            width=width//2,
             height=height,
             dot_size=30,
             max_value=1.20,
@@ -36,6 +36,6 @@ class _App:
 
 # export
 app = _App(
-    width=300,
+    width=600,
     height=300,
 )
