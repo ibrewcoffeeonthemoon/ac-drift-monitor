@@ -24,6 +24,10 @@ class MovingAverage:
         self._deque.append(val)
 
     @property
+    def last(self) -> float:
+        return self._deque[-1]
+
+    @property
     def simple_average(self) -> float:
         avg = sum(self._deque) / self._len
         return avg
