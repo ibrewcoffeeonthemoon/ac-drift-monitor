@@ -33,8 +33,8 @@ class _App:
                 y_pos=y_pos,
                 width=width//4,
                 height=height//2,
-                dot_size=15,
-                max_value=1.0,
+                dot_size=20,
+                max_value=3.0,
             )
             for i, (x_pos, y_pos) in enumerate((
                 (0, 0),
