@@ -17,17 +17,36 @@ class _AccG:
         yield self.z
 
 
+class _SlipRatio:
+    def __init__(self) -> None:
+        self.fl = 0.0
+        self.fr = 0.0
+        self.rl = 0.0
+        self.rr = 0.0
+
+    def fetch(self, car_id: int) -> None:
+        self.fl, self.fr, self.rl, self.rr = ac.getCarState(car_id, acsys.CS.SlipRatio)
+
+    def __iter__(self):
+        yield self.fl
+        yield self.fr
+        yield self.rl
+        yield self.rr
+
+
 class _Telemetry:
 
     def __init__(self) -> None:
         # data
         self.accG = _AccG()
+        self.slipRatio = _SlipRatio()
 
         # init
         self._car_id = ac.getFocusedCar()
 
     def fetch(self) -> None:
         self.accG.fetch(self._car_id)
+        self.slipRatio.fetch(self._car_id)
 
 
 # export
