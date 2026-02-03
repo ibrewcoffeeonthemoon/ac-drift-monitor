@@ -6,6 +6,7 @@ from app.lib.stats import MovingAverage
 class Slip_Grid:
     def __init__(
         self,
+        i_slipRatio: int,
         x_pos: int,
         y_pos: int,
         width: int,
@@ -14,6 +15,7 @@ class Slip_Grid:
         max_value: float,
         bg_opacity: float = 0.2,
     ) -> None:
+        self._i_slipRatio = i_slipRatio
         self._chart = Chart(
             x_pos,
             y_pos,
@@ -34,7 +36,7 @@ class Slip_Grid:
         self._chart.draw_axes()
 
         # fetch telemetry
-        slipRatio = telemetry.slipRatio.rl
+        slipRatio = telemetry.slipRatio[self._i_slipRatio]
 
         # updadte buffer
         self._slipRatio.update(slipRatio)

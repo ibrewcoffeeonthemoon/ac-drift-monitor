@@ -33,6 +33,18 @@ class _SlipRatio:
         yield self.rl
         yield self.rr
 
+    def __getitem__(self, index: int) -> float:
+        if index == 0:
+            return self.fl
+        elif index == 1:
+            return self.fr
+        elif index == 2:
+            return self.rl
+        elif index == 3:
+            return self.rr
+        else:
+            raise IndexError
+
 
 class _Telemetry:
 

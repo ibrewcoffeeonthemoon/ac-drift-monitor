@@ -26,7 +26,8 @@ class _App:
             dot_size=30,
             max_value=1.20,
         )
-        self.rl_slipRatio_grid = Slip_Grid(
+        self.slipRatio_grid = Slip_Grid(
+            i_slipRatio=2,
             x_pos=0,
             y_pos=height//2,
             width=width//4,
@@ -41,7 +42,7 @@ class _App:
     def render(self) -> None:
         # set indicator values
         self.accG_grid.render()
-        self.rl_slipRatio_grid.render()
+        self.slipRatio_grid.render()
 
 
 # export
