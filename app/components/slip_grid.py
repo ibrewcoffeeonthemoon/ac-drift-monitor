@@ -28,6 +28,7 @@ class Slip_Grid:
             bg_opacity=bg_opacity,
             bg_char='',
             bg_char_font_size=120,
+            inverted_y_scale=True,
         )
         self._slipRatio = MovingAverage(max_value)
 

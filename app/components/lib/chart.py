@@ -21,6 +21,8 @@ class Chart:
         bg_opacity: float = 0.2,
         bg_char: str = '',
         bg_char_font_size: int = 120,
+        inverted_x_scale: bool = False,
+        inverted_y_scale: bool = False,
     ) -> None:
         self._x_pos = x_pos
         self._y_pos = y_pos
@@ -35,6 +37,8 @@ class Chart:
         self._bg_opacity = bg_opacity
         self._bg_char = bg_char
         self._bg_char_font_size = bg_char_font_size
+        self._inverted_x_scale = inverted_x_scale
+        self._inverted_y_scale = inverted_y_scale
 
         self._draw_label()
 
@@ -76,11 +80,16 @@ class Chart:
             )
 
     def plot(self, x, y) -> None:
+        x_dir = -1 if self._inverted_x_scale else 1
+        y_dir = -1 if self._inverted_y_scale else 1
+        x_start = self._x_pos + self._width//2
+        y_start = self._y_pos + self._height//2
+        x_len = x*self._width//2
+        y_len = y*self._height//2
+        x_pos = x_start + x_dir*x_len
+        y_pos = y_start + y_dir*y_len
         square(
-            (
-                self._x_pos + self._width//2 + x*self._width//2,
-                self._y_pos + self._height//2 + y*self._height//2
-            ),
+            (x_pos, y_pos),
             length=self._dot_size,
             color4f=(1, 0, 0, 1)
         )
