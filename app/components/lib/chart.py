@@ -83,19 +83,19 @@ class Chart:
                 self._color4f_secondary
             )
 
-    def plot(self, x, y) -> None:
-        x_dir = -1 if self._inverted_x_scale else 1
-        y_dir = -1 if self._inverted_y_scale else 1
-        x_start = self._x_pos+self._width//2 if self._centered_x_scale \
-            else self._x_pos+self._width if self._inverted_x_scale else self._x_pos
-        y_start = self._y_pos+self._height//2 if self._centered_y_scale \
-            else self._y_pos+self._height if self._inverted_y_scale else self._y_pos
-        x_len = x*self._width//2
-        y_len = y*self._height//2
-        x_pos = x_start + x_dir*x_len
-        y_pos = y_start + y_dir*y_len
+    def plot(self, x: float, y: float) -> None:
+        def coordinate(val: float, root: int, offset: int, inverted: bool, centered: bool) -> float:
+            begin = root+offset//2 if centered else root+offset if inverted else root
+            length = val*offset//2 if centered else val*offset
+            direction = -1 if inverted else 1
+            position = begin + direction*length
+            return position
+
         square(
-            (x_pos, y_pos),
+            (
+                coordinate(x, self._x_pos, self._width, self._inverted_x_scale, self._centered_x_scale),
+                coordinate(y, self._y_pos, self._height, self._inverted_y_scale, self._centered_y_scale),
+            ),
             length=self._dot_size,
             color4f=(1, 0, 0, 1)
         )
