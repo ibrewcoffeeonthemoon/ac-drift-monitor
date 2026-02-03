@@ -21,6 +21,10 @@ class Chart:
         bg_opacity: float = 0.2,
         bg_char: str = '',
         bg_char_font_size: int = 120,
+        inverted_x_scale: bool = False,
+        inverted_y_scale: bool = False,
+        centered_x_scale: bool = True,
+        centered_y_scale: bool = True,
     ) -> None:
         self._x_pos = x_pos
         self._y_pos = y_pos
@@ -35,6 +39,10 @@ class Chart:
         self._bg_opacity = bg_opacity
         self._bg_char = bg_char
         self._bg_char_font_size = bg_char_font_size
+        self._inverted_x_scale = inverted_x_scale
+        self._inverted_y_scale = inverted_y_scale
+        self._centered_x_scale = centered_x_scale
+        self._centered_y_scale = centered_y_scale
 
         self._draw_label()
 
@@ -75,11 +83,18 @@ class Chart:
                 self._color4f_secondary
             )
 
-    def plot(self, x, y) -> None:
+    def plot(self, x: float, y: float) -> None:
+        def coordinate(val: float, root: int, offset: int, inverted: bool, centered: bool) -> float:
+            begin = root+offset//2 if centered else root+offset if inverted else root
+            length = val*offset//2 if centered else val*offset
+            direction = -1 if inverted else 1
+            position = begin + direction*length
+            return position
+
         square(
             (
-                self._x_pos + self._width//2 + x*self._width//2,
-                self._y_pos + self._height//2 + y*self._height//2
+                coordinate(x, self._x_pos, self._width, self._inverted_x_scale, self._centered_x_scale),
+                coordinate(y, self._y_pos, self._height, self._inverted_y_scale, self._centered_y_scale),
             ),
             length=self._dot_size,
             color4f=(1, 0, 0, 1)
