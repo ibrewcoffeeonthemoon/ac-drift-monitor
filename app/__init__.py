@@ -27,9 +27,6 @@ class _App:
             max_value=1.20,
         )
 
-        # init
-        self._car_id = ac.getFocusedCar()
-
     def render(self) -> None:
         # set indicator values
         self.accG_grid.render()
