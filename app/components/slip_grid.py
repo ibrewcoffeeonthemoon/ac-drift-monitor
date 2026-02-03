@@ -22,6 +22,8 @@ class Slip_Grid:
             width,
             height,
             dot_size=dot_size,
+            color4f_primary=(0, 0, 0, 0),
+            color4f_secondary=(1, 1, 1, 0.1),
             marker_count=3,
             x_axis_marker_length=height,
             y_axis_marker_length=width,
@@ -29,6 +31,7 @@ class Slip_Grid:
             bg_char='',
             bg_char_font_size=120,
             inverted_y_scale=True,
+            centered_y_scale=False,
         )
         self._slipRatio = MovingAverage(max_value)
 
