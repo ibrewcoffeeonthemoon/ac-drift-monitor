@@ -1,5 +1,5 @@
 from app.components.lib.chart import Chart
-from app.components.lib.indicator.square_dot import SquareDot
+from app.components.lib.indicator.quad_bar import QuadBar
 from app.data import telemetry
 from app.lib.stats import MovingAverage
 
@@ -30,11 +30,8 @@ class Slip_Grid:
             bg_char='',
             bg_char_font_size=120,
         )
-        self._square_dot = SquareDot(
+        self._quad_bar = QuadBar(
             chart=self._chart,
-            dot_size=20,
-            inverted_y_scale=True,
-            centered_y_scale=False,
         )
 
     def render(self) -> None:
@@ -48,7 +45,4 @@ class Slip_Grid:
         self._slipRatio.update(slipRatio)
 
         # plot the indicators
-        self._square_dot.plot(
-            x=0.0,
-            y=self._slipRatio.weighted_average,
-        )
+        self._quad_bar.plot(self._slipRatio.weighted_average)
