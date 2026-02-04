@@ -24,23 +24,18 @@ class SquareDot(Indicator):
         self._dot_size = dot_size
         self._color4f = color4f
 
-    def plot(
-        self,
-        x: float,
-        y: float,
-    ) -> None:
-        def coordinate(val: float, root: int, offset: int, inverted: bool, centered: bool) -> float:
-            begin = root+offset//2 if centered else root+offset if inverted else root
-            length = val*offset//2 if centered else val*offset
-            direction = -1 if inverted else 1
-            position = begin + direction*length
-            return position
+    def _coordinates(self, x: float, y: float):
+        # type: (int, int) -> tuple[int, int]
+        x, y = tuple(
+            round(begin + val*magnitude*direction)
+            for val, begin, magnitude, direction
+            in zip((x, y), self._begin, self._magnitude, self._direction)
+        )
+        return x, y
 
+    def plot(self, x: float, y: float,) -> None:
         square(
-            (
-                coordinate(x, self._x_pos, self._width, self._inverted_x_scale, self._centered_x_scale),
-                coordinate(y, self._y_pos, self._height, self._inverted_y_scale, self._centered_y_scale),
-            ),
+            self._coordinates(x, y),
             length=self._dot_size,
             color4f=self._color4f
         )

@@ -25,3 +25,26 @@ class Indicator(metaclass=ABCMeta):
     @abstractmethod
     def plot(self, *args, **kwargs) -> None:
         ...
+
+    @property
+    def _begin(self):
+        # type: () -> tuple[int, int]
+        x = self._x_pos+self._width//2 if self._centered_x_scale \
+            else self._x_pos+self._width if self._inverted_x_scale else self._x_pos
+        y = self._y_pos+self._height//2 if self._centered_y_scale \
+            else self._y_pos+self._height if self._inverted_y_scale else self._y_pos
+        return x, y
+
+    @property
+    def _magnitude(self):
+        # type: () -> tuple[int, int]
+        x = self._width//2 if self._centered_x_scale else self._width
+        y = self._height//2 if self._centered_y_scale else self._height
+        return x, y
+
+    @property
+    def _direction(self):
+        # type: () -> tuple[int, int]
+        x = -1 if self._inverted_x_scale else 1
+        y = -1 if self._inverted_y_scale else 1
+        return x, y
