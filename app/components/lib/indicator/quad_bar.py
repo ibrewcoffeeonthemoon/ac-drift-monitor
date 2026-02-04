@@ -22,15 +22,20 @@ class QuadBar(Indicator):
         )
         self._color4f = color4f
 
-    def plot(
-        self,
-        val: float,
-    ) -> None:
-        scale = self._height
+    def _coordinates(self, val):
+        # type: (float) -> tuple[tuple[int, int], tuple[int, int], tuple[int, int], tuple[int, int]]
+        x_begin, y_begin = self._begin
+        x_mag, y_mag = self._magnitude
+        x_dir, y_dir = self._direction
+        return (
+            (self._x_pos, round(y_begin + val*y_mag*y_dir)),
+            (self._x_pos+self._width, round(y_begin + val*y_mag*y_dir)),
+            (self._x_pos+self._width, y_begin),
+            (self._x_pos, y_begin),
+        )
+
+    def plot(self, val: float) -> None:
         quadrilateral(
-            (self._x_pos, self._y_pos+self._height-val*scale),
-            (self._x_pos+self._width, self._y_pos+self._height-val*scale),
-            (self._x_pos+self._width, self._y_pos+self._height),
-            (self._x_pos, self._y_pos+self._height),
-            color4f=self._color4f,
+            *self._coordinates(val),
+            color4f=self._color4f
         )
