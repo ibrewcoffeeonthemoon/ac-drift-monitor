@@ -24,8 +24,8 @@ class SquareDot(Indicator):
         self._dot_size = dot_size
         self._color4f = color4f
 
-    def _coordinates(self, x: float, y: float):
-        # type: (int, int) -> tuple[int, int]
+    def _coordinates(self, x, y):
+        # type: (float, float) -> tuple[int, int]
         x, y = tuple(
             round(begin + val*magnitude*direction)
             for val, begin, magnitude, direction
