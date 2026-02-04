@@ -4,24 +4,32 @@ from collections import deque
 class MovingAverage:
     def __init__(
         self,
-        max_value: float,
-        weights: tuple = (.2, .2, .2, .1, .1, .1, .1),
+        scale: float = 1.0,
+        weights: 'tuple[float, ...]' = (.2, .2, .2, .1, .1, .1, .1),
         initial_value: float = 0.0,
+        min: float = -1.0,
+        max: float = +1.0,
     ) -> None:
-        self._max_value = max_value
+        self._scale = scale
         self._len = n = len(weights)
         self._weights = weights
+        self._min = min
+        self._max = max
         self._deque = deque([initial_value for _ in range(n)], maxlen=n)
 
     def update(self, val: float) -> None:
         # normalize
-        val = val / self._max_value
+        val = val / self._scale
 
         # clipping
-        val = min(max(val, -1.0), +1.0)
+        val = min(max(val, self._min), self._max)
 
         # append
         self._deque.append(val)
+
+    @property
+    def last(self) -> float:
+        return self._deque[-1]
 
     @property
     def simple_average(self) -> float:

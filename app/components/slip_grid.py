@@ -1,42 +1,39 @@
 from app.components.lib.chart import Chart
 from app.components.lib.indicator.quad_bar import QuadBar
-from app.components.lib.indicator.square_dot import SquareDot
 from app.data import telemetry
 from app.lib.stats import MovingAverage
 
 
-class AccG_Grid:
+class Slip_Grid:
     def __init__(
         self,
+        i_slipRatio: int,
         x_pos: int,
         y_pos: int,
         width: int,
         height: int,
     ) -> None:
-        self._slipRatio = MovingAverage(scale=3.0, min=0)
-        self._x_accG = MovingAverage(scale=1.2)
-        self._z_accG = MovingAverage(scale=1.2)
+        self._i_slipRatio = i_slipRatio
+        self._slipRatio = MovingAverage(scale=3.0)
 
         self._chart = Chart(
             x_pos,
             y_pos,
             width,
             height,
+            color4f_primary=(0, 0, 0, 0),
+            color4f_secondary=(1, 1, 1, 0.1),
             marker_count=3,
             x_axis_marker_length=height,
             y_axis_marker_length=width,
             bg_opacity=0.2,
-            bg_char='G',
-            bg_char_font_size=360,
+            bg_char='',
+            bg_char_font_size=120,
         )
         self._quad_bar = QuadBar(
             chart=self._chart,
             color4f=(1, 0, 0, 0.4),
-        )
-        self._square_dot = SquareDot(
-            chart=self._chart,
-            dot_size=30,
-            inverted_y_scale=True,
+            centered_y_scale=True,
         )
 
     def render(self) -> None:
@@ -44,17 +41,10 @@ class AccG_Grid:
         self._chart.draw_axes()
 
         # fetch telemetry
-        avg_rear_slipRatio = (telemetry.slipRatio.rl+telemetry.slipRatio.rr)/2
-        x_accG, _, z_accG = telemetry.accG
+        slipRatio = telemetry.slipRatio[self._i_slipRatio]
 
         # updadte buffer
-        self._slipRatio.update(avg_rear_slipRatio)
-        self._x_accG.update(x_accG)
-        self._z_accG.update(z_accG)
+        self._slipRatio.update(slipRatio)
 
         # plot the indicators
         self._quad_bar.plot(self._slipRatio.weighted_average)
-        self._square_dot.plot(
-            x=self._x_accG.weighted_average,
-            y=self._z_accG.weighted_average,
-        )

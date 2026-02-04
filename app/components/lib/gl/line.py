@@ -3,9 +3,9 @@ import acsys
 
 
 def line(
-    vertex1: tuple,
-    vertex2: tuple,
-    color4f: tuple = (1, 1, 1, 1),
+    vertex1: 'tuple[int, int]',
+    vertex2: 'tuple[int, int]',
+    color4f: 'tuple[float, float, float, float]' = (1, 1, 1, 1),
 ) -> None:
     ac.glColor4f(*color4f)
     ac.glBegin(acsys.GL.Lines)
@@ -15,18 +15,18 @@ def line(
 
 
 def horizontal_line(
-    vertex1: tuple,
+    vertex1: 'tuple[int, int]',
     length: int,
-    color4f: tuple = (1, 1, 1, 1),
+    color4f: 'tuple[float, float, float, float]' = (1, 1, 1, 1),
 ) -> None:
     x_pos, y_pos = vertex1
     line((x_pos, y_pos), (x_pos+length, y_pos), color4f)
 
 
 def vertical_line(
-    vertex1: tuple,
+    vertex1: 'tuple[int, int]',
     length: int,
-    color4f: tuple = (1, 1, 1, 1),
+    color4f: 'tuple[float, float, float, float]' = (1, 1, 1, 1),
 ) -> None:
     x_pos, y_pos = vertex1
     line((x_pos, y_pos), (x_pos, y_pos+length), color4f)
