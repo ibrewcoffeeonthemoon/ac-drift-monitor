@@ -13,10 +13,10 @@ class SquareDot:
         centered_x_scale: bool = True,
         centered_y_scale: bool = True,
     ) -> None:
-        self._x_pos = chart._x_pos
-        self._y_pos = chart._y_pos
-        self._width = chart._width
-        self._height = chart._height
+        self._x_pos = chart.x_pos
+        self._y_pos = chart.y_pos
+        self._width = chart.width
+        self._height = chart.height
         self._dot_size = dot_size
         self._color4f = color4f
         self._inverted_x_scale = inverted_x_scale
