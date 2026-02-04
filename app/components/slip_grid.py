@@ -14,7 +14,7 @@ class Slip_Grid:
         height: int,
     ) -> None:
         self._i_slipRatio = i_slipRatio
-        self._slipRatio = MovingAverage(max_value=3.0)
+        self._slipRatio = MovingAverage(scale=3.0)
 
         self._chart = Chart(
             x_pos,

@@ -4,18 +4,18 @@ from collections import deque
 class MovingAverage:
     def __init__(
         self,
-        max_value: float,
+        scale: float = 1.0,
         weights: 'tuple[float, ...]' = (.2, .2, .2, .1, .1, .1, .1),
         initial_value: float = 0.0,
     ) -> None:
-        self._max_value = max_value
+        self._scale = scale
         self._len = n = len(weights)
         self._weights = weights
         self._deque = deque([initial_value for _ in range(n)], maxlen=n)
 
     def update(self, val: float) -> None:
         # normalize
-        val = val / self._max_value
+        val = val / self._scale
 
         # clipping
         val = min(max(val, -1.0), +1.0)
