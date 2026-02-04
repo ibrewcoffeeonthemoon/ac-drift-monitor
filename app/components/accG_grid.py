@@ -13,7 +13,7 @@ class AccG_Grid:
         width: int,
         height: int,
     ) -> None:
-        self._slipRatio = MovingAverage(scale=3.0)
+        self._slipRatio = MovingAverage(scale=3.0, min=0)
         self._x_accG = MovingAverage(scale=1.2)
         self._z_accG = MovingAverage(scale=1.2)
 
