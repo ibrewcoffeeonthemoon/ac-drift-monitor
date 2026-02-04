@@ -36,6 +36,7 @@ class AccG_Grid:
         self._square_dot = SquareDot(
             chart=self._chart,
             dot_size=30,
+            inverted_y_scale=True,
         )
 
     def render(self) -> None:

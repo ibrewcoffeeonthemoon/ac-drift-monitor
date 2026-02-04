@@ -9,7 +9,7 @@ class QuadBar(Indicator):
         chart: Chart,
         color4f: tuple = (1, 0, 0, 1),
         inverted_x_scale: bool = False,
-        inverted_y_scale: bool = True,
+        inverted_y_scale: bool = False,
         centered_x_scale: bool = False,
         centered_y_scale: bool = False,
     ) -> None:
