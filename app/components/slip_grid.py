@@ -32,6 +32,7 @@ class Slip_Grid:
         )
         self._quad_bar = QuadBar(
             chart=self._chart,
+            centered_y_scale=True,
         )
 
     def render(self) -> None:
