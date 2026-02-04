@@ -23,8 +23,6 @@ class _App:
             y_pos=0,
             width=width//2,
             height=height,
-            dot_size=30,
-            max_value=1.20,
         )
         self._slipRatio_grids = [
             Slip_Grid(
@@ -33,8 +31,6 @@ class _App:
                 y_pos=y_pos,
                 width=width//4,
                 height=height//2,
-                dot_size=20,
-                max_value=3.0,
             )
             for i, (x_pos, y_pos) in enumerate((
                 (0, 0),
