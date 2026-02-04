@@ -32,6 +32,7 @@ class Slip_Grid:
         )
         self._quad_bar = QuadBar(
             chart=self._chart,
+            color4f=(1, 0, 0, 0.4),
             centered_y_scale=True,
         )
 
