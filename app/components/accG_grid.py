@@ -1,4 +1,5 @@
 from app.components.lib.chart import Chart
+from app.components.lib.indicator.square_dot import SquareDot
 from app.data import telemetry
 from app.lib.stats import MovingAverage
 
@@ -14,6 +15,9 @@ class AccG_Grid:
         max_value: float,
         bg_opacity: float = 0.2,
     ) -> None:
+        self._x_accG = MovingAverage(max_value)
+        self._z_accG = MovingAverage(max_value)
+
         self._chart = Chart(
             x_pos,
             y_pos,
@@ -27,8 +31,7 @@ class AccG_Grid:
             bg_char='G',
             bg_char_font_size=360,
         )
-        self._x_accG = MovingAverage(max_value)
-        self._z_accG = MovingAverage(max_value)
+        self._square_dot = SquareDot(chart=self._chart)
 
     def render(self) -> None:
         # draw axes
@@ -41,8 +44,8 @@ class AccG_Grid:
         self._x_accG.update(x_accG)
         self._z_accG.update(z_accG)
 
-        # plot the G-force value on chart
-        self._chart.plot(
+        # plot the indicators
+        self._square_dot.plot(
             x=self._x_accG.weighted_average,
             y=self._z_accG.weighted_average,
         )
