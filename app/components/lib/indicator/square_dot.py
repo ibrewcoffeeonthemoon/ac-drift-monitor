@@ -1,8 +1,9 @@
 from app.components.lib.chart import Chart
 from app.components.lib.gl.shape import square
+from app.components.lib.indicator import Indicator
 
 
-class SquareDot:
+class SquareDot(Indicator):
     def __init__(
         self,
         chart: Chart,
@@ -13,10 +14,11 @@ class SquareDot:
         centered_x_scale: bool = True,
         centered_y_scale: bool = True,
     ) -> None:
-        self._x_pos = chart.x_pos
-        self._y_pos = chart.y_pos
-        self._width = chart.width
-        self._height = chart.height
+        super().__init__(chart)
+        self._x_pos = self._chart.x_pos
+        self._y_pos = self._chart.y_pos
+        self._width = self._chart.width
+        self._height = self._chart.height
         self._dot_size = dot_size
         self._color4f = color4f
         self._inverted_x_scale = inverted_x_scale
