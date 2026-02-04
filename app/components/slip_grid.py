@@ -1,4 +1,5 @@
 from app.components.lib.chart import Chart
+from app.components.lib.indicator.square_dot import SquareDot
 from app.data import telemetry
 from app.lib.stats import MovingAverage
 
@@ -16,6 +17,8 @@ class Slip_Grid:
         bg_opacity: float = 0.2,
     ) -> None:
         self._i_slipRatio = i_slipRatio
+        self._slipRatio = MovingAverage(max_value)
+
         self._chart = Chart(
             x_pos,
             y_pos,
@@ -33,7 +36,12 @@ class Slip_Grid:
             inverted_y_scale=True,
             centered_y_scale=False,
         )
-        self._slipRatio = MovingAverage(max_value)
+        self._square_dot = SquareDot(
+            chart=self._chart,
+            dot_size=dot_size,
+            inverted_y_scale=True,
+            centered_y_scale=False,
+        )
 
     def render(self) -> None:
         # draw axes
@@ -45,8 +53,8 @@ class Slip_Grid:
         # updadte buffer
         self._slipRatio.update(slipRatio)
 
-        # plot the G-force value on chart
-        self._chart.plot(
+        # plot the indicators
+        self._square_dot.plot(
             x=0.0,
             y=self._slipRatio.weighted_average,
         )
