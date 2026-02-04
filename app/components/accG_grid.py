@@ -11,27 +11,26 @@ class AccG_Grid:
         y_pos: int,
         width: int,
         height: int,
-        dot_size: int,
-        max_value: float,
-        bg_opacity: float = 0.2,
     ) -> None:
-        self._x_accG = MovingAverage(max_value)
-        self._z_accG = MovingAverage(max_value)
+        self._x_accG = MovingAverage(max_value=1.2)
+        self._z_accG = MovingAverage(max_value=1.2)
 
         self._chart = Chart(
             x_pos,
             y_pos,
             width,
             height,
-            dot_size=dot_size,
             marker_count=3,
             x_axis_marker_length=height,
             y_axis_marker_length=width,
-            bg_opacity=bg_opacity,
+            bg_opacity=0.2,
             bg_char='G',
             bg_char_font_size=360,
         )
-        self._square_dot = SquareDot(chart=self._chart)
+        self._square_dot = SquareDot(
+            chart=self._chart,
+            dot_size=30,
+        )
 
     def render(self) -> None:
         # draw axes
