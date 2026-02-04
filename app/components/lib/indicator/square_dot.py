@@ -14,13 +14,15 @@ class SquareDot(Indicator):
         centered_x_scale: bool = True,
         centered_y_scale: bool = True,
     ) -> None:
-        super().__init__(chart)
+        super().__init__(
+            chart=chart,
+            inverted_x_scale=inverted_x_scale,
+            inverted_y_scale=inverted_y_scale,
+            centered_x_scale=centered_x_scale,
+            centered_y_scale=centered_y_scale,
+        )
         self._dot_size = dot_size
         self._color4f = color4f
-        self._inverted_x_scale = inverted_x_scale
-        self._inverted_y_scale = inverted_y_scale
-        self._centered_x_scale = centered_x_scale
-        self._centered_y_scale = centered_y_scale
 
     def plot(
         self,
