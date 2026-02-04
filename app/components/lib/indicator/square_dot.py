@@ -15,10 +15,6 @@ class SquareDot(Indicator):
         centered_y_scale: bool = True,
     ) -> None:
         super().__init__(chart)
-        self._x_pos = self._chart.x_pos
-        self._y_pos = self._chart.y_pos
-        self._width = self._chart.width
-        self._height = self._chart.height
         self._dot_size = dot_size
         self._color4f = color4f
         self._inverted_x_scale = inverted_x_scale
