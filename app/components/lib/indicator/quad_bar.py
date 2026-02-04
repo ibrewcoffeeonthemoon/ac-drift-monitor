@@ -7,7 +7,7 @@ class QuadBar(Indicator):
     def __init__(
         self,
         chart: Chart,
-        color4f: tuple = (1, 0, 0, 1),
+        color4f: 'tuple[float, float, float, float]' = (1, 0, 0, 1),
         inverted_x_scale: bool = False,
         inverted_y_scale: bool = False,
         centered_x_scale: bool = False,
@@ -22,8 +22,7 @@ class QuadBar(Indicator):
         )
         self._color4f = color4f
 
-    def _coordinates(self, val):
-        # type: (float) -> tuple[tuple[int, int], tuple[int, int], tuple[int, int], tuple[int, int]]
+    def _coordinates(self, val: float) -> 'tuple[tuple[int, int], tuple[int, int], tuple[int, int], tuple[int, int]]':
         x_begin, y_begin = self._begin
         x_mag, y_mag = self._magnitude
         x_dir, y_dir = self._direction

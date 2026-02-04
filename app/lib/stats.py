@@ -5,7 +5,7 @@ class MovingAverage:
     def __init__(
         self,
         max_value: float,
-        weights: tuple = (.2, .2, .2, .1, .1, .1, .1),
+        weights: 'tuple[float, ...]' = (.2, .2, .2, .1, .1, .1, .1),
         initial_value: float = 0.0,
     ) -> None:
         self._max_value = max_value
