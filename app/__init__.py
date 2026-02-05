@@ -36,10 +36,11 @@ class _App:
         return 0
 
     def _attach(self, cls: 'type[Component]') -> None:
-        self._components.append(cls(
-            x_pos=self._x_current,
-            y_pos=self._y_current
-        ))
+        if cls.enabled:
+            self._components.append(cls(
+                x_pos=self._x_current,
+                y_pos=self._y_current
+            ))
 
     def render(self) -> None:
         for component in self._components:

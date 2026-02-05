@@ -2,6 +2,8 @@ from abc import ABCMeta, abstractmethod
 
 
 class Component(metaclass=ABCMeta):
+    enabled = True
+
     @abstractmethod
     def __init__(
         self,

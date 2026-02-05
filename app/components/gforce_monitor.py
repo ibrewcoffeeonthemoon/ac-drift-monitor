@@ -8,6 +8,8 @@ from app.lib.stats import MovingAverage
 
 
 class GForceMonitor(Component):
+    enabled = config.GForceMonitor.enabled
+
     def __init__(
         self,
         x_pos: int,
