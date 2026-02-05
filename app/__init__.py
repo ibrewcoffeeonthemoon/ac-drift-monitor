@@ -19,32 +19,22 @@ class _App:
         ac.drawBorder(window, False)
 
         # create components
+        self._slip_ratio_monitor = SlipRatioMonitor(
+            x_pos=0,
+            y_pos=0,
+            width=width//2,
+            height=height,
+        )
         self._gforce_monitor = GForceMonitor(
             x_pos=width//2,
             y_pos=0,
             width=width//2,
             height=height,
         )
-        self._slipRatio_grids = [
-            SlipRatioMonitor(
-                i_slipRatio=i,
-                x_pos=x_pos,
-                y_pos=y_pos,
-                width=width//4,
-                height=height//2,
-            )
-            for i, (x_pos, y_pos) in enumerate((
-                (0, 0),
-                (width//4*1, 0),
-                (0, height//2),
-                (width//4*1, height//2),
-            ))
-        ]
 
     def render(self) -> None:
         self._gforce_monitor.render()
-        for slipRatio_grid in self._slipRatio_grids:
-            slipRatio_grid.render()
+        self._slip_ratio_monitor.render()
 
 
 # export

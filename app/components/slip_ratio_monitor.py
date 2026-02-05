@@ -1,10 +1,11 @@
+from app.components import Component
 from app.components.lib.chart import Chart
 from app.components.lib.indicator.quad_bar import QuadBar
 from app.data import telemetry
 from app.lib.stats import MovingAverage
 
 
-class SlipRatioMonitor:
+class _TyreSlipRatioMonitor:
     def __init__(
         self,
         i_slipRatio: int,
@@ -46,3 +47,32 @@ class SlipRatioMonitor:
 
         # plot the indicators
         self._quad_bar.plot(self._slipRatio.weighted_average)
+
+
+class SlipRatioMonitor(Component):
+    def __init__(
+        self,
+        x_pos: int,
+        y_pos: int,
+        width: int,
+        height: int,
+    ) -> None:
+        self._tyres_slip_ratio_monitors = [
+            _TyreSlipRatioMonitor(
+                i_slipRatio=i,
+                x_pos=_x_pos,
+                y_pos=_y_pos,
+                width=width//2,
+                height=height//2,
+            )
+            for i, (_x_pos, _y_pos) in enumerate((
+                (x_pos, y_pos),
+                (x_pos+width//2, y_pos),
+                (x_pos, y_pos+height//2),
+                (x_pos+width//2, y_pos+height//2),
+            ))
+        ]
+
+    def render(self) -> None:
+        for monitor in self._tyres_slip_ratio_monitors:
+            monitor.render()
