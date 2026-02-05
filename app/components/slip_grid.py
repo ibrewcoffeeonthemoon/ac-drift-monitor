@@ -27,8 +27,7 @@ class Slip_Grid:
             x_axis_marker_length=height,
             y_axis_marker_length=width,
             bg_opacity=0.2,
-            bg_char='',
-            bg_char_font_size=120,
+            bg_char='S',
         )
         self._quad_bar = QuadBar(
             chart=self._chart,
