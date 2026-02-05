@@ -20,7 +20,7 @@ class _App:
 
         # create components
         self._accG_grid = AccG_Grid(
-            x_pos=width//4,
+            x_pos=width//2,
             y_pos=0,
             width=width//2,
             height=height,
@@ -35,9 +35,9 @@ class _App:
             )
             for i, (x_pos, y_pos) in enumerate((
                 (0, 0),
-                (width//4*3, 0),
+                (width//4*1, 0),
                 (0, height//2),
-                (width//4*3, height//2),
+                (width//4*1, height//2),
             ))
         ]
 
