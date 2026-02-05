@@ -9,10 +9,13 @@ from app.window import window
 
 class _App:
     def __init__(self) -> None:
-        # create components
+        # attach components
         self._components = []  # type: list[Component]
-        self._components.append(SlipRatioMonitor(x_pos=self._x_current, y_pos=self._y_current))
-        self._components.append(GForceMonitor(x_pos=self._x_current, y_pos=self._y_current))
+        for component_cls in (
+            SlipRatioMonitor,
+            GForceMonitor,
+        ):
+            self._attach(component_cls)
 
         # set layouts, styles
         ac.setSize(
@@ -31,6 +34,12 @@ class _App:
     @property
     def _y_current(self) -> int:
         return 0
+
+    def _attach(self, cls: 'type[Component]') -> None:
+        self._components.append(cls(
+            x_pos=self._x_current,
+            y_pos=self._y_current
+        ))
 
     def render(self) -> None:
         for component in self._components:
