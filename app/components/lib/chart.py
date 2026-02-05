@@ -1,7 +1,6 @@
 import ac
 
 from app.components.lib.gl.line import horizontal_line, vertical_line
-from app.components.lib.gl.shape import square
 from app.window import window
 
 
@@ -36,15 +35,15 @@ class Chart:
 
     def _draw_label(self) -> None:
         # estimate dynamic font size
-        font_size = self.height
-        font_size_vertical_offset = -self.height/4
+        font_size = min(self.width, self.height)
+        font_size_vertical_offset = self.height//2-font_size*3//4
         # draw big label
         label = ac.addLabel(window, self._bg_char)
         ac.setFont(label, 'arial')
         ac.setFontSize(label, font_size)
         ac.setFontColor(label, 1, 1, 1, 0.1)
         ac.setFontAlignment(label, 'center')
-        ac.setSize(label, self.width, 0)
+        ac.setSize(label, self.width, self.height)
         ac.setPosition(
             label,
             self.x_pos,
