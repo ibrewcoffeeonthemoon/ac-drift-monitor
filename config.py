@@ -19,6 +19,7 @@ class App:
 
 class GForceMonitor:
     col_span = _int('GForceMonitor', 'col_span')
+    box_size = _float('GForceMonitor', 'box_size')
 
 
 class SlipRatioMonitor:
