@@ -12,5 +12,13 @@ _boolean = parser.getboolean
 _str = parser.get
 
 
-class APP:
-    height = _int('APP', 'height')
+class App:
+    height = _int('App', 'height')
+
+
+class GForceMonitor:
+    col_span = _int('GForceMonitor', 'col_span')
+
+
+class SlipRatioMonitor:
+    col_span = _int('SlipRatioMonitor', 'col_span')

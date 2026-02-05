@@ -49,6 +49,6 @@ class _App:
 
 # export
 app = _App(
-    width=config.APP.height*2,
-    height=config.APP.height,
+    width=config.App.height*2,
+    height=config.App.height,
 )
