@@ -22,9 +22,9 @@ class Slip_Grid:
             width,
             height,
             x_axis_marker_color4f=(0, 0, 0, 0.0),
-            axis_segment_count=6,
-            x_axis_marker_length=height,
-            y_axis_marker_length=width,
+            axis_segment_count=4,
+            x_axis_marker_length_ratio=1.0,
+            y_axis_marker_length_ratio=1.0,
             bg_opacity=0.2,
             bg_char='S',
         )
