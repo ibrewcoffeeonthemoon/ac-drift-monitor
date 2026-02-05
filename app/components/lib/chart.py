@@ -11,8 +11,10 @@ class Chart:
         y_pos: int,
         width: int,
         height: int,
-        color4f_primary: 'tuple[float, float, float, float]' = (1, 1, 1, 0.7),
-        color4f_secondary: 'tuple[float, float, float, float]' = (1, 1, 1, 0.1),
+        x_axis_color4f: 'tuple[float, float, float, float]' = (1, 1, 1, 0.0),
+        y_axis_color4f: 'tuple[float, float, float, float]' = (1, 1, 1, 0.0),
+        x_axis_marker_color4f: 'tuple[float, float, float, float]' = (1, 1, 1, 0.1),
+        y_axis_marker_color4f: 'tuple[float, float, float, float]' = (1, 1, 1, 0.1),
         axis_segment_count: int = 8,
         x_axis_marker_length: int = 10,
         y_axis_marker_length: int = 10,
@@ -23,8 +25,10 @@ class Chart:
         self.y_pos = y_pos
         self.width = width
         self.height = height
-        self._color4f_primary = color4f_primary
-        self._color4f_secondary = color4f_secondary
+        self._x_axis_color4f = x_axis_color4f
+        self._y_axis_color4f = y_axis_color4f
+        self._x_axis_marker_color4f = x_axis_marker_color4f
+        self._y_axis_marker_color4f = y_axis_marker_color4f
         self._axis_segmnt_count = axis_segment_count
         self._x_axis_marker_length = x_axis_marker_length
         self._y_axis_marker_length = y_axis_marker_length
@@ -55,9 +59,9 @@ class Chart:
         ac.setBackgroundOpacity(window, self._bg_opacity)
 
         # x-axis
-        horizontal_line((self.x_pos, self.y_pos+self.height//2), self.width, self._color4f_primary)
+        horizontal_line((self.x_pos, self.y_pos+self.height//2), self.width, self._x_axis_color4f)
         # y-axis
-        vertical_line((self.x_pos+self.width//2, self.y_pos), self.height, self._color4f_primary)
+        vertical_line((self.x_pos+self.width//2, self.y_pos), self.height, self._y_axis_color4f)
 
         # draw markers
         for i in range(self._axis_segmnt_count+1):
@@ -66,12 +70,12 @@ class Chart:
                 (self.x_pos+round(i*self.width/self._axis_segmnt_count),
                  self.y_pos+self.height//2-self._x_axis_marker_length//2),
                 self._x_axis_marker_length,
-                self._color4f_secondary
+                self._x_axis_marker_color4f
             )
             # y-axis markers
             horizontal_line(
                 (self.x_pos+self.width//2-self._y_axis_marker_length//2,
                  self.y_pos+round(i*self.height/self._axis_segmnt_count)),
                 self._y_axis_marker_length,
-                self._color4f_secondary
+                self._y_axis_marker_color4f
             )

@@ -22,6 +22,8 @@ class AccG_Grid:
             y_pos,
             width,
             height,
+            x_axis_color4f=(1, 1, 1, 0.7),
+            y_axis_color4f=(1, 1, 1, 0.7),
             axis_segment_count=6,
             x_axis_marker_length=height,
             y_axis_marker_length=width,
