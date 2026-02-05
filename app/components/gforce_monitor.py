@@ -8,6 +8,8 @@ from app.lib.stats import MovingAverage
 
 
 class GForceMonitor(Component):
+    enabled = config.GForceMonitor.enabled
+
     def __init__(
         self,
         x_pos: int,
@@ -39,7 +41,7 @@ class GForceMonitor(Component):
         )
         self._square_dot = SquareDot(
             chart=self._chart,
-            dot_size=30,
+            dot_size=round(config.GForceMonitor.box_size*self.height),
             inverted_y_scale=True,
         )
 

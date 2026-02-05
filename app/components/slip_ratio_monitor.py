@@ -51,6 +51,8 @@ class _TyreSlipRatioMonitor:
 
 
 class SlipRatioMonitor(Component):
+    enabled = config.SlipRatioMonitor.enabled
+
     def __init__(
         self,
         x_pos: int,
