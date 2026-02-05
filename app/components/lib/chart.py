@@ -1,7 +1,6 @@
 import ac
 
 from app.components.lib.gl.line import horizontal_line, vertical_line
-from app.components.lib.gl.shape import square
 from app.window import window
 
 
