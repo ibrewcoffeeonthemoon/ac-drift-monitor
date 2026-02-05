@@ -27,7 +27,6 @@ class AccG_Grid:
             y_axis_marker_length=width,
             bg_opacity=0.2,
             bg_char='G',
-            bg_char_font_size=360,
         )
         self._quad_bar = QuadBar(
             chart=self._chart,

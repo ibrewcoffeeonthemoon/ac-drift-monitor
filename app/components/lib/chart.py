@@ -19,7 +19,6 @@ class Chart:
         y_axis_marker_length: int = 10,
         bg_opacity: float = 0.2,
         bg_char: str = '',
-        bg_char_font_size: int = 120,
     ) -> None:
         self.x_pos = x_pos
         self.y_pos = y_pos
@@ -32,20 +31,24 @@ class Chart:
         self._y_axis_marker_length = y_axis_marker_length
         self._bg_opacity = bg_opacity
         self._bg_char = bg_char
-        self._bg_char_font_size = bg_char_font_size
 
         self._draw_label()
 
     def _draw_label(self) -> None:
+        # estimate dynamic font size
+        font_size = self.height
+        font_size_vertical_offset = -self.height/4
         # draw big label
         label = ac.addLabel(window, self._bg_char)
         ac.setFont(label, 'arial')
-        ac.setFontSize(label, self._bg_char_font_size)
+        ac.setFontSize(label, font_size)
         ac.setFontColor(label, 1, 1, 1, 0.1)
+        ac.setFontAlignment(label, 'center')
+        ac.setSize(label, self.width, 0)
         ac.setPosition(
             label,
-            self.x_pos+25,
-            self.y_pos-110,
+            self.x_pos,
+            self.y_pos+font_size_vertical_offset,
         )
 
     def draw_axes(self) -> None:
