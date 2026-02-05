@@ -8,6 +8,7 @@ Visualize car telemetry when drifting.
 2. clone this repo into `assettocorsa/apps/python/`
 3. you should have a folder named `assettocorsa/apps/python/ac-drift-monitor/`
 4. enable the app under `settings / ASSETTO CORSA / PYTHON APPS`
+5. explore many app settings under `settings / ASSETTO CORSA / PYTHON APPS SETTINGS`
 
 ## Load
 
