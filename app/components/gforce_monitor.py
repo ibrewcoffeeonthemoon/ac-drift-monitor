@@ -5,7 +5,7 @@ from app.data import telemetry
 from app.lib.stats import MovingAverage
 
 
-class AccG_Grid:
+class GForceMonitor:
     def __init__(
         self,
         x_pos: int,

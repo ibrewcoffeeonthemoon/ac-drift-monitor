@@ -4,7 +4,7 @@ from app.data import telemetry
 from app.lib.stats import MovingAverage
 
 
-class Slip_Grid:
+class SlipRatioMonitor:
     def __init__(
         self,
         i_slipRatio: int,

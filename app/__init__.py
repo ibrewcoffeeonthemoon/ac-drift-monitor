@@ -1,8 +1,8 @@
 import ac
 
 import config
-from app.components.accG_grid import AccG_Grid
-from app.components.slip_grid import Slip_Grid
+from app.components.gforce_monitor import GForceMonitor
+from app.components.slip_ratio_monitor import SlipRatioMonitor
 from app.window import window
 
 
@@ -19,14 +19,14 @@ class _App:
         ac.drawBorder(window, False)
 
         # create components
-        self._accG_grid = AccG_Grid(
+        self._accG_grid = GForceMonitor(
             x_pos=width//2,
             y_pos=0,
             width=width//2,
             height=height,
         )
         self._slipRatio_grids = [
-            Slip_Grid(
+            SlipRatioMonitor(
                 i_slipRatio=i,
                 x_pos=x_pos,
                 y_pos=y_pos,
