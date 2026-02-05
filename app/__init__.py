@@ -1,6 +1,7 @@
 import ac
 
 import config
+from app.components import Component
 from app.components.gforce_monitor import GForceMonitor
 from app.components.slip_ratio_monitor import SlipRatioMonitor
 from app.window import window
@@ -13,18 +14,20 @@ class _App:
         height: int,
     ) -> None:
         # create components
-        self._slip_ratio_monitor = SlipRatioMonitor(
-            x_pos=0,
-            y_pos=0,
-            width=width//2,
-            height=height,
-        )
-        self._gforce_monitor = GForceMonitor(
-            x_pos=width//2,
-            y_pos=0,
-            width=width//2,
-            height=height,
-        )
+        self._components = [
+            SlipRatioMonitor(
+                x_pos=0,
+                y_pos=0,
+                width=width//2,
+                height=height,
+            ),
+            GForceMonitor(
+                x_pos=width//2,
+                y_pos=0,
+                width=width//2,
+                height=height,
+            ),
+        ]  # type: list[Component]
 
         # TODO: dynamically resolve width and height from the component above, no hard code
         # set layouts, styles
@@ -34,8 +37,8 @@ class _App:
         ac.drawBorder(window, False)
 
     def render(self) -> None:
-        self._gforce_monitor.render()
-        self._slip_ratio_monitor.render()
+        for component in self._components:
+            component.render()
 
 
 # export
