@@ -1,3 +1,5 @@
+import config
+from app.components import Component
 from app.components.lib.chart import Chart
 from app.components.lib.indicator.quad_bar import QuadBar
 from app.components.lib.indicator.square_dot import SquareDot
@@ -5,14 +7,17 @@ from app.data import telemetry
 from app.lib.stats import MovingAverage
 
 
-class AccG_Grid:
+class GForceMonitor(Component):
+    enabled = config.GForceMonitor.enabled
+
     def __init__(
         self,
         x_pos: int,
         y_pos: int,
-        width: int,
-        height: int,
     ) -> None:
+        self._width = width = config.App.span_len*config.GForceMonitor.col_span
+        self._height = height = config.App.height
+
         self._slipRatio = MovingAverage(scale=3.0, min=0)
         self._x_accG = MovingAverage(scale=1.2)
         self._z_accG = MovingAverage(scale=1.2)
@@ -22,12 +27,13 @@ class AccG_Grid:
             y_pos,
             width,
             height,
-            marker_count=3,
-            x_axis_marker_length=height,
-            y_axis_marker_length=width,
+            x_axis_color4f=(1, 1, 1, 0.7),
+            y_axis_color4f=(1, 1, 1, 0.7),
+            axis_segment_count=8,
+            x_axis_marker_length_ratio=1.0,
+            y_axis_marker_length_ratio=1.0,
             bg_opacity=0.2,
             bg_char='G',
-            bg_char_font_size=360,
         )
         self._quad_bar = QuadBar(
             chart=self._chart,
@@ -35,9 +41,17 @@ class AccG_Grid:
         )
         self._square_dot = SquareDot(
             chart=self._chart,
-            dot_size=30,
+            dot_size=round(config.GForceMonitor.box_size*self.height),
             inverted_y_scale=True,
         )
+
+    @property
+    def width(self) -> int:
+        return self._width
+
+    @property
+    def height(self) -> int:
+        return self._height
 
     def render(self) -> None:
         # draw axes

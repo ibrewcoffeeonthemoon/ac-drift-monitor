@@ -1,56 +1,51 @@
 import ac
 
-from app.components.accG_grid import AccG_Grid
-from app.components.slip_grid import Slip_Grid
+import config
+from app.components import Component
+from app.components.gforce_monitor import GForceMonitor
+from app.components.slip_ratio_monitor import SlipRatioMonitor
 from app.window import window
 
 
 class _App:
-    def __init__(
-        self,
-        width: int,
-        height: int,
-    ) -> None:
+    def __init__(self) -> None:
+        # attach components
+        self._components = []  # type: list[Component]
+        for component_cls in (
+            SlipRatioMonitor,
+            GForceMonitor,
+        ):
+            self._attach(component_cls)
+
         # set layouts, styles
-        ac.setSize(window, width, height)
+        ac.setSize(
+            window,
+            round(sum(c.width for c in self._components)),
+            config.App.height,
+        )
         ac.setTitle(window, '')
         ac.setIconPosition(window, 0, -10000)
         ac.drawBorder(window, False)
 
-        # create components
-        self._accG_grid = AccG_Grid(
-            x_pos=width//4,
-            y_pos=0,
-            width=width//2,
-            height=height,
-        )
-        self._slipRatio_grids = [
-            Slip_Grid(
-                i_slipRatio=i,
-                x_pos=x_pos,
-                y_pos=y_pos,
-                width=width//4,
-                height=height//2,
-            )
-            for i, (x_pos, y_pos) in enumerate((
-                (0, 0),
-                (width//4*3, 0),
-                (0, height//2),
-                (width//4*3, height//2),
-            ))
-        ]
+    @property
+    def _x_current(self) -> int:
+        return sum(c.width for c in self._components)
 
-        # init
-        self._car_id = ac.getFocusedCar()
+    @property
+    def _y_current(self) -> int:
+        return 0
+
+    def _attach(self, cls: 'type[Component]') -> None:
+        if cls.enabled:
+            self._components.append(cls(
+                x_pos=self._x_current,
+                y_pos=self._y_current
+            ))
 
     def render(self) -> None:
-        self._accG_grid.render()
-        for slipRatio_grid in self._slipRatio_grids:
-            slipRatio_grid.render()
+        for component in self._components:
+            component.render()
 
 
 # export
-app = _App(
-    width=600,
-    height=300,
-)
+app = _App()

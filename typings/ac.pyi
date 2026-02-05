@@ -297,7 +297,7 @@ def setFont(object: Any, font: str) -> int:
     ...
 
 
-def setFontAlignment(object: Any, alignment: int) -> int:
+def setFontAlignment(object: Any, alignment: str) -> int:
     ...
 
 
