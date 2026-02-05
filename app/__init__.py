@@ -18,14 +18,14 @@ class _App:
             SlipRatioMonitor(
                 x_pos=0,
                 y_pos=0,
-                width=width//2,
-                height=height,
+                # width=width//2,
+                # height=height,
             ),
             GForceMonitor(
                 x_pos=width//2,
                 y_pos=0,
-                width=width//2,
-                height=height,
+                # width=width//2,
+                # height=height,
             ),
         ]  # type: list[Component]
 
