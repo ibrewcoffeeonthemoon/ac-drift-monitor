@@ -1,3 +1,4 @@
+import config
 from app.components import Component
 from app.components.lib.chart import Chart
 from app.components.lib.indicator.quad_bar import QuadBar
@@ -54,9 +55,10 @@ class SlipRatioMonitor(Component):
         self,
         x_pos: int,
         y_pos: int,
-        width: int,
-        height: int,
     ) -> None:
+        self._width = width = config.App.span_len*config.SlipRatioMonitor.col_span
+        self._height = height = config.App.height
+
         self._tyres_slip_ratio_monitors = [
             _TyreSlipRatioMonitor(
                 i_slipRatio=i,
@@ -72,6 +74,14 @@ class SlipRatioMonitor(Component):
                 (x_pos+width//2, y_pos+height//2),
             ))
         ]
+
+    @property
+    def width(self) -> int:
+        return self._width
+
+    @property
+    def height(self) -> int:
+        return self._height
 
     def render(self) -> None:
         for monitor in self._tyres_slip_ratio_monitors:

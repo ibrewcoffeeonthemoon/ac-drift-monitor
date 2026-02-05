@@ -1,3 +1,4 @@
+import config
 from app.components import Component
 from app.components.lib.chart import Chart
 from app.components.lib.indicator.quad_bar import QuadBar
@@ -11,9 +12,10 @@ class GForceMonitor(Component):
         self,
         x_pos: int,
         y_pos: int,
-        width: int,
-        height: int,
     ) -> None:
+        self._width = width = config.App.span_len*config.GForceMonitor.col_span
+        self._height = height = config.App.height
+
         self._slipRatio = MovingAverage(scale=3.0, min=0)
         self._x_accG = MovingAverage(scale=1.2)
         self._z_accG = MovingAverage(scale=1.2)
@@ -40,6 +42,14 @@ class GForceMonitor(Component):
             dot_size=30,
             inverted_y_scale=True,
         )
+
+    @property
+    def width(self) -> int:
+        return self._width
+
+    @property
+    def height(self) -> int:
+        return self._height
 
     def render(self) -> None:
         # draw axes
