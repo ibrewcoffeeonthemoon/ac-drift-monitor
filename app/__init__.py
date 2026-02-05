@@ -11,27 +11,26 @@ class _App:
     def __init__(
         self,
         width: int,
-        height: int,
     ) -> None:
         # create components
         self._components = [
             SlipRatioMonitor(
                 x_pos=0,
                 y_pos=0,
-                # width=width//2,
-                # height=height,
             ),
             GForceMonitor(
                 x_pos=width//2,
                 y_pos=0,
-                # width=width//2,
-                # height=height,
             ),
         ]  # type: list[Component]
 
         # TODO: dynamically resolve width and height from the component above, no hard code
         # set layouts, styles
-        ac.setSize(window, width, height)
+        ac.setSize(
+            window,
+            round(sum(c.width for c in self._components)),
+            config.App.height,
+        )
         ac.setTitle(window, '')
         ac.setIconPosition(window, 0, -10000)
         ac.drawBorder(window, False)
@@ -44,5 +43,4 @@ class _App:
 # export
 app = _App(
     width=config.App.height*2,
-    height=config.App.height,
 )
