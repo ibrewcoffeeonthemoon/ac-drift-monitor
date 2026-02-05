@@ -41,9 +41,6 @@ class _App:
             ))
         ]
 
-        # init
-        self._car_id = ac.getFocusedCar()
-
     def render(self) -> None:
         self._accG_grid.render()
         for slipRatio_grid in self._slipRatio_grids:
