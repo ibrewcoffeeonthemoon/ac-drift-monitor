@@ -1,8 +1,8 @@
 import ac
 
 import config
-from app.components.accG_grid import AccG_Grid
-from app.components.slip_grid import Slip_Grid
+from app.components.gforce_monitor import GForceMonitor
+from app.components.slip_ratio_monitor import SlipRatioMonitor
 from app.window import window
 
 
@@ -19,39 +19,26 @@ class _App:
         ac.drawBorder(window, False)
 
         # create components
-        self._accG_grid = AccG_Grid(
+        self._slip_ratio_monitor = SlipRatioMonitor(
+            x_pos=0,
+            y_pos=0,
+            width=width//2,
+            height=height,
+        )
+        self._gforce_monitor = GForceMonitor(
             x_pos=width//2,
             y_pos=0,
             width=width//2,
             height=height,
         )
-        self._slipRatio_grids = [
-            Slip_Grid(
-                i_slipRatio=i,
-                x_pos=x_pos,
-                y_pos=y_pos,
-                width=width//4,
-                height=height//2,
-            )
-            for i, (x_pos, y_pos) in enumerate((
-                (0, 0),
-                (width//4*1, 0),
-                (0, height//2),
-                (width//4*1, height//2),
-            ))
-        ]
-
-        # init
-        self._car_id = ac.getFocusedCar()
 
     def render(self) -> None:
-        self._accG_grid.render()
-        for slipRatio_grid in self._slipRatio_grids:
-            slipRatio_grid.render()
+        self._gforce_monitor.render()
+        self._slip_ratio_monitor.render()
 
 
 # export
 app = _App(
-    width=config.APP.height*2,
-    height=config.APP.height,
+    width=config.App.height*2,
+    height=config.App.height,
 )

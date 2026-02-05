@@ -1,3 +1,4 @@
+from app.components import Component
 from app.components.lib.chart import Chart
 from app.components.lib.indicator.quad_bar import QuadBar
 from app.components.lib.indicator.square_dot import SquareDot
@@ -5,7 +6,7 @@ from app.data import telemetry
 from app.lib.stats import MovingAverage
 
 
-class AccG_Grid:
+class GForceMonitor(Component):
     def __init__(
         self,
         x_pos: int,
