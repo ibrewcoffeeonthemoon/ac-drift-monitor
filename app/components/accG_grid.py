@@ -22,7 +22,7 @@ class AccG_Grid:
             y_pos,
             width,
             height,
-            marker_count=3,
+            axis_segment_count=6,
             x_axis_marker_length=height,
             y_axis_marker_length=width,
             bg_opacity=0.2,
