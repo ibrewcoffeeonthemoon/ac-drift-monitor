@@ -1,5 +1,6 @@
 import ac
 
+import config
 from app.components.accG_grid import AccG_Grid
 from app.components.slip_grid import Slip_Grid
 from app.window import window
@@ -52,5 +53,5 @@ class _App:
 # export
 app = _App(
     width=600,
-    height=300,
+    height=config.APP.height,
 )
