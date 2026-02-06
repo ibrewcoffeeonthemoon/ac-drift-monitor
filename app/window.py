@@ -1,6 +1,6 @@
 import ac
 
-from app.version import VERSION
+from .version import VERSION
 
 NAME = 'AC Drift Monitor {}'.format(VERSION)
 

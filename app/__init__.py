@@ -1,11 +1,9 @@
 import ac
 
 import config
-from app.components.base import Component
-from app.components.gforce_monitor import GForceMonitor
-from app.components.slip_ratio_monitor import SlipRatioMonitor
-from app.components.speed_monitor import SpeedMonitor
-from app.window import window
+
+from .components import *
+from .window import window
 
 
 class _App:

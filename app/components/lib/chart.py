@@ -1,7 +1,6 @@
 import ac
 
-from app.window import window
-
+from ...window import window
 from .gl.line import horizontal_line, vertical_line
 
 
