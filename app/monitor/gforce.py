@@ -3,6 +3,7 @@ from acsys import CS
 import config
 
 from ..lib.stats import MovingAverage
+from ..lib.value import Float
 from ..telemetry import telemetry
 from ._base import Monitor
 from .lib.chart import Chart
@@ -82,8 +83,10 @@ class GForceMonitor(Monitor):
         #     x=self._x_accG.weighted_average,
         #     y=self._z_accG.weighted_average,
         # )
-        self._quad_bar.plot(avg_rear_slipRatio/3.0)
+        self._quad_bar.plot(
+            Float(avg_rear_slipRatio).normalize(3.0).clip(0, 1).value
+        )
         self._square_dot.plot(
-            x=x_accG/1.2,
-            y=z_accG/1.2,
+            x=Float(x_accG).normalize(1.2).clip(-1, 1).value,
+            y=Float(z_accG).normalize(1.2).clip(-1, 1).value,
         )

@@ -3,6 +3,7 @@ from acsys import CS
 import config
 
 from ..lib.stats import MovingAverage
+from ..lib.value import Float
 from ..telemetry import telemetry
 from ._base import Monitor
 from .lib.chart import Chart
@@ -53,7 +54,9 @@ class _TyreSlipRatioMonitor:
 
         # plot the indicators
         # self._quad_bar.plot(self._slipRatio.weighted_average)
-        self._quad_bar.plot(slipRatio/3.0)
+        self._quad_bar.plot(
+            Float(slipRatio).normalize(3.0).clip(-1, 1).value
+        )
 
 
 class SlipRatioMonitor(Monitor):
