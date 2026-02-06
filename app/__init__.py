@@ -10,12 +10,8 @@ class _App:
     def __init__(self) -> None:
         # attach components
         self._components = []  # type: list[Component]
-        for component_cls in sorted((
-            SlipRatioMonitor,
-            GForceMonitor,
-            SpeedMonitor,
-        ), key=lambda cls: cls.col_index):
-            self._attach(component_cls)  # type: ignore[type-abstract]
+        for monitor_class in sorted(MONITOR_CLASSES, key=lambda cls: cls.col_index):
+            self._attach(monitor_class)  # type: ignore[type-abstract]
 
         # set layouts, styles
         ac.setSize(
