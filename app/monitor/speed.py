@@ -55,10 +55,12 @@ class SpeedMonitor(Monitor):
         self._chart.draw_axes()
 
         # fetch telemetry
-        speed_kmh = telemetry[CS.SpeedKMH][0]
+        # speed_kmh = telemetry[CS.SpeedKMH][0]
+        speed_kmh = telemetry[CS.SpeedKMH].last[0]
 
         # updadte buffer
-        self._speed_kmh.update(speed_kmh)
+        # self._speed_kmh.update(speed_kmh)
 
         # plot the indicators
-        self._quad_bar.plot(self._speed_kmh.weighted_average)
+        # self._quad_bar.plot(self._speed_kmh.weighted_average)
+        self._quad_bar.plot(speed_kmh/100)

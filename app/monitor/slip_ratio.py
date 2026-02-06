@@ -45,13 +45,15 @@ class _TyreSlipRatioMonitor:
 
         # fetch telemetry
         # slipRatio = telemetry.slipRatio[self._i_slipRatio]
-        slipRatio = telemetry[CS.SlipRatio][self._i_slipRatio]
+        # slipRatio = telemetry[CS.SlipRatio][self._i_slipRatio]
+        slipRatio = telemetry[CS.SlipRatio].last[self._i_slipRatio]
 
         # updadte buffer
-        self._slipRatio.update(slipRatio)
+        # self._slipRatio.update(slipRatio)
 
         # plot the indicators
-        self._quad_bar.plot(self._slipRatio.weighted_average)
+        # self._quad_bar.plot(self._slipRatio.weighted_average)
+        self._quad_bar.plot(slipRatio/3.0)
 
 
 class SlipRatioMonitor(Monitor):

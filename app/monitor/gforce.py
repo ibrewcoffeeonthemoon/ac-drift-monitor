@@ -64,18 +64,26 @@ class GForceMonitor(Monitor):
         self._chart.draw_axes()
 
         # fetch telemetry
-        *_, slipRatio_rl, slipRatio_rr = telemetry[CS.SlipRatio]
+        # *_, slipRatio_rl, slipRatio_rr = telemetry[CS.SlipRatio]
+        # avg_rear_slipRatio = (slipRatio_rl+slipRatio_rr)/2
+        # x_accG, _, z_accG = telemetry[CS.AccG]
+        *_, slipRatio_rl, slipRatio_rr = telemetry[CS.SlipRatio].last
         avg_rear_slipRatio = (slipRatio_rl+slipRatio_rr)/2
-        x_accG, _, z_accG = telemetry[CS.AccG]
+        x_accG, _, z_accG = telemetry[CS.AccG].last
 
         # updadte buffer
-        self._slipRatio.update(avg_rear_slipRatio)
-        self._x_accG.update(x_accG)
-        self._z_accG.update(z_accG)
+        # self._slipRatio.update(avg_rear_slipRatio)
+        # self._x_accG.update(x_accG)
+        # self._z_accG.update(z_accG)
 
         # plot the indicators
-        self._quad_bar.plot(self._slipRatio.weighted_average)
+        # self._quad_bar.plot(self._slipRatio.weighted_average)
+        # self._square_dot.plot(
+        #     x=self._x_accG.weighted_average,
+        #     y=self._z_accG.weighted_average,
+        # )
+        self._quad_bar.plot(avg_rear_slipRatio/3.0)
         self._square_dot.plot(
-            x=self._x_accG.weighted_average,
-            y=self._z_accG.weighted_average,
+            x=x_accG/1.2,
+            y=z_accG/1.2,
         )
