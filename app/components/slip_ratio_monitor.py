@@ -1,9 +1,10 @@
 import config
-from app.components.base import Component
-from app.components.lib.chart import Chart
-from app.components.lib.indicator.quad_bar import QuadBar
 from app.data import telemetry
 from app.lib.stats import MovingAverage
+
+from .base import Component
+from .lib.chart import Chart
+from .lib.indicator.quad_bar import QuadBar
 
 
 class _TyreSlipRatioMonitor:
