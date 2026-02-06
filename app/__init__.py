@@ -4,6 +4,7 @@ import config
 from app.components import Component
 from app.components.gforce_monitor import GForceMonitor
 from app.components.slip_ratio_monitor import SlipRatioMonitor
+from app.components.speed_monitor import SpeedMonitor
 from app.window import window
 
 
@@ -14,6 +15,7 @@ class _App:
         for component_cls in sorted((
             SlipRatioMonitor,
             GForceMonitor,
+            SpeedMonitor,
         ), key=lambda cls: cls.col_index):
             self._attach(component_cls)
 
