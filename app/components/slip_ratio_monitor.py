@@ -52,6 +52,7 @@ class _TyreSlipRatioMonitor:
 
 class SlipRatioMonitor(Component):
     enabled = config.SlipRatioMonitor.enabled
+    col_index = config.SlipRatioMonitor.col_index
 
     def __init__(
         self,

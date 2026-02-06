@@ -9,6 +9,7 @@ from app.lib.stats import MovingAverage
 
 class GForceMonitor(Component):
     enabled = config.GForceMonitor.enabled
+    col_index = config.GForceMonitor.col_index
 
     def __init__(
         self,

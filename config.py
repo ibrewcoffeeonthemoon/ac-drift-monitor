@@ -19,10 +19,12 @@ class App:
 
 class GForceMonitor:
     enabled = _boolean('GForceMonitor', 'enabled')
+    col_index = _int('GForceMonitor', 'col_index')
     col_span = _int('GForceMonitor', 'col_span')
     box_size = _float('GForceMonitor', 'box_size')
 
 
 class SlipRatioMonitor:
     enabled = _boolean('SlipRatioMonitor', 'enabled')
+    col_index = _int('SlipRatioMonitor', 'col_index')
     col_span = _int('SlipRatioMonitor', 'col_span')

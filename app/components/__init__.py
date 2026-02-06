@@ -3,6 +3,7 @@ from abc import ABCMeta, abstractmethod
 
 class Component(metaclass=ABCMeta):
     enabled = True
+    col_index = 0
 
     @abstractmethod
     def __init__(
