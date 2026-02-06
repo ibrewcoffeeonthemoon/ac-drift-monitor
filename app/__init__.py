@@ -1,7 +1,7 @@
 import ac
 
 import config
-from app.components import Component
+from app.components.base import Component
 from app.components.gforce_monitor import GForceMonitor
 from app.components.slip_ratio_monitor import SlipRatioMonitor
 from app.components.speed_monitor import SpeedMonitor
