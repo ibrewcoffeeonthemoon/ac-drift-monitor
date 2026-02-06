@@ -19,6 +19,8 @@ class GForceMonitor(Monitor):
         x_pos: int,
         y_pos: int,
     ) -> None:
+        super().__init__(x_pos, y_pos)
+
         self._width = width = config.App.span_len*config.GForceMonitor.col_span
         self._height = height = config.App.height
 
@@ -62,8 +64,9 @@ class GForceMonitor(Monitor):
         self._chart.draw_axes()
 
         # fetch telemetry
-        avg_rear_slipRatio = (telemetry.slipRatio.rl+telemetry.slipRatio.rr)/2
-        x_accG, _, z_accG = telemetry.accG
+        *_, slipRatio_rl, slipRatio_rr = telemetry[CS.SlipRatio]
+        avg_rear_slipRatio = (slipRatio_rl+slipRatio_rr)/2
+        x_accG, _, z_accG = telemetry[CS.AccG]
 
         # updadte buffer
         self._slipRatio.update(avg_rear_slipRatio)
