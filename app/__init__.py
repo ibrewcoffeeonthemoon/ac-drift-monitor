@@ -11,7 +11,7 @@ class _App:
         # attach components
         self._components = []  # type: list[Component]
         for monitor_class in sorted(MONITOR_CLASSES, key=lambda cls: cls.col_index):
-            self._attach(monitor_class)  # type: ignore[type-abstract]
+            self._attach(monitor_class)
 
         # set layouts, styles
         ac.setSize(
