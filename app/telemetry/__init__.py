@@ -1,25 +1,10 @@
-from abc import ABCMeta, abstractmethod
-
 import ac
 import acsys
 
-
-class _Data(metaclass=ABCMeta):
-    def __init__(self) -> None:
-        self._data = ()  # type: tuple[float, ...]
-
-    @abstractmethod
-    def fetch(self, car_id: int) -> None:
-        ...
-
-    def __iter__(self):
-        yield from self._data
-
-    def __getitem__(self, index: int) -> float:
-        return self._data[index]
+from ._base import DataSource
 
 
-class _AccG(_Data):
+class _AccG(DataSource):
     def __init__(self) -> None:
         super().__init__()
         self._data = (0.0, 0.0, 0.0)
@@ -37,7 +22,7 @@ class _AccG(_Data):
     def z(self) -> float: return self._data[2]
 
 
-class _SlipRatio(_Data):
+class _SlipRatio(DataSource):
     def __init__(self) -> None:
         super().__init__()
         self._data = (0.0, 0.0, 0.0, 0.0)
@@ -58,7 +43,7 @@ class _SlipRatio(_Data):
     def rr(self) -> float: return self._data[3]
 
 
-class _Speed(_Data):
+class _Speed(DataSource):
     def __init__(self) -> None:
         super().__init__()
         self._data = (0.0, )
