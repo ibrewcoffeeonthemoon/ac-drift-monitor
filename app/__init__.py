@@ -17,7 +17,7 @@ class _App:
             GForceMonitor,
             SpeedMonitor,
         ), key=lambda cls: cls.col_index):
-            self._attach(component_cls)
+            self._attach(component_cls)  # type: ignore[type-abstract]
 
         # set layouts, styles
         ac.setSize(
