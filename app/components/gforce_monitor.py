@@ -2,7 +2,7 @@ import config
 
 from ..data import telemetry
 from ..lib.stats import MovingAverage
-from .base import Component
+from ._base import Component
 from .lib.chart import Chart
 from .lib.indicator.quad_bar import QuadBar
 from .lib.indicator.square_dot import SquareDot
