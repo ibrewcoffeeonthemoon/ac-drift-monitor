@@ -1,7 +1,7 @@
 import config
 
-from ..data import telemetry
 from ..lib.stats import MovingAverage
+from ..telemetry import telemetry
 from ._base import Monitor
 from .lib.chart import Chart
 from .lib.indicator import QuadBar, SquareDot
