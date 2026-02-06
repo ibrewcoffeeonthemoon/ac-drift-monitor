@@ -1,13 +1,13 @@
 import config
-from app.components.base import Component
-from app.components.lib.chart import Chart
-from app.components.lib.indicator.quad_bar import QuadBar
-from app.components.lib.indicator.square_dot import SquareDot
-from app.data import telemetry
-from app.lib.stats import MovingAverage
+
+from ..data import telemetry
+from ..lib.stats import MovingAverage
+from ._base import Monitor
+from .lib.chart import Chart
+from .lib.indicator import QuadBar, SquareDot
 
 
-class GForceMonitor(Component):
+class GForceMonitor(Monitor):
     enabled = config.GForceMonitor.enabled
     col_index = config.GForceMonitor.col_index
 

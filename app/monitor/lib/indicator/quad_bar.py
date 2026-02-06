@@ -1,6 +1,6 @@
-from app.components.lib.chart import Chart
-from app.components.lib.gl.shape import quadrilateral
-from app.components.lib.indicator import Indicator
+from ..chart import Chart
+from ..gl.shape import quadrilateral
+from ._base import Indicator
 
 
 class QuadBar(Indicator):

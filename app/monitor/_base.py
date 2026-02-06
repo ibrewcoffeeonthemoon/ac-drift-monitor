@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
 
 
-class Component(metaclass=ABCMeta):
+class Monitor(metaclass=ABCMeta):
     enabled = True
     col_index = 0
 

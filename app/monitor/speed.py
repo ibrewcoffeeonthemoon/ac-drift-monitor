@@ -1,12 +1,13 @@
 import config
-from app.components.base import Component
-from app.components.lib.chart import Chart
-from app.components.lib.indicator.quad_bar import QuadBar
-from app.data import telemetry
-from app.lib.stats import MovingAverage
+
+from ..data import telemetry
+from ..lib.stats import MovingAverage
+from ._base import Monitor
+from .lib.chart import Chart
+from .lib.indicator import QuadBar
 
 
-class SpeedMonitor(Component):
+class SpeedMonitor(Monitor):
     enabled = config.SpeedMonitor.enabled
     col_index = config.SpeedMonitor.col_index
 
