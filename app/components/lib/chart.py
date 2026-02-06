@@ -1,7 +1,8 @@
 import ac
 
-from app.components.lib.gl.line import horizontal_line, vertical_line
 from app.window import window
+
+from .gl.line import horizontal_line, vertical_line
 
 
 class Chart:
