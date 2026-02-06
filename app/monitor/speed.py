@@ -19,6 +19,8 @@ class SpeedMonitor(Monitor):
         self._width = width = config.App.span_len*config.SpeedMonitor.col_span
         self._height = height = config.App.height
 
+        self._speed_kmh = MovingAverage(scale=100)
+
         self._chart = Chart(
             x_pos,
             y_pos,
@@ -32,7 +34,7 @@ class SpeedMonitor(Monitor):
         )
         self._quad_bar = QuadBar(
             chart=self._chart,
-            color4f=(1, 0, 0, 0.4),
+            color4f=(0, 1, 0, 0.4),
         )
 
     @property
@@ -46,3 +48,12 @@ class SpeedMonitor(Monitor):
     def render(self) -> None:
         # draw axes
         self._chart.draw_axes()
+
+        # fetch telemetry
+        speed_kmh = telemetry.speed.kmh
+
+        # updadte buffer
+        self._speed_kmh.update(speed_kmh)
+
+        # plot the indicators
+        self._quad_bar.plot(self._speed_kmh.weighted_average)
