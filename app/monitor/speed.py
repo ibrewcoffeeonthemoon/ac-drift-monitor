@@ -1,3 +1,5 @@
+from acsys import CS
+
 import config
 
 from ..lib.stats import MovingAverage
@@ -8,6 +10,7 @@ from .lib.indicator import QuadBar
 
 
 class SpeedMonitor(Monitor):
+    data_keys = (CS.SpeedKMH,)
     enabled = config.SpeedMonitor.enabled
     col_index = config.SpeedMonitor.col_index
 

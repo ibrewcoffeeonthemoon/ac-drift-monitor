@@ -2,6 +2,7 @@ from abc import ABCMeta, abstractmethod
 
 
 class Monitor(metaclass=ABCMeta):
+    data_keys = ()  # type: tuple[int, ...]
     enabled = True
     col_index = 0
 

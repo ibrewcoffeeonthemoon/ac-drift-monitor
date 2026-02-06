@@ -1,3 +1,5 @@
+from acsys import CS
+
 import config
 
 from ..lib.stats import MovingAverage
@@ -52,6 +54,7 @@ class _TyreSlipRatioMonitor:
 
 
 class SlipRatioMonitor(Monitor):
+    data_keys = (CS.SlipRatio, )
     enabled = config.SlipRatioMonitor.enabled
     col_index = config.SlipRatioMonitor.col_index
 

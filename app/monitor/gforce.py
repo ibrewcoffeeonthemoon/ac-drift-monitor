@@ -1,3 +1,5 @@
+from acsys import CS
+
 import config
 
 from ..lib.stats import MovingAverage
@@ -8,6 +10,7 @@ from .lib.indicator import QuadBar, SquareDot
 
 
 class GForceMonitor(Monitor):
+    data_keys = (CS.AccG, CS.SlipRatio, )
     enabled = config.GForceMonitor.enabled
     col_index = config.GForceMonitor.col_index
 
