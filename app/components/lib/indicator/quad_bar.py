@@ -1,6 +1,6 @@
 from ..chart import Chart
 from ..gl.shape import quadrilateral
-from . import Indicator
+from ._base import Indicator
 
 
 class QuadBar(Indicator):
