@@ -2,12 +2,12 @@ import config
 
 from ..data import telemetry
 from ..lib.stats import MovingAverage
-from ._base import Component
+from ._base import Monitor
 from .lib.chart import Chart
 from .lib.indicator import QuadBar, SquareDot
 
 
-class GForceMonitor(Component):
+class GForceMonitor(Monitor):
     enabled = config.GForceMonitor.enabled
     col_index = config.GForceMonitor.col_index
 

@@ -1,4 +1,4 @@
-from ._base import Component
+from ._base import Monitor
 from .gforce import GForceMonitor
 from .slip_ratio import SlipRatioMonitor
 from .speed import SpeedMonitor
@@ -7,10 +7,10 @@ MONITOR_CLASSES = (
     GForceMonitor,
     SlipRatioMonitor,
     SpeedMonitor,
-)  # type: tuple[type[Component], ...]
+)  # type: tuple[type[Monitor], ...]
 
 __all__ = [
-    'Component',
+    'Monitor',
     'GForceMonitor',
     'SlipRatioMonitor',
     'SpeedMonitor',

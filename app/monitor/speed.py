@@ -2,12 +2,12 @@ import config
 
 from ..data import telemetry
 from ..lib.stats import MovingAverage
-from ._base import Component
+from ._base import Monitor
 from .lib.chart import Chart
 from .lib.indicator import QuadBar
 
 
-class SpeedMonitor(Component):
+class SpeedMonitor(Monitor):
     enabled = config.SpeedMonitor.enabled
     col_index = config.SpeedMonitor.col_index
 

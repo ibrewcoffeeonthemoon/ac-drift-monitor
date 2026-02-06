@@ -9,7 +9,7 @@ from .window import window
 class _App:
     def __init__(self) -> None:
         # attach components
-        self._components = []  # type: list[Component]
+        self._components = []  # type: list[Monitor]
         for monitor_class in sorted(MONITOR_CLASSES, key=lambda cls: cls.col_index):
             self._attach(monitor_class)
 
@@ -31,7 +31,7 @@ class _App:
     def _y_current(self) -> int:
         return 0
 
-    def _attach(self, cls: 'type[Component]') -> None:
+    def _attach(self, cls: 'type[Monitor]') -> None:
         if cls.enabled:
             self._components.append(cls(
                 x_pos=self._x_current,

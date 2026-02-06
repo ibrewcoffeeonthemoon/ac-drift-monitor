@@ -2,7 +2,7 @@ import config
 
 from ..data import telemetry
 from ..lib.stats import MovingAverage
-from ._base import Component
+from ._base import Monitor
 from .lib.chart import Chart
 from .lib.indicator import QuadBar
 
@@ -51,7 +51,7 @@ class _TyreSlipRatioMonitor:
         self._quad_bar.plot(self._slipRatio.weighted_average)
 
 
-class SlipRatioMonitor(Component):
+class SlipRatioMonitor(Monitor):
     enabled = config.SlipRatioMonitor.enabled
     col_index = config.SlipRatioMonitor.col_index
 
