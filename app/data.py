@@ -58,12 +58,25 @@ class _SlipRatio(_Data):
     def rr(self) -> float: return self._data[3]
 
 
+class _Speed(_Data):
+    def __init__(self) -> None:
+        super().__init__()
+        self._data = (0.0, )
+
+    def fetch(self, car_id: int) -> None:
+        self._data = (ac.getCarState(car_id, acsys.CS.SpeedKMH), )
+
+    @property
+    def kmh(self) -> float: return self._data[0]
+
+
 class _Telemetry:
 
     def __init__(self) -> None:
         # data
         self.accG = _AccG()
         self.slipRatio = _SlipRatio()
+        self.speed = _Speed()
 
         # init
         self._car_id = ac.getFocusedCar()
@@ -71,6 +84,7 @@ class _Telemetry:
     def fetch(self) -> None:
         self.accG.fetch(self._car_id)
         self.slipRatio.fetch(self._car_id)
+        self.speed.fetch(self._car_id)
 
 
 # export
