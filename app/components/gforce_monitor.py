@@ -4,8 +4,7 @@ from ..data import telemetry
 from ..lib.stats import MovingAverage
 from ._base import Component
 from .lib.chart import Chart
-from .lib.indicator.quad_bar import QuadBar
-from .lib.indicator.square_dot import SquareDot
+from .lib.indicator import QuadBar, SquareDot
 
 
 class GForceMonitor(Component):
