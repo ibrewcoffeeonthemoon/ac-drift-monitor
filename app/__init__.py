@@ -2,7 +2,7 @@ import ac
 
 import config
 
-from .components import *
+from .monitor import *
 from .window import window
 
 
