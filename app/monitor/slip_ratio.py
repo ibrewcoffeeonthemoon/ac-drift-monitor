@@ -47,7 +47,7 @@ class _TyreSlipRatioMonitor:
         # fetch telemetry
         # slipRatio = telemetry.slipRatio[self._i_slipRatio]
         # slipRatio = telemetry[CS.SlipRatio][self._i_slipRatio]
-        slipRatio = telemetry[CS.SlipRatio].last[self._i_slipRatio]
+        slipRatio = telemetry[CS.SlipRatio].sma(7)[self._i_slipRatio]
 
         # updadte buffer
         # self._slipRatio.update(slipRatio)

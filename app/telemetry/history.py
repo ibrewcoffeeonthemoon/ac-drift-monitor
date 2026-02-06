@@ -17,7 +17,7 @@ class History:
     def last(self) -> 'tuple[float, ...]':
         return self._data[-1]
 
-    # def simple_average(self, n: int) -> 'tuple[float, ...]':
-    #     window = islice(self._data, self._maxlen-n, self._maxlen)
-    #     answer = tuple(sum(series)/n for series in zip(*window))
-    #     return answer
+    def sma(self, n: int) -> 'tuple[float, ...]':
+        win = islice(self._data, self._maxlen-n, self._maxlen)
+        avg = tuple(sum(series)/n for series in zip(*win))
+        return avg
