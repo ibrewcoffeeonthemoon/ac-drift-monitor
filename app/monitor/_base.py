@@ -1,7 +1,10 @@
 from abc import ABCMeta, abstractmethod
 
+from ..telemetry import telemetry
+
 
 class Monitor(metaclass=ABCMeta):
+    data_keys = ()  # type: tuple[int, ...]
     enabled = True
     col_index = 0
 
@@ -11,7 +14,7 @@ class Monitor(metaclass=ABCMeta):
         x_pos: int,
         y_pos: int,
     ) -> None:
-        ...
+        telemetry.register(*self.data_keys)
 
     @abstractmethod
     def render(self) -> None:

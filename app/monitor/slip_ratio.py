@@ -1,3 +1,5 @@
+from acsys import CS
+
 import config
 
 from ..lib.stats import MovingAverage
@@ -42,7 +44,8 @@ class _TyreSlipRatioMonitor:
         self._chart.draw_axes()
 
         # fetch telemetry
-        slipRatio = telemetry.slipRatio[self._i_slipRatio]
+        # slipRatio = telemetry.slipRatio[self._i_slipRatio]
+        slipRatio = telemetry[CS.SlipRatio][self._i_slipRatio]
 
         # updadte buffer
         self._slipRatio.update(slipRatio)
@@ -52,6 +55,7 @@ class _TyreSlipRatioMonitor:
 
 
 class SlipRatioMonitor(Monitor):
+    data_keys = (CS.SlipRatio, )
     enabled = config.SlipRatioMonitor.enabled
     col_index = config.SlipRatioMonitor.col_index
 
@@ -60,6 +64,8 @@ class SlipRatioMonitor(Monitor):
         x_pos: int,
         y_pos: int,
     ) -> None:
+        super().__init__(x_pos, y_pos)
+
         self._width = width = config.App.span_len*config.SlipRatioMonitor.col_span
         self._height = height = config.App.height
 

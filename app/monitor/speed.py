@@ -1,3 +1,5 @@
+from acsys import CS
+
 import config
 
 from ..lib.stats import MovingAverage
@@ -8,6 +10,7 @@ from .lib.indicator import QuadBar
 
 
 class SpeedMonitor(Monitor):
+    data_keys = (CS.SpeedKMH,)
     enabled = config.SpeedMonitor.enabled
     col_index = config.SpeedMonitor.col_index
 
@@ -16,6 +19,8 @@ class SpeedMonitor(Monitor):
         x_pos: int,
         y_pos: int,
     ) -> None:
+        super().__init__(x_pos, y_pos)
+
         self._width = width = config.App.span_len*config.SpeedMonitor.col_span
         self._height = height = config.App.height
 
@@ -50,7 +55,7 @@ class SpeedMonitor(Monitor):
         self._chart.draw_axes()
 
         # fetch telemetry
-        speed_kmh = telemetry.speed.kmh
+        speed_kmh = telemetry[CS.SpeedKMH][0]
 
         # updadte buffer
         self._speed_kmh.update(speed_kmh)
