@@ -11,10 +11,10 @@ class _App:
     def __init__(self) -> None:
         # attach components
         self._components = []  # type: list[Component]
-        for component_cls in (
+        for component_cls in sorted((
             SlipRatioMonitor,
             GForceMonitor,
-        ):
+        ), key=lambda cls: cls.col_index):
             self._attach(component_cls)
 
         # set layouts, styles
