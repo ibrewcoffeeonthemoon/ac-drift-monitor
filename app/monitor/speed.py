@@ -2,7 +2,7 @@ from acsys import CS
 
 import config
 
-from ..lib.stats import MovingAverage
+from ..lib.value import Float
 from ..telemetry import telemetry
 from ._base import Monitor
 from .lib.chart import Chart
@@ -23,8 +23,6 @@ class SpeedMonitor(Monitor):
 
         self._width = width = config.App.span_len*config.SpeedMonitor.col_span
         self._height = height = config.App.height
-
-        self._speed_kmh = MovingAverage(scale=100)
 
         self._chart = Chart(
             x_pos,
@@ -55,10 +53,9 @@ class SpeedMonitor(Monitor):
         self._chart.draw_axes()
 
         # fetch telemetry
-        speed_kmh = telemetry[CS.SpeedKMH][0]
-
-        # updadte buffer
-        self._speed_kmh.update(speed_kmh)
+        speed_kmh = telemetry[CS.SpeedKMH].wma()[0]
 
         # plot the indicators
-        self._quad_bar.plot(self._speed_kmh.weighted_average)
+        self._quad_bar.plot(
+            Float(speed_kmh).normalize(100).clip(0, 1).value
+        )
