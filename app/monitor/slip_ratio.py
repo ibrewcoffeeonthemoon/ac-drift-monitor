@@ -1,9 +1,12 @@
+from acsys import CS
+
 import config
-from app.components import Component
-from app.components.lib.chart import Chart
-from app.components.lib.indicator.quad_bar import QuadBar
-from app.data import telemetry
-from app.lib.stats import MovingAverage
+
+from ..lib.number import num
+from ..telemetry import telemetry
+from ._base import Monitor
+from .lib.chart import Chart
+from .lib.indicator import QuadBar
 
 
 class _TyreSlipRatioMonitor:
@@ -16,7 +19,6 @@ class _TyreSlipRatioMonitor:
         height: int,
     ) -> None:
         self._i_slipRatio = i_slipRatio
-        self._slipRatio = MovingAverage(scale=3.0)
 
         self._chart = Chart(
             x_pos,
@@ -41,23 +43,26 @@ class _TyreSlipRatioMonitor:
         self._chart.draw_axes()
 
         # fetch telemetry
-        slipRatio = telemetry.slipRatio[self._i_slipRatio]
-
-        # updadte buffer
-        self._slipRatio.update(slipRatio)
+        slipRatio = telemetry[CS.SlipRatio].wma()[self._i_slipRatio]
 
         # plot the indicators
-        self._quad_bar.plot(self._slipRatio.weighted_average)
+        self._quad_bar.plot(
+            num(slipRatio).normalize(3.0).clip(-1, 1).f
+        )
 
 
-class SlipRatioMonitor(Component):
+class SlipRatioMonitor(Monitor):
+    data_keys = (CS.SlipRatio, )
     enabled = config.SlipRatioMonitor.enabled
+    col_index = config.SlipRatioMonitor.col_index
 
     def __init__(
         self,
         x_pos: int,
         y_pos: int,
     ) -> None:
+        super().__init__(x_pos, y_pos)
+
         self._width = width = config.App.span_len*config.SlipRatioMonitor.col_span
         self._height = height = config.App.height
 

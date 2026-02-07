@@ -1,7 +1,7 @@
 import ac
 
 from app import app
-from app.data import telemetry
+from app.telemetry import telemetry
 from app.window import NAME, window
 
 

@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
 
-from app.components.lib.chart import Chart
+from ..chart import Chart
 
 
 class Indicator(metaclass=ABCMeta):

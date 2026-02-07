@@ -1,26 +1,28 @@
+from acsys import CS
+
 import config
-from app.components import Component
-from app.components.lib.chart import Chart
-from app.components.lib.indicator.quad_bar import QuadBar
-from app.components.lib.indicator.square_dot import SquareDot
-from app.data import telemetry
-from app.lib.stats import MovingAverage
+
+from ..lib.number import num
+from ..telemetry import telemetry
+from ._base import Monitor
+from .lib.chart import Chart
+from .lib.indicator import QuadBar, SquareDot
 
 
-class GForceMonitor(Component):
+class GForceMonitor(Monitor):
+    data_keys = (CS.AccG, CS.SlipRatio, )
     enabled = config.GForceMonitor.enabled
+    col_index = config.GForceMonitor.col_index
 
     def __init__(
         self,
         x_pos: int,
         y_pos: int,
     ) -> None:
+        super().__init__(x_pos, y_pos)
+
         self._width = width = config.App.span_len*config.GForceMonitor.col_span
         self._height = height = config.App.height
-
-        self._slipRatio = MovingAverage(scale=3.0, min=0)
-        self._x_accG = MovingAverage(scale=1.2)
-        self._z_accG = MovingAverage(scale=1.2)
 
         self._chart = Chart(
             x_pos,
@@ -58,17 +60,14 @@ class GForceMonitor(Component):
         self._chart.draw_axes()
 
         # fetch telemetry
-        avg_rear_slipRatio = (telemetry.slipRatio.rl+telemetry.slipRatio.rr)/2
-        x_accG, _, z_accG = telemetry.accG
-
-        # updadte buffer
-        self._slipRatio.update(avg_rear_slipRatio)
-        self._x_accG.update(x_accG)
-        self._z_accG.update(z_accG)
+        avg_rear_slipRatio = sum(telemetry[CS.SlipRatio].wma()[-2:])/2
+        x_accG, _, z_accG = telemetry[CS.AccG].wma()
 
         # plot the indicators
-        self._quad_bar.plot(self._slipRatio.weighted_average)
+        self._quad_bar.plot(
+            num(avg_rear_slipRatio).normalize(3.0).clip(0, 1).f
+        )
         self._square_dot.plot(
-            x=self._x_accG.weighted_average,
-            y=self._z_accG.weighted_average,
+            x=num(x_accG).normalize(1.2).clip(-1, 1).f,
+            y=num(z_accG).normalize(1.2).clip(-1, 1).f,
         )

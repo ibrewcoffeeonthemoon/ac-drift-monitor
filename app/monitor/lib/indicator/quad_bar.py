@@ -1,6 +1,6 @@
-from app.components.lib.chart import Chart
-from app.components.lib.gl.shape import quadrilateral
-from app.components.lib.indicator import Indicator
+from ..chart import Chart
+from ..gl.shape import quadrilateral
+from ._base import Indicator
 
 
 class QuadBar(Indicator):
@@ -33,8 +33,8 @@ class QuadBar(Indicator):
             (self._x_pos, y_begin),
         )
 
-    def plot(self, val: float) -> None:
+    def plot(self, val: float, color4f: 'tuple[float, float, float, float] | None' = None) -> None:
         quadrilateral(
             *self._coordinates(val),
-            color4f=self._color4f
+            color4f=color4f or self._color4f
         )
