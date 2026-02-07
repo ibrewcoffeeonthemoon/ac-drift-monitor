@@ -32,3 +32,13 @@ class History:
             sum(series)/n
             for series in zip(*self._window(n))
         )
+
+    def wma(
+        self,
+        weights: 'tuple[float, ...]' = (.1, .1, .1, .1, .2, .2, .2),
+    ) -> 'tuple[float, ...]':
+        n = len(weights)
+        return tuple(
+            sum(w*v for w, v in zip(weights, series))
+            for series in zip(*self._window(n))
+        )
