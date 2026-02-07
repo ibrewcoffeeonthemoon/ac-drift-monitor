@@ -7,11 +7,11 @@ class Text:
     def __init__(
         self,
         text: str,
+        font_size: int,
+        font_color: 'tuple[float, float, float, float]',
+        font_alignment: str,
         size: 'tuple[int, int]',
         position: 'tuple[int, int]',
-        font_size: int = 10,
-        font_color: 'tuple[float, float, float, float]' = (1, 1, 1, 1),
-        font_alignment: str = 'center',
     ) -> None:
         self._label = ac.addLabel(window, text)
         self.text = text
@@ -29,24 +29,6 @@ class Text:
     def text(self, val: str) -> None:
         self._text = val
         ac.setText(self._label, val)
-
-    @property
-    def size(self) -> 'tuple[int, int]':
-        return self._size
-
-    @size.setter
-    def size(self, val: 'tuple[int, int]') -> None:
-        self._size = val
-        ac.setSize(self._label, *val)
-
-    @property
-    def position(self) -> 'tuple[int, int]':
-        return self._position
-
-    @position.setter
-    def position(self, val: 'tuple[int, int]') -> None:
-        self._position = val
-        ac.setPosition(self._label, *val)
 
     @property
     def font_size(self) -> int:
@@ -74,3 +56,42 @@ class Text:
     def font_alignment(self, val: str) -> None:
         self._font_alignment = val
         ac.setFontAlignment(self._label, val)
+
+    @property
+    def size(self) -> 'tuple[int, int]':
+        return self._size
+
+    @size.setter
+    def size(self, val: 'tuple[int, int]') -> None:
+        self._size = val
+        ac.setSize(self._label, *val)
+
+    @property
+    def position(self) -> 'tuple[int, int]':
+        return self._position
+
+    @position.setter
+    def position(self, val: 'tuple[int, int]') -> None:
+        self._position = val
+        ac.setPosition(self._label, *val)
+
+
+class BackgroundBigText(Text):
+    def __init__(
+        self,
+        text: str,
+        x_pos: int,
+        y_pos: int,
+        width: int,
+        height: int,
+    ) -> None:
+        font_size = min(width, height)
+        font_size_vertical_offset = height//2-font_size*3//4
+        super().__init__(
+            text=text,
+            font_size=font_size,
+            font_color=(1, 1, 1, 0.1),
+            font_alignment='center',
+            size=(width, height),
+            position=(x_pos, y_pos+font_size_vertical_offset,),
+        )
