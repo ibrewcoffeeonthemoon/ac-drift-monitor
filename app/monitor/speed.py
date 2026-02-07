@@ -1,6 +1,7 @@
 from acsys import CS
 
 import config
+from app.monitor.lib.text.big_text import big_text
 
 from ..lib.value import Float
 from ..telemetry import telemetry
@@ -39,6 +40,7 @@ class SpeedMonitor(Monitor):
             chart=self._chart,
             color4f=(0, 1, 0, 0.4),
         )
+        self._speed_meter = big_text('', x_pos, y_pos, width, height, font_color=(1, 1, 1, 1))
 
     @property
     def width(self) -> int:
@@ -56,6 +58,7 @@ class SpeedMonitor(Monitor):
         speed_kmh = telemetry[CS.SpeedKMH].wma()[0]
 
         # plot the indicators
+        self._speed_meter.text = str(round(speed_kmh))
         self._quad_bar.plot(
             Float(speed_kmh).normalize(100).clip(0, 1).value
         )
