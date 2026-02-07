@@ -1,46 +1,43 @@
-class Color:
-    def __init__(
-        self,
+from functools import lru_cache
+
+
+class Color(tuple):
+    def __new__(
+        cls,
         r: float,
         g: float,
         b: float,
-        opacity: float = 1.0,
-    ) -> None:
-        self._r = r
-        self._g = g
-        self._b = b
-        self._opacity = opacity
+        a: float = 1.0
+    ) -> 'Color':
+        return super().__new__(cls, (r, g, b, a))
+
+    @lru_cache()
+    def alpha(self, a: float) -> 'Color':
+        r, g, b, _ = self
+        return Color(r, g, b, a)
 
     @property
-    def t(self) -> 'tuple[float, float, float, float]':
-        return (self._r, self._g, self._b, self._opacity)
-
-    def opacity(self, opacity: float) -> 'Color':
-        self._opacity = opacity
-        return self
-
+    def full(self) -> 'Color': return self.alpha(1)
     @property
-    def full(self) -> 'Color': return self.opacity(1)
+    def a9(self) -> 'Color': return self.alpha(.9)
     @property
-    def a9(self) -> 'Color': return self.opacity(.9)
+    def a8(self) -> 'Color': return self.alpha(.8)
     @property
-    def a8(self) -> 'Color': return self.opacity(.8)
+    def a7(self) -> 'Color': return self.alpha(.7)
     @property
-    def a7(self) -> 'Color': return self.opacity(.7)
+    def a6(self) -> 'Color': return self.alpha(.6)
     @property
-    def a6(self) -> 'Color': return self.opacity(.6)
+    def a5(self) -> 'Color': return self.alpha(.5)
     @property
-    def a5(self) -> 'Color': return self.opacity(.5)
+    def a4(self) -> 'Color': return self.alpha(.4)
     @property
-    def a4(self) -> 'Color': return self.opacity(.4)
+    def a3(self) -> 'Color': return self.alpha(.3)
     @property
-    def a3(self) -> 'Color': return self.opacity(.3)
+    def a2(self) -> 'Color': return self.alpha(.2)
     @property
-    def a2(self) -> 'Color': return self.opacity(.2)
+    def a1(self) -> 'Color': return self.alpha(.1)
     @property
-    def a1(self) -> 'Color': return self.opacity(.1)
-    @property
-    def transparent(self) -> 'Color': return self.opacity(0)
+    def transparent(self) -> 'Color': return self.alpha(0)
 
 
 def color(r: float, g: float, b: float, a: float = 1.0) -> Color:

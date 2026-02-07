@@ -13,10 +13,10 @@ class Chart:
         y_pos: int,
         width: int,
         height: int,
-        x_axis_color4f: 'tuple[float, float, float, float]' = white.transparent.t,
-        y_axis_color4f: 'tuple[float, float, float, float]' = white.transparent.t,
-        x_axis_marker_color4f: 'tuple[float, float, float, float]' = white.a1.t,
-        y_axis_marker_color4f: 'tuple[float, float, float, float]' = white.a1.t,
+        x_axis_color: Color = white.transparent,
+        y_axis_color: Color = white.transparent,
+        x_axis_marker_color: Color = white.a1,
+        y_axis_marker_color: Color = white.a1,
         axis_segment_count: int = 8,
         x_axis_marker_length_ratio: float = 0.05,
         y_axis_marker_length_ratio: float = 0.05,
@@ -27,10 +27,10 @@ class Chart:
         self.y_pos = y_pos
         self.width = width
         self.height = height
-        self._x_axis_color4f = x_axis_color4f
-        self._y_axis_color4f = y_axis_color4f
-        self._x_axis_marker_color4f = x_axis_marker_color4f
-        self._y_axis_marker_color4f = y_axis_marker_color4f
+        self._x_axis_color = x_axis_color
+        self._y_axis_color = y_axis_color
+        self._x_axis_marker_color = x_axis_marker_color
+        self._y_axis_marker_color = y_axis_marker_color
         self._axis_segmnt_count = axis_segment_count
         self._x_axis_marker_length_ratio = x_axis_marker_length_ratio
         self._y_axis_marker_length_ratio = y_axis_marker_length_ratio
@@ -44,7 +44,7 @@ class Chart:
                 self.y_pos,
                 self.width,
                 self.height,
-                font_color=(1, 1, 1, self._bg_opacity),
+                font_color=white.alpha(self._bg_opacity),
                 expected_text_len=1,
             )
 
@@ -53,9 +53,9 @@ class Chart:
         ac.setBackgroundOpacity(window, self._bg_opacity)
 
         # x-axis
-        horizontal_line((self.x_pos, self.y_pos+self.height//2), self.width, self._x_axis_color4f)
+        horizontal_line((self.x_pos, self.y_pos+self.height//2), self.width, self._x_axis_color)
         # y-axis
-        vertical_line((self.x_pos+self.width//2, self.y_pos), self.height, self._y_axis_color4f)
+        vertical_line((self.x_pos+self.width//2, self.y_pos), self.height, self._y_axis_color)
 
         # draw markers
         for i in range(self._axis_segmnt_count+1):
@@ -66,7 +66,7 @@ class Chart:
                     round(self.y_pos+self.height/2-self._x_axis_marker_length_ratio*self.height/2),
                 ),
                 round(self._x_axis_marker_length_ratio*self.height),
-                self._x_axis_marker_color4f,
+                self._x_axis_marker_color,
             )
             # y-axis markers
             horizontal_line(
@@ -75,5 +75,5 @@ class Chart:
                     round(self.y_pos+i*self.height/self._axis_segmnt_count)
                 ),
                 round(self._y_axis_marker_length_ratio*self.width),
-                self._y_axis_marker_color4f
+                self._y_axis_marker_color
             )

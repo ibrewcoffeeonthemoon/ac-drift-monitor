@@ -31,7 +31,7 @@ class SpeedMonitor(Monitor):
             y_pos,
             width,
             height,
-            x_axis_marker_color4f=white.transparent.t,
+            x_axis_marker_color=white.transparent,
             axis_segment_count=8,
             y_axis_marker_length_ratio=1.0,
             bg_opacity=0.4,
@@ -39,16 +39,16 @@ class SpeedMonitor(Monitor):
         )
         self._speed_bar_low = QuadBar(
             chart=self._chart,
-            color4f=green.a2.t,
+            color=green.a2,
         )
         self._speed_bar_high = QuadBar(
             chart=self._chart,
-            color4f=red.a4.t,
+            color=red.a4,
         )
         self._speed_meter = big_text(
             '',
             x_pos, y_pos, width, height,
-            font_color=white.full.t,
+            font_color=white.full,
             expected_text_len=3
         )
 
@@ -71,7 +71,7 @@ class SpeedMonitor(Monitor):
         if speed_kmh <= 100:
             self._speed_bar_low.plot(
                 num(speed_kmh).normalize(100).clip(0, 1).f,
-                color4f=yellow.a4.t if speed_kmh > 50 else green.a4.t,
+                color=yellow.a4 if speed_kmh > 50 else green.a4,
             )
         else:
             self._speed_bar_high.plot(
