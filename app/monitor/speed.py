@@ -38,11 +38,11 @@ class SpeedMonitor(Monitor):
         )
         self._speed_bar_low = QuadBar(
             chart=self._chart,
-            color4f=(0, 1, 0, 0.4),
+            color4f=(0, 1, 0, 0.2),
         )
         self._speed_bar_high = QuadBar(
             chart=self._chart,
-            color4f=(1, 0, 0, 0.6),
+            color4f=(1, 0, 0, 0.4),
         )
         self._speed_meter = big_text(
             '',
@@ -67,10 +67,12 @@ class SpeedMonitor(Monitor):
         speed_kmh = telemetry[CS.SpeedKMH].wma()[0]
 
         # plot the indicators
-        self._speed_bar_low.plot(
-            num(speed_kmh).normalize(100).clip(0, 1).f
-        )
-        self._speed_bar_high.plot(
-            num(speed_kmh).shift(-100).normalize(200).clip(0, 1).f
-        )
+        if speed_kmh <= 100:
+            self._speed_bar_low.plot(
+                num(speed_kmh).normalize(100).clip(0, 1).f
+            )
+        else:
+            self._speed_bar_high.plot(
+                num(speed_kmh).shift(-100).normalize(200).clip(0, 1).f
+            )
         self._speed_meter.text = str(round(speed_kmh))
