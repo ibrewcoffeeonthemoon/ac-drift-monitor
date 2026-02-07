@@ -19,6 +19,29 @@ class Color:
         self._opacity = opacity
         return self
 
+    @property
+    def full(self) -> 'Color': return self.opacity(1)
+    @property
+    def a9(self) -> 'Color': return self.opacity(.9)
+    @property
+    def a8(self) -> 'Color': return self.opacity(.8)
+    @property
+    def a7(self) -> 'Color': return self.opacity(.7)
+    @property
+    def a6(self) -> 'Color': return self.opacity(.6)
+    @property
+    def a5(self) -> 'Color': return self.opacity(.5)
+    @property
+    def a4(self) -> 'Color': return self.opacity(.4)
+    @property
+    def a3(self) -> 'Color': return self.opacity(.3)
+    @property
+    def a2(self) -> 'Color': return self.opacity(.2)
+    @property
+    def a1(self) -> 'Color': return self.opacity(.1)
+    @property
+    def transparent(self) -> 'Color': return self.opacity(0)
+
 
 def color(r: float, g: float, b: float, a: float = 1.0) -> Color:
     return Color(r, g, b, a)
