@@ -3,6 +3,7 @@ from acsys import CS
 import config
 from app.monitor.lib.text.big_text import big_text
 
+from ..lib.color import *
 from ..lib.number import num
 from ..telemetry import telemetry
 from ._base import Monitor
@@ -30,7 +31,7 @@ class SpeedMonitor(Monitor):
             y_pos,
             width,
             height,
-            x_axis_marker_color4f=(0, 0, 0, 0.0),
+            x_axis_marker_color4f=white.transparent.t,
             axis_segment_count=8,
             y_axis_marker_length_ratio=1.0,
             bg_opacity=0.4,
@@ -38,16 +39,16 @@ class SpeedMonitor(Monitor):
         )
         self._speed_bar_low = QuadBar(
             chart=self._chart,
-            color4f=(0, 1, 0, 0.2),
+            color4f=green.a2.t,
         )
         self._speed_bar_high = QuadBar(
             chart=self._chart,
-            color4f=(1, 0, 0, 0.4),
+            color4f=red.a4.t,
         )
         self._speed_meter = big_text(
             '',
             x_pos, y_pos, width, height,
-            font_color=(1, 1, 1, 1),
+            font_color=white.full.t,
             expected_text_len=3
         )
 
@@ -70,7 +71,7 @@ class SpeedMonitor(Monitor):
         if speed_kmh <= 100:
             self._speed_bar_low.plot(
                 num(speed_kmh).normalize(100).clip(0, 1).f,
-                color4f=(1, 1, 0, 0.4) if speed_kmh > 50 else (0, 1, 0, 0.4),
+                color4f=yellow.a4.t if speed_kmh > 50 else green.a4.t,
             )
         else:
             self._speed_bar_high.plot(

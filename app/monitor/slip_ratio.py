@@ -2,6 +2,7 @@ from acsys import CS
 
 import config
 
+from ..lib.color import *
 from ..lib.number import num
 from ..telemetry import telemetry
 from ._base import Monitor
@@ -25,7 +26,7 @@ class _TyreSlipRatioMonitor:
             y_pos,
             width,
             height,
-            x_axis_marker_color4f=(0, 0, 0, 0.0),
+            x_axis_marker_color4f=white.transparent.t,
             axis_segment_count=4,
             x_axis_marker_length_ratio=1.0,
             y_axis_marker_length_ratio=1.0,
@@ -34,7 +35,7 @@ class _TyreSlipRatioMonitor:
         )
         self._quad_bar = QuadBar(
             chart=self._chart,
-            color4f=(1, 0, 0, 0.4),
+            color4f=red.a4.t,
             centered_y_scale=True,
         )
 
