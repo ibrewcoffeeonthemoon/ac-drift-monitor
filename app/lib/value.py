@@ -6,6 +6,10 @@ class Float:
     def value(self) -> float:
         return self._val
 
+    def shift(self, offset: float) -> 'Float':
+        self._val = self._val + offset
+        return self
+
     def normalize(self, scale: float) -> 'Float':
         self._val = self._val/scale
         return self
