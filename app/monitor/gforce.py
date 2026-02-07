@@ -60,8 +60,7 @@ class GForceMonitor(Monitor):
         self._chart.draw_axes()
 
         # fetch telemetry
-        *_, slipRatio_rl, slipRatio_rr = telemetry[CS.SlipRatio].wma()
-        avg_rear_slipRatio = (slipRatio_rl+slipRatio_rr)/2
+        avg_rear_slipRatio = sum(telemetry[CS.SlipRatio].wma()[-2:])/2
         x_accG, _, z_accG = telemetry[CS.AccG].wma()
 
         # plot the indicators
