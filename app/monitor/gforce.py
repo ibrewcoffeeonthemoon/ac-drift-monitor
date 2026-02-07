@@ -30,8 +30,8 @@ class GForceMonitor(Monitor):
             y_pos,
             width,
             height,
-            x_axis_color4f=white.a7,
-            y_axis_color4f=white.a7,
+            x_axis_color=white.a7,
+            y_axis_color=white.a7,
             axis_segment_count=8,
             x_axis_marker_length_ratio=1.0,
             y_axis_marker_length_ratio=1.0,
@@ -40,7 +40,7 @@ class GForceMonitor(Monitor):
         )
         self._quad_bar = QuadBar(
             chart=self._chart,
-            color4f=red.a4,
+            color=red.a4,
         )
         self._square_dot = SquareDot(
             chart=self._chart,

@@ -9,7 +9,7 @@ class SquareDot(Indicator):
         self,
         chart: Chart,
         dot_size: int = 30,
-        color4f: Color = red.full,
+        color: Color = red.full,
         inverted_x_scale: bool = False,
         inverted_y_scale: bool = False,
         centered_x_scale: bool = True,
@@ -23,7 +23,7 @@ class SquareDot(Indicator):
             centered_y_scale=centered_y_scale,
         )
         self._dot_size = dot_size
-        self._color4f = color4f
+        self._color = color
 
     def _coordinates(self, x: float, y: float) -> 'tuple[int, int]':
         x, y = tuple(
@@ -37,5 +37,5 @@ class SquareDot(Indicator):
         square(
             self._coordinates(x, y),
             length=self._dot_size,
-            color4f=self._color4f
+            color=self._color
         )
