@@ -2,6 +2,7 @@ import ac
 
 from ...window import window
 from .gl.line import horizontal_line, vertical_line
+from .text import Text
 
 
 class Chart:
@@ -35,24 +36,33 @@ class Chart:
         self._bg_opacity = bg_opacity
         self._bg_char = bg_char
 
-        self._draw_label()
-
-    def _draw_label(self) -> None:
-        # estimate dynamic font size
         font_size = min(self.width, self.height)
         font_size_vertical_offset = self.height//2-font_size*3//4
-        # draw big label
-        label = ac.addLabel(window, self._bg_char)
-        ac.setFont(label, 'arial')
-        ac.setFontSize(label, font_size)
-        ac.setFontColor(label, 1, 1, 1, 0.1)
-        ac.setFontAlignment(label, 'center')
-        ac.setSize(label, self.width, self.height)
-        ac.setPosition(
-            label,
-            self.x_pos,
-            self.y_pos+font_size_vertical_offset,
+        self._bg_text_label = Text(
+            text=self._bg_char,
+            size=(self.width, self.height),
+            position=(self.x_pos, self.y_pos+font_size_vertical_offset,),
+            font_size=font_size,
+            font_color=(1, 1, 1, 0.1),
+            font_alignment='center',
         )
+
+    # def _draw_label(self) -> None:
+    #     # estimate dynamic font size
+    #     font_size = min(self.width, self.height)
+    #     font_size_vertical_offset = self.height//2-font_size*3//4
+    #     # draw big label
+    #     label = ac.addLabel(window, self._bg_char)
+    #     ac.setFont(label, 'arial')
+    #     ac.setFontSize(label, font_size)
+    #     ac.setFontColor(label, 1, 1, 1, 0.1)
+    #     ac.setFontAlignment(label, 'center')
+    #     ac.setSize(label, self.width, self.height)
+    #     ac.setPosition(
+    #         label,
+    #         self.x_pos,
+    #         self.y_pos+font_size_vertical_offset,
+    #     )
 
     def draw_axes(self) -> None:
         # set layouts, styles
