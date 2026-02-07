@@ -10,6 +10,10 @@ class Float:
         self._val = self._val + offset
         return self
 
+    def amplify(self, magnitude: float) -> 'Float':
+        self._val = self._val * magnitude
+        return self
+
     def normalize(self, scale: float) -> 'Float':
         self._val = self._val/scale
         return self
