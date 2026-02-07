@@ -26,7 +26,7 @@ class _TyreSlipRatioMonitor:
             y_pos,
             width,
             height,
-            x_axis_marker_color4f=white.transparent.t,
+            x_axis_marker_color4f=white.transparent,
             axis_segment_count=4,
             x_axis_marker_length_ratio=1.0,
             y_axis_marker_length_ratio=1.0,
@@ -35,7 +35,7 @@ class _TyreSlipRatioMonitor:
         )
         self._quad_bar = QuadBar(
             chart=self._chart,
-            color4f=red.a4.t,
+            color4f=red.a4,
             centered_y_scale=True,
         )
 

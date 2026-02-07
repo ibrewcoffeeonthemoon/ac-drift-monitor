@@ -8,7 +8,7 @@ class QuadBar(Indicator):
     def __init__(
         self,
         chart: Chart,
-        color4f: 'tuple[float, float, float, float]' = red.full.t,
+        color4f: 'tuple[float, float, float, float]' = red.full,
         inverted_x_scale: bool = False,
         inverted_y_scale: bool = False,
         centered_x_scale: bool = False,

@@ -9,7 +9,7 @@ class SquareDot(Indicator):
         self,
         chart: Chart,
         dot_size: int = 30,
-        color4f: 'tuple[float, float, float, float]' = red.full.t,
+        color4f: 'tuple[float, float, float, float]' = red.full,
         inverted_x_scale: bool = False,
         inverted_y_scale: bool = False,
         centered_x_scale: bool = True,
