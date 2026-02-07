@@ -1,6 +1,6 @@
 import ac
 
-from ...window import window
+from ....window import window
 
 
 class Text:
