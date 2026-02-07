@@ -40,7 +40,12 @@ class SpeedMonitor(Monitor):
             chart=self._chart,
             color4f=(0, 1, 0, 0.4),
         )
-        self._speed_meter = big_text('', x_pos, y_pos, width, height, font_color=(1, 1, 1, 1))
+        self._speed_meter = big_text(
+            '',
+            x_pos, y_pos, width, height,
+            font_color=(1, 1, 1, 1),
+            expected_text_len=3
+        )
 
     @property
     def width(self) -> int:

@@ -43,6 +43,7 @@ class Chart:
             self.width,
             self.height,
             font_color=(1, 1, 1, self._bg_opacity),
+            expected_text_len=1,
         )
 
     def draw_axes(self) -> None:
