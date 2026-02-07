@@ -1,5 +1,6 @@
 import ac
 
+from ....lib.color import Color
 from ....window import window
 
 
@@ -8,7 +9,7 @@ class Text:
         self,
         text: str,
         font_size: int,
-        font_color: 'tuple[float, float, float, float]',
+        font_color: Color,
         font_alignment: str,
         size: 'tuple[int, int]',
         position: 'tuple[int, int]',
@@ -40,11 +41,11 @@ class Text:
         ac.setFontSize(self._label, val)
 
     @property
-    def font_color(self) -> 'tuple[float, float, float, float]':
+    def font_color(self) -> Color:
         return self._font_color
 
     @font_color.setter
-    def font_color(self, val: 'tuple[float, float, float, float]') -> None:
+    def font_color(self, val: Color) -> None:
         self._font_color = val
         ac.setFontColor(self._label, *val)
 

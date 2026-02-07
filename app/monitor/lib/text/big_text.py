@@ -1,3 +1,4 @@
+from ....lib.color import Color
 from ....lib.number import num
 from ._base import Text
 
@@ -8,7 +9,7 @@ def big_text(
     y_pos: int,
     width: int,
     height: int,
-    font_color: 'tuple[float, float, float, float]',
+    font_color: Color,
     expected_text_len: int,
 ) -> Text:
     shrink_factor = num(1.0 - (expected_text_len - 1) * 0.25).clip(0.5, 1.0).f

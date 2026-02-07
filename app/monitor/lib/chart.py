@@ -13,10 +13,10 @@ class Chart:
         y_pos: int,
         width: int,
         height: int,
-        x_axis_color4f: 'tuple[float, float, float, float]' = white.transparent,
-        y_axis_color4f: 'tuple[float, float, float, float]' = white.transparent,
-        x_axis_marker_color4f: 'tuple[float, float, float, float]' = white.a1,
-        y_axis_marker_color4f: 'tuple[float, float, float, float]' = white.a1,
+        x_axis_color4f: Color = white.transparent,
+        y_axis_color4f: Color = white.transparent,
+        x_axis_marker_color4f: Color = white.a1,
+        y_axis_marker_color4f: Color = white.a1,
         axis_segment_count: int = 8,
         x_axis_marker_length_ratio: float = 0.05,
         y_axis_marker_length_ratio: float = 0.05,
@@ -44,7 +44,7 @@ class Chart:
                 self.y_pos,
                 self.width,
                 self.height,
-                font_color=(1, 1, 1, self._bg_opacity),
+                font_color=white.alpha(self._bg_opacity),
                 expected_text_len=1,
             )
 
