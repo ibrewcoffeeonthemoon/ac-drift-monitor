@@ -2,7 +2,7 @@ import ac
 
 from ...window import window
 from .gl.line import horizontal_line, vertical_line
-from .text import BackgroundBigText
+from .text import big_text
 
 
 class Chart:
@@ -36,12 +36,13 @@ class Chart:
         self._bg_opacity = bg_opacity
         self._bg_char = bg_char
 
-        self._bg_char_label = BackgroundBigText(
+        self._bg_char_label = big_text(
             self._bg_char,
             self.x_pos,
             self.y_pos,
             self.width,
-            self.height
+            self.height,
+            font_color=(1, 1, 1, self._bg_opacity),
         )
 
     def draw_axes(self) -> None:

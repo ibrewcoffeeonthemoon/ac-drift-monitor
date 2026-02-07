@@ -1,7 +1,7 @@
 from ._base import Text
-from .big_text import BackgroundBigText
+from .big_text import big_text
 
 __all__ = [
     'Text',
-    'BackgroundBigText',
+    'big_text',
 ]
