@@ -6,9 +6,13 @@ class History:
     def __init__(
         self,
         maxlen: int,
+        initial_value: 'tuple[float, ...]' = (.0, .0, .0, .0,),
     ) -> None:
         self._maxlen = maxlen
-        self._data = deque(maxlen=maxlen)  # type: deque[tuple[float, ...]]
+        self._data = deque(
+            (initial_value for _ in range(maxlen)),
+            maxlen=maxlen
+        )  # type: deque[tuple[float, ...]]
 
     def append(self, val: 'tuple[float, ...]') -> None:
         self._data.append(val)
