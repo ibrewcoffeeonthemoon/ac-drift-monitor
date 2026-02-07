@@ -69,7 +69,8 @@ class SpeedMonitor(Monitor):
         # plot the indicators
         if speed_kmh <= 100:
             self._speed_bar_low.plot(
-                num(speed_kmh).normalize(100).clip(0, 1).f
+                num(speed_kmh).normalize(100).clip(0, 1).f,
+                color4f=(1, 1, 0, 0.4) if speed_kmh > 50 else (0, 1, 0, 0.4),
             )
         else:
             self._speed_bar_high.plot(
