@@ -36,15 +36,16 @@ class Chart:
         self._bg_opacity = bg_opacity
         self._bg_char = bg_char
 
-        self._bg_char_label = big_text(
-            self._bg_char,
-            self.x_pos,
-            self.y_pos,
-            self.width,
-            self.height,
-            font_color=(1, 1, 1, self._bg_opacity),
-            expected_text_len=1,
-        )
+        if len(bg_char) > 0:
+            big_text(
+                self._bg_char,
+                self.x_pos,
+                self.y_pos,
+                self.width,
+                self.height,
+                font_color=(1, 1, 1, self._bg_opacity),
+                expected_text_len=1,
+            )
 
     def draw_axes(self) -> None:
         # set layouts, styles
