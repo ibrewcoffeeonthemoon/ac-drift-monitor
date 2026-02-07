@@ -1,12 +1,14 @@
 import ac
 import acsys
 
+from ....lib.color import *
+
 
 def rectangle(
     vertex_center: 'tuple[int, int]',
     width: int,
     height: int,
-    color4f: 'tuple[float, float, float, float]' = (1, 1, 1, 1),
+    color4f: 'tuple[float, float, float, float]' = white.full.t,
 ) -> None:
     x_pos, y_pos = vertex_center
     ac.glColor4f(*color4f)
@@ -21,7 +23,7 @@ def rectangle(
 def square(
     vertex_center: 'tuple[int, int]',
     length: int,
-    color4f: 'tuple[float, float, float, float]' = (1, 1, 1, 1),
+    color4f: 'tuple[float, float, float, float]' = white.full.t,
 ) -> None:
     rectangle(vertex_center, length, length, color4f)
 
@@ -31,7 +33,7 @@ def quadrilateral(
     vertex2: 'tuple[int, int]',
     vertex3: 'tuple[int, int]',
     vertex4: 'tuple[int, int]',
-    color4f: 'tuple[float, float, float, float]' = (1, 1, 1, 1),
+    color4f: 'tuple[float, float, float, float]' = white.full.t,
 ) -> None:
     ac.glColor4f(*color4f)
     ac.glBegin(acsys.GL.Quads)

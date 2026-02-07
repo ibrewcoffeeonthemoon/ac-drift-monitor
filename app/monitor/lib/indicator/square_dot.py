@@ -1,3 +1,4 @@
+from ....lib.color import *
 from ..chart import Chart
 from ..gl.shape import square
 from ._base import Indicator
@@ -8,7 +9,7 @@ class SquareDot(Indicator):
         self,
         chart: Chart,
         dot_size: int = 30,
-        color4f: 'tuple[float, float, float, float]' = (1, 0, 0, 1),
+        color4f: 'tuple[float, float, float, float]' = red.full.t,
         inverted_x_scale: bool = False,
         inverted_y_scale: bool = False,
         centered_x_scale: bool = True,

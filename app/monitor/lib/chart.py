@@ -1,5 +1,6 @@
 import ac
 
+from ...lib.color import *
 from ...window import window
 from .gl.line import horizontal_line, vertical_line
 from .text import big_text
@@ -12,10 +13,10 @@ class Chart:
         y_pos: int,
         width: int,
         height: int,
-        x_axis_color4f: 'tuple[float, float, float, float]' = (1, 1, 1, 0.0),
-        y_axis_color4f: 'tuple[float, float, float, float]' = (1, 1, 1, 0.0),
-        x_axis_marker_color4f: 'tuple[float, float, float, float]' = (1, 1, 1, 0.1),
-        y_axis_marker_color4f: 'tuple[float, float, float, float]' = (1, 1, 1, 0.1),
+        x_axis_color4f: 'tuple[float, float, float, float]' = white.transparent.t,
+        y_axis_color4f: 'tuple[float, float, float, float]' = white.transparent.t,
+        x_axis_marker_color4f: 'tuple[float, float, float, float]' = white.a1.t,
+        y_axis_marker_color4f: 'tuple[float, float, float, float]' = white.a1.t,
         axis_segment_count: int = 8,
         x_axis_marker_length_ratio: float = 0.05,
         y_axis_marker_length_ratio: float = 0.05,
