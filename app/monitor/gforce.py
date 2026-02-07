@@ -2,7 +2,7 @@ from acsys import CS
 
 import config
 
-from ..lib.value import Float
+from ..lib.number import num
 from ..telemetry import telemetry
 from ._base import Monitor
 from .lib.chart import Chart
@@ -65,9 +65,9 @@ class GForceMonitor(Monitor):
 
         # plot the indicators
         self._quad_bar.plot(
-            Float(avg_rear_slipRatio).normalize(3.0).clip(0, 1).value
+            num(avg_rear_slipRatio).normalize(3.0).clip(0, 1).f
         )
         self._square_dot.plot(
-            x=Float(x_accG).normalize(1.2).clip(-1, 1).value,
-            y=Float(z_accG).normalize(1.2).clip(-1, 1).value,
+            x=num(x_accG).normalize(1.2).clip(-1, 1).f,
+            y=num(z_accG).normalize(1.2).clip(-1, 1).f,
         )

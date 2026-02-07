@@ -2,7 +2,7 @@ from acsys import CS
 
 import config
 
-from ..lib.value import Float
+from ..lib.number import num
 from ..telemetry import telemetry
 from ._base import Monitor
 from .lib.chart import Chart
@@ -47,7 +47,7 @@ class _TyreSlipRatioMonitor:
 
         # plot the indicators
         self._quad_bar.plot(
-            Float(slipRatio).normalize(3.0).clip(-1, 1).value
+            num(slipRatio).normalize(3.0).clip(-1, 1).f
         )
 
 
