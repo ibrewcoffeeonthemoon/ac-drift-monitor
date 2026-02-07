@@ -57,7 +57,7 @@ class SpeedMonitor(Monitor):
 
         # fetch telemetry
         # speed_kmh = telemetry[CS.SpeedKMH][0]
-        speed_kmh = telemetry[CS.SpeedKMH].sma(7)[0]
+        speed_kmh = telemetry[CS.SpeedKMH].wma()[0]
 
         # updadte buffer
         # self._speed_kmh.update(speed_kmh)

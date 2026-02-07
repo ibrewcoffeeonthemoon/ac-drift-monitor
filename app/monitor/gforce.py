@@ -68,9 +68,9 @@ class GForceMonitor(Monitor):
         # *_, slipRatio_rl, slipRatio_rr = telemetry[CS.SlipRatio]
         # avg_rear_slipRatio = (slipRatio_rl+slipRatio_rr)/2
         # x_accG, _, z_accG = telemetry[CS.AccG]
-        *_, slipRatio_rl, slipRatio_rr = telemetry[CS.SlipRatio].sma(7)
+        *_, slipRatio_rl, slipRatio_rr = telemetry[CS.SlipRatio].wma()
         avg_rear_slipRatio = (slipRatio_rl+slipRatio_rr)/2
-        x_accG, _, z_accG = telemetry[CS.AccG].sma(7)
+        x_accG, _, z_accG = telemetry[CS.AccG].wma()
 
         # updadte buffer
         # self._slipRatio.update(avg_rear_slipRatio)
