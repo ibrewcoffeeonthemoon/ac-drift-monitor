@@ -3,10 +3,14 @@ NOTE: on python 3.3.5, tuple subclass is roughly 2.5x to 3x slower than native t
 """
 
 
-class Vertex(tuple):
-    def __new__(cls, x: int, y: int,) -> 'Vertex':
+class Tuple2i(tuple):
+    def __new__(cls, x: int, y: int,) -> 'Tuple2i':
         return super().__new__(cls, (x, y))
 
 
-def vertex(x: int, y: int) -> Vertex:
-    return Vertex(x, y)
+def tuple2i(x: int, y: int) -> Tuple2i:
+    return Tuple2i(x, y)
+
+
+Vertex = Tuple2i
+vertex = tuple2i
