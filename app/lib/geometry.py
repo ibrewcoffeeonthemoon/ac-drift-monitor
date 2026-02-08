@@ -17,3 +17,9 @@ def tuple2i(x: int, y: int) -> Tuple2i:
 
 Vertex = Tuple2i
 vertex = tuple2i
+
+Size = Tuple2i
+size = tuple2i
+
+Position = Tuple2i
+position = tuple2i
