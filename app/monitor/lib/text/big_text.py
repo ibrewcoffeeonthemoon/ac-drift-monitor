@@ -1,4 +1,5 @@
 from ....lib.color import Color
+from ....lib.geometry import position, size
 from ....lib.number import num
 from ._base import Text
 
@@ -20,6 +21,6 @@ def big_text(
         font_size=round(font_size),
         font_color=font_color,
         font_alignment='center',
-        size=(width, height),
-        position=(x_pos, y_pos+font_size_vertical_offset,),
+        size=size(width, height),
+        position=position(x_pos, y_pos+font_size_vertical_offset,),
     )

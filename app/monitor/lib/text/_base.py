@@ -1,6 +1,7 @@
 import ac
 
 from ....lib.color import Color
+from ....lib.geometry import Position, Size
 from ....window import window
 
 
@@ -11,8 +12,8 @@ class Text:
         font_size: int,
         font_color: Color,
         font_alignment: str,
-        size: 'tuple[int, int]',
-        position: 'tuple[int, int]',
+        size: Size,
+        position: Position,
     ) -> None:
         self._label = ac.addLabel(window, text)
         self.text = text
@@ -59,19 +60,19 @@ class Text:
         ac.setFontAlignment(self._label, val)
 
     @property
-    def size(self) -> 'tuple[int, int]':
+    def size(self) -> Size:
         return self._size
 
     @size.setter
-    def size(self, val: 'tuple[int, int]') -> None:
+    def size(self, val: Size) -> None:
         self._size = val
         ac.setSize(self._label, *val)
 
     @property
-    def position(self) -> 'tuple[int, int]':
+    def position(self) -> Position:
         return self._position
 
     @position.setter
-    def position(self, val: 'tuple[int, int]') -> None:
+    def position(self, val: Position) -> None:
         self._position = val
         ac.setPosition(self._label, *val)
