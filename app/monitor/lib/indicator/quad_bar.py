@@ -1,4 +1,5 @@
 from ....lib.color import *
+from ....lib.geometry import Vertex, vertex
 from ..chart import Chart
 from ..gl.shape import quadrilateral
 from ._base import Indicator
@@ -23,15 +24,15 @@ class QuadBar(Indicator):
         )
         self._color = color
 
-    def _coordinates(self, val: float) -> 'tuple[tuple[int, int], tuple[int, int], tuple[int, int], tuple[int, int]]':
+    def _coordinates(self, val: float) -> 'tuple[Vertex, Vertex, Vertex, Vertex]':
         x_begin, y_begin = self._begin
         x_mag, y_mag = self._magnitude
         x_dir, y_dir = self._direction
         return (
-            (self._x_pos, round(y_begin + val*y_mag*y_dir)),
-            (self._x_pos+self._width, round(y_begin + val*y_mag*y_dir)),
-            (self._x_pos+self._width, y_begin),
-            (self._x_pos, y_begin),
+            vertex(self._x_pos, round(y_begin + val*y_mag*y_dir)),
+            vertex(self._x_pos+self._width, round(y_begin + val*y_mag*y_dir)),
+            vertex(self._x_pos+self._width, y_begin),
+            vertex(self._x_pos, y_begin),
         )
 
     def plot(self, val: float, color: 'Color | None' = None) -> None:
