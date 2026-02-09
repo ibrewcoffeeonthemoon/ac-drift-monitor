@@ -40,3 +40,9 @@ class GearMonitor:
     enabled = _boolean('GearMonitor', 'enabled')
     col_index = _int('GearMonitor', 'col_index')
     col_span = _int('GearMonitor', 'col_span')
+
+
+class PedalsMonitor:
+    enabled = _boolean('PedalsMonitor', 'enabled')
+    col_index = _int('PedalsMonitor', 'col_index')
+    col_span = _int('PedalsMonitor', 'col_span')
