@@ -63,13 +63,13 @@ class GearMonitor(Monitor):
         # fetch telemetry
         gear = telemetry[CS.Gear].last[0]
         rpm = telemetry[CS.RPM].last[0]
-        engine_limited = telemetry[CS.IsEngineLimiterOn].last[0]
+        engine_limited = bool(telemetry[CS.IsEngineLimiterOn].last[0])
 
         # plot the indicators
         gear_text = str(gear-1) if gear > 1 else 'N' if gear == 1 else 'R'
         self._gear_meter.text = gear_text
-        rpm_bar_color = red.a5 if engine_limited == 1 else white.a5
+        rpm_bar_color = white.a5 if rpm <= 7000 else red.a5 if not engine_limited else red.a8
         self._rpm_bar.plot(
-            num(rpm).normalize(10000).f,
+            num(rpm).normalize(10000).clip(0, 1).f,
             color=rpm_bar_color,
         )
