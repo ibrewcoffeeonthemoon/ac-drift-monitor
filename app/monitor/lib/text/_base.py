@@ -1,3 +1,5 @@
+from abc import ABCMeta, abstractmethod
+
 import ac
 
 from ....lib.color import Color
@@ -5,26 +7,13 @@ from ....lib.geometry import Position, Size
 from ....window import window
 
 
-class Text:
-    def __init__(
-        self,
-        text: str,
-        font_size: int,
-        font_color: Color,
-        font_alignment: str,
-        size: Size,
-        position: Position,
-    ) -> None:
-        self._label = ac.addLabel(window, text)
-        self.text = text
-        self.size = size
-        self.position = position
-        self.font_size = font_size
-        self.font_color = font_color
-        self.font_alignment = font_alignment
+class Text(metaclass=ABCMeta):
+    @abstractmethod
+    def __init__(self) -> None:
+        self._label = ac.addLabel(window, '')
 
     @property
-    def text(self) -> str:
+    def text(self) -> 'str | None':
         return self._text
 
     @text.setter
@@ -33,7 +22,7 @@ class Text:
         ac.setText(self._label, val)
 
     @property
-    def font_size(self) -> int:
+    def font_size(self) -> 'int | None':
         return self._font_size
 
     @font_size.setter
@@ -42,7 +31,7 @@ class Text:
         ac.setFontSize(self._label, val)
 
     @property
-    def font_color(self) -> Color:
+    def font_color(self) -> 'Color | None':
         return self._font_color
 
     @font_color.setter
@@ -51,7 +40,7 @@ class Text:
         ac.setFontColor(self._label, *val)
 
     @property
-    def font_alignment(self) -> str:
+    def font_alignment(self) -> 'str | None':
         return self._font_alignment
 
     @font_alignment.setter
@@ -60,7 +49,7 @@ class Text:
         ac.setFontAlignment(self._label, val)
 
     @property
-    def size(self) -> Size:
+    def size(self) -> 'Size | None':
         return self._size
 
     @size.setter
@@ -69,7 +58,7 @@ class Text:
         ac.setSize(self._label, *val)
 
     @property
-    def position(self) -> Position:
+    def position(self) -> 'Position | None':
         return self._position
 
     @position.setter
