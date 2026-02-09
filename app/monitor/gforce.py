@@ -4,7 +4,7 @@ import config
 
 from ..lib.color import *
 from ..lib.number import num
-from ..telemetry import telemetry
+from ..telemetry import ac_api
 from ._base import Monitor
 from .lib.chart import Chart
 from .lib.indicator import QuadBar, SquareDot
@@ -61,8 +61,8 @@ class GForceMonitor(Monitor):
         self._chart.draw_axes()
 
         # fetch telemetry
-        avg_rear_slipRatio = sum(telemetry[CS.SlipRatio].wma()[-2:])/2
-        x_accG, _, z_accG = telemetry[CS.AccG].wma()
+        avg_rear_slipRatio = sum(ac_api[CS.SlipRatio].wma()[-2:])/2
+        x_accG, _, z_accG = ac_api[CS.AccG].wma()
 
         # plot the indicators
         self._quad_bar.plot(

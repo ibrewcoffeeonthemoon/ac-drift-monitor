@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
 
-from ..telemetry import telemetry
+from ..telemetry import ac_api
 
 
 class Monitor(metaclass=ABCMeta):
@@ -14,7 +14,7 @@ class Monitor(metaclass=ABCMeta):
         x_pos: int,
         y_pos: int,
     ) -> None:
-        telemetry.register(*self.data_keys)
+        ac_api.register(*self.data_keys)
 
     @abstractmethod
     def render(self) -> None:

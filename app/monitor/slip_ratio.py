@@ -4,7 +4,7 @@ import config
 
 from ..lib.color import *
 from ..lib.number import num
-from ..telemetry import telemetry
+from ..telemetry import ac_api
 from ._base import Monitor
 from .lib.chart import Chart
 from .lib.indicator import QuadBar
@@ -44,7 +44,7 @@ class _TyreSlipRatioMonitor:
         self._chart.draw_axes()
 
         # fetch telemetry
-        slipRatio = telemetry[CS.SlipRatio].wma()[self._i_slipRatio]
+        slipRatio = ac_api[CS.SlipRatio].wma()[self._i_slipRatio]
 
         # plot the indicators
         self._quad_bar.plot(
