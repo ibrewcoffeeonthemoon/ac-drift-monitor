@@ -3,14 +3,16 @@ from acsys import CS
 import config
 
 from ..lib.color import *
+from ..lib.number import num
 from ..telemetry import telemetry
 from ._base import Monitor
 from .lib.chart import Chart
+from .lib.indicator import QuadBar
 from .lib.text.big_text import big_text
 
 
 class GearMonitor(Monitor):
-    data_keys = (CS.Gear,)
+    data_keys = (CS.Gear, CS.RPM, CS.IsEngineLimiterOn)
     enabled = config.GearMonitor.enabled
     col_index = config.GearMonitor.col_index
 
@@ -41,6 +43,10 @@ class GearMonitor(Monitor):
             font_color=white.full,
             expected_text_len=1
         )
+        self._rpm_bar = QuadBar(
+            chart=self._chart,
+            color=white.a5,
+        )
 
     @property
     def width(self) -> int:
@@ -56,7 +62,14 @@ class GearMonitor(Monitor):
 
         # fetch telemetry
         gear = telemetry[CS.Gear].last[0]
+        rpm = telemetry[CS.RPM].last[0]
+        engine_limited = telemetry[CS.IsEngineLimiterOn].last[0]
 
         # plot the indicators
         gear_text = str(gear-1) if gear > 1 else 'N' if gear == 1 else 'R'
         self._gear_meter.text = gear_text
+        rpm_bar_color = red.a5 if engine_limited == 1 else white.a5
+        self._rpm_bar.plot(
+            num(rpm).normalize(10000).f,
+            color=rpm_bar_color,
+        )
