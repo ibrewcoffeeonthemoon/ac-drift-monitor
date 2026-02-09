@@ -11,15 +11,6 @@ class Tuple2i(tuple):
         return super().__new__(cls, (x, y))
 
 
-def tuple2i(x: int, y: int) -> Tuple2i:
-    return Tuple2i(x, y)
-
-
 Vertex = Tuple2i
-vertex = tuple2i
-
 Size = Tuple2i
-size = tuple2i
-
 Position = Tuple2i
-position = tuple2i

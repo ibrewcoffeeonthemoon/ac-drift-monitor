@@ -2,7 +2,7 @@ import ac
 import acsys
 
 from ....lib.color import *
-from ....lib.geometry import Vertex, vertex
+from ....lib.geometry import Vertex
 
 
 def line(
@@ -23,7 +23,7 @@ def horizontal_line(
     color: Color = white.full,
 ) -> None:
     x_pos, y_pos = vertex1
-    line(vertex(x_pos, y_pos), vertex(x_pos+length, y_pos), color)
+    line(Vertex(x_pos, y_pos), Vertex(x_pos+length, y_pos), color)
 
 
 def vertical_line(
@@ -32,4 +32,4 @@ def vertical_line(
     color: Color = white.full,
 ) -> None:
     x_pos, y_pos = vertex1
-    line(vertex(x_pos, y_pos), vertex(x_pos, y_pos+length), color)
+    line(Vertex(x_pos, y_pos), Vertex(x_pos, y_pos+length), color)
