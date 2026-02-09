@@ -1,7 +1,6 @@
 from acsys import CS
 
 import config
-from app.monitor.lib.text.big_text import big_text
 
 from ..lib.color import *
 from ..lib.number import num
@@ -9,6 +8,7 @@ from ..telemetry import telemetry
 from ._base import Monitor
 from .lib.chart import Chart
 from .lib.indicator import QuadBar
+from .lib.text.big_text import big_text
 
 
 class SpeedMonitor(Monitor):
