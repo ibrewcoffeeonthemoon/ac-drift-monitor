@@ -1,7 +1,7 @@
 import ac
 
 from .history import History
-from .memory import Memory
+from .memory import memory
 
 
 class _Telemetry:
@@ -35,4 +35,8 @@ class _Telemetry:
 
 # export
 telemetry = _Telemetry()
-memory = Memory()
+
+__all__ = [
+    'telemetry',
+    'memory',
+]
