@@ -27,8 +27,5 @@ class Number:
         return self
 
 
-def number(val: float) -> Number:
+def num(val: float) -> Number:
     return Number(val)
-
-
-num = number

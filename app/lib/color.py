@@ -40,10 +40,6 @@ class Color(tuple):
     def transparent(self) -> 'Color': return self.alpha(0)
 
 
-def color(r: float, g: float, b: float, a: float = 1.0) -> Color:
-    return Color(r, g, b, a)
-
-
 # basic colors
 white = Color(1, 1, 1)
 black = Color(0, 0, 0)
