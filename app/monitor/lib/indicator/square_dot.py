@@ -1,4 +1,5 @@
 from ....lib.color import *
+from ....lib.geometry import Vertex, vertex
 from ..chart import Chart
 from ..gl.shape import square
 from ._base import Indicator
@@ -25,13 +26,13 @@ class SquareDot(Indicator):
         self._dot_size = dot_size
         self._color = color
 
-    def _coordinates(self, x: float, y: float) -> 'tuple[int, int]':
+    def _coordinates(self, x: float, y: float) -> Vertex:
         x, y = tuple(
             round(begin + val*magnitude*direction)
             for val, begin, magnitude, direction
             in zip((x, y), self._begin, self._magnitude, self._direction)
         )
-        return x, y
+        return vertex(x, y)
 
     def plot(self, x: float, y: float,) -> None:
         square(

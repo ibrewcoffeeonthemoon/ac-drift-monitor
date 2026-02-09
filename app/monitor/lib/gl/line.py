@@ -2,11 +2,12 @@ import ac
 import acsys
 
 from ....lib.color import *
+from ....lib.geometry import Vertex, vertex
 
 
 def line(
-    vertex1: 'tuple[int, int]',
-    vertex2: 'tuple[int, int]',
+    vertex1: Vertex,
+    vertex2: Vertex,
     color: Color = white.full,
 ) -> None:
     ac.glColor4f(*color)
@@ -17,18 +18,18 @@ def line(
 
 
 def horizontal_line(
-    vertex1: 'tuple[int, int]',
+    vertex1: Vertex,
     length: int,
     color: Color = white.full,
 ) -> None:
     x_pos, y_pos = vertex1
-    line((x_pos, y_pos), (x_pos+length, y_pos), color)
+    line(vertex(x_pos, y_pos), vertex(x_pos+length, y_pos), color)
 
 
 def vertical_line(
-    vertex1: 'tuple[int, int]',
+    vertex1: Vertex,
     length: int,
     color: Color = white.full,
 ) -> None:
     x_pos, y_pos = vertex1
-    line((x_pos, y_pos), (x_pos, y_pos+length), color)
+    line(vertex(x_pos, y_pos), vertex(x_pos, y_pos+length), color)

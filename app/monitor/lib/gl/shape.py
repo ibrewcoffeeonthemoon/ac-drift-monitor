@@ -2,10 +2,11 @@ import ac
 import acsys
 
 from ....lib.color import *
+from ....lib.geometry import Vertex, vertex
 
 
 def rectangle(
-    vertex_center: 'tuple[int, int]',
+    vertex_center: Vertex,
     width: int,
     height: int,
     color: Color = white.full,
@@ -21,7 +22,7 @@ def rectangle(
 
 
 def square(
-    vertex_center: 'tuple[int, int]',
+    vertex_center: Vertex,
     length: int,
     color: Color = white.full,
 ) -> None:
@@ -29,10 +30,10 @@ def square(
 
 
 def quadrilateral(
-    vertex1: 'tuple[int, int]',
-    vertex2: 'tuple[int, int]',
-    vertex3: 'tuple[int, int]',
-    vertex4: 'tuple[int, int]',
+    vertex1: Vertex,
+    vertex2: Vertex,
+    vertex3: Vertex,
+    vertex4: Vertex,
     color: Color = white.full,
 ) -> None:
     ac.glColor4f(*color)
