@@ -1,3 +1,5 @@
+from ....lib.color import *
+from ....lib.geometry import Vertex
 from ..chart import Chart
 from ..gl.shape import quadrilateral
 from ._base import Indicator
@@ -7,7 +9,7 @@ class QuadBar(Indicator):
     def __init__(
         self,
         chart: Chart,
-        color4f: 'tuple[float, float, float, float]' = (1, 0, 0, 1),
+        color: Color = red.full,
         inverted_x_scale: bool = False,
         inverted_y_scale: bool = False,
         centered_x_scale: bool = False,
@@ -20,21 +22,21 @@ class QuadBar(Indicator):
             centered_x_scale=centered_x_scale,
             centered_y_scale=centered_y_scale,
         )
-        self._color4f = color4f
+        self._color = color
 
-    def _coordinates(self, val: float) -> 'tuple[tuple[int, int], tuple[int, int], tuple[int, int], tuple[int, int]]':
+    def _coordinates(self, val: float) -> 'tuple[Vertex, Vertex, Vertex, Vertex]':
         x_begin, y_begin = self._begin
         x_mag, y_mag = self._magnitude
         x_dir, y_dir = self._direction
         return (
-            (self._x_pos, round(y_begin + val*y_mag*y_dir)),
-            (self._x_pos+self._width, round(y_begin + val*y_mag*y_dir)),
-            (self._x_pos+self._width, y_begin),
-            (self._x_pos, y_begin),
+            Vertex(self._x_pos, y_begin + val*y_mag*y_dir),
+            Vertex(self._x_pos+self._width, y_begin + val*y_mag*y_dir),
+            Vertex(self._x_pos+self._width, y_begin),
+            Vertex(self._x_pos, y_begin),
         )
 
-    def plot(self, val: float, color4f: 'tuple[float, float, float, float] | None' = None) -> None:
+    def plot(self, val: float, color: 'Color | None' = None) -> None:
         quadrilateral(
             *self._coordinates(val),
-            color4f=color4f or self._color4f
+            color=color or self._color
         )

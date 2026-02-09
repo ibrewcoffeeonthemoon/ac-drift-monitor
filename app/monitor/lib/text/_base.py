@@ -1,28 +1,19 @@
+from abc import ABCMeta, abstractmethod
+
 import ac
 
+from ....lib.color import Color
+from ....lib.geometry import Position, Size
 from ....window import window
 
 
-class Text:
-    def __init__(
-        self,
-        text: str,
-        font_size: int,
-        font_color: 'tuple[float, float, float, float]',
-        font_alignment: str,
-        size: 'tuple[int, int]',
-        position: 'tuple[int, int]',
-    ) -> None:
-        self._label = ac.addLabel(window, text)
-        self.text = text
-        self.size = size
-        self.position = position
-        self.font_size = font_size
-        self.font_color = font_color
-        self.font_alignment = font_alignment
+class Text(metaclass=ABCMeta):
+    @abstractmethod
+    def __init__(self) -> None:
+        self._label = ac.addLabel(window, '')
 
     @property
-    def text(self) -> str:
+    def text(self) -> 'str | None':
         return self._text
 
     @text.setter
@@ -31,7 +22,7 @@ class Text:
         ac.setText(self._label, val)
 
     @property
-    def font_size(self) -> int:
+    def font_size(self) -> 'int | None':
         return self._font_size
 
     @font_size.setter
@@ -40,16 +31,16 @@ class Text:
         ac.setFontSize(self._label, val)
 
     @property
-    def font_color(self) -> 'tuple[float, float, float, float]':
+    def font_color(self) -> 'Color | None':
         return self._font_color
 
     @font_color.setter
-    def font_color(self, val: 'tuple[float, float, float, float]') -> None:
+    def font_color(self, val: Color) -> None:
         self._font_color = val
         ac.setFontColor(self._label, *val)
 
     @property
-    def font_alignment(self) -> str:
+    def font_alignment(self) -> 'str | None':
         return self._font_alignment
 
     @font_alignment.setter
@@ -58,19 +49,19 @@ class Text:
         ac.setFontAlignment(self._label, val)
 
     @property
-    def size(self) -> 'tuple[int, int]':
+    def size(self) -> 'Size | None':
         return self._size
 
     @size.setter
-    def size(self, val: 'tuple[int, int]') -> None:
+    def size(self, val: Size) -> None:
         self._size = val
         ac.setSize(self._label, *val)
 
     @property
-    def position(self) -> 'tuple[int, int]':
+    def position(self) -> 'Position | None':
         return self._position
 
     @position.setter
-    def position(self, val: 'tuple[int, int]') -> None:
+    def position(self, val: Position) -> None:
         self._position = val
         ac.setPosition(self._label, *val)

@@ -1,15 +1,18 @@
 import ac
 import acsys
 
+from ....lib.color import *
+from ....lib.geometry import Vertex
+
 
 def rectangle(
-    vertex_center: 'tuple[int, int]',
+    vertex_center: Vertex,
     width: int,
     height: int,
-    color4f: 'tuple[float, float, float, float]' = (1, 1, 1, 1),
+    color: Color = white.full,
 ) -> None:
     x_pos, y_pos = vertex_center
-    ac.glColor4f(*color4f)
+    ac.glColor4f(*color)
     ac.glQuad(
         x_pos - width//2,
         y_pos - height//2,
@@ -19,21 +22,21 @@ def rectangle(
 
 
 def square(
-    vertex_center: 'tuple[int, int]',
+    vertex_center: Vertex,
     length: int,
-    color4f: 'tuple[float, float, float, float]' = (1, 1, 1, 1),
+    color: Color = white.full,
 ) -> None:
-    rectangle(vertex_center, length, length, color4f)
+    rectangle(vertex_center, length, length, color)
 
 
 def quadrilateral(
-    vertex1: 'tuple[int, int]',
-    vertex2: 'tuple[int, int]',
-    vertex3: 'tuple[int, int]',
-    vertex4: 'tuple[int, int]',
-    color4f: 'tuple[float, float, float, float]' = (1, 1, 1, 1),
+    vertex1: Vertex,
+    vertex2: Vertex,
+    vertex3: Vertex,
+    vertex4: Vertex,
+    color: Color = white.full,
 ) -> None:
-    ac.glColor4f(*color4f)
+    ac.glColor4f(*color)
     ac.glBegin(acsys.GL.Quads)
     ac.glVertex2f(*vertex1)
     ac.glVertex2f(*vertex2)

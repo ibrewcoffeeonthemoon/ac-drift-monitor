@@ -1,13 +1,14 @@
 from acsys import CS
 
 import config
-from app.monitor.lib.text.big_text import big_text
 
+from ..lib.color import *
 from ..lib.number import num
-from ..telemetry import telemetry
+from ..telemetry import ac_api
 from ._base import Monitor
 from .lib.chart import Chart
 from .lib.indicator import QuadBar
+from .lib.text.big_text import big_text
 
 
 class SpeedMonitor(Monitor):
@@ -30,7 +31,7 @@ class SpeedMonitor(Monitor):
             y_pos,
             width,
             height,
-            x_axis_marker_color4f=(0, 0, 0, 0.0),
+            x_axis_marker_color=white.transparent,
             axis_segment_count=8,
             y_axis_marker_length_ratio=1.0,
             bg_opacity=0.4,
@@ -38,16 +39,16 @@ class SpeedMonitor(Monitor):
         )
         self._speed_bar_low = QuadBar(
             chart=self._chart,
-            color4f=(0, 1, 0, 0.2),
+            color=green.a2,
         )
         self._speed_bar_high = QuadBar(
             chart=self._chart,
-            color4f=(1, 0, 0, 0.4),
+            color=red.a4,
         )
         self._speed_meter = big_text(
-            '',
             x_pos, y_pos, width, height,
-            font_color=(1, 1, 1, 1),
+            text='',
+            font_color=white.full,
             expected_text_len=3
         )
 
@@ -64,16 +65,18 @@ class SpeedMonitor(Monitor):
         self._chart.draw_axes()
 
         # fetch telemetry
-        speed_kmh = telemetry[CS.SpeedKMH].wma()[0]
+        speed_kmh = ac_api[CS.SpeedKMH].wma()[0]
 
         # plot the indicators
         if speed_kmh <= 100:
             self._speed_bar_low.plot(
                 num(speed_kmh).normalize(100).clip(0, 1).f,
-                color4f=(1, 1, 0, 0.4) if speed_kmh > 50 else (0, 1, 0, 0.4),
+                color=yellow.a4 if speed_kmh > 50 else green.a4,
             )
         else:
             self._speed_bar_high.plot(
                 num(speed_kmh).shift(-100).normalize(200).clip(0, 1).f
             )
-        self._speed_meter.text = str(round(speed_kmh))
+        speed_kmh_text = str(round(speed_kmh))
+        self._speed_meter.expected_text_len = len(speed_kmh_text)
+        self._speed_meter.text = speed_kmh_text

@@ -2,8 +2,9 @@ from acsys import CS
 
 import config
 
+from ..lib.color import *
 from ..lib.number import num
-from ..telemetry import telemetry
+from ..telemetry import ac_api
 from ._base import Monitor
 from .lib.chart import Chart
 from .lib.indicator import QuadBar
@@ -25,7 +26,7 @@ class _TyreSlipRatioMonitor:
             y_pos,
             width,
             height,
-            x_axis_marker_color4f=(0, 0, 0, 0.0),
+            x_axis_marker_color=white.transparent,
             axis_segment_count=4,
             x_axis_marker_length_ratio=1.0,
             y_axis_marker_length_ratio=1.0,
@@ -34,7 +35,7 @@ class _TyreSlipRatioMonitor:
         )
         self._quad_bar = QuadBar(
             chart=self._chart,
-            color4f=(1, 0, 0, 0.4),
+            color=red.a4,
             centered_y_scale=True,
         )
 
@@ -43,7 +44,7 @@ class _TyreSlipRatioMonitor:
         self._chart.draw_axes()
 
         # fetch telemetry
-        slipRatio = telemetry[CS.SlipRatio].wma()[self._i_slipRatio]
+        slipRatio = ac_api[CS.SlipRatio].wma()[self._i_slipRatio]
 
         # plot the indicators
         self._quad_bar.plot(

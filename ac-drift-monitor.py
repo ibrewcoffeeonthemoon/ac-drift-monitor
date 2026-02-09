@@ -1,7 +1,7 @@
 import ac
 
 from app import app
-from app.telemetry import telemetry
+from app.telemetry import ac_api
 from app.window import NAME, window
 
 
@@ -17,7 +17,7 @@ def acMain(ac_version: str) -> str:
 
 def acUpdate(deltaT: float) -> None:
     # fetch car state values
-    telemetry.fetch()
+    ac_api.fetch()
 
 
 def on_render(deltaT: float) -> None:
