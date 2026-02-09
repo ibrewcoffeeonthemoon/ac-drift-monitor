@@ -1,6 +1,7 @@
 import ac
 
 from .history import History
+from .memory import Memory
 
 
 class _Telemetry:
@@ -34,3 +35,4 @@ class _Telemetry:
 
 # export
 telemetry = _Telemetry()
+memory = Memory()
