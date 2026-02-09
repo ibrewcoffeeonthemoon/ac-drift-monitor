@@ -4,7 +4,7 @@ import config
 
 from ..lib.color import *
 from ..lib.number import num
-from ..telemetry import telemetry
+from ..telemetry import ac_api
 from ._base import Monitor
 from .lib.chart import Chart
 from .lib.indicator import QuadBar
@@ -65,7 +65,7 @@ class SpeedMonitor(Monitor):
         self._chart.draw_axes()
 
         # fetch telemetry
-        speed_kmh = telemetry[CS.SpeedKMH].wma()[0]
+        speed_kmh = ac_api[CS.SpeedKMH].wma()[0]
 
         # plot the indicators
         if speed_kmh <= 100:
