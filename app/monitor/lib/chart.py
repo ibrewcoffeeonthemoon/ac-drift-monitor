@@ -40,11 +40,11 @@ class Chart:
 
         if len(bg_char) > 0:
             big_text(
-                self._bg_char,
                 self.x_pos,
                 self.y_pos,
                 self.width,
                 self.height,
+                text=self._bg_char,
                 font_color=white.alpha(self._bg_opacity),
                 expected_text_len=1,
             )
