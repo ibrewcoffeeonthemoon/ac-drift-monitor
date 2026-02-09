@@ -4,7 +4,7 @@ import config
 
 from ..lib.color import *
 from ..lib.number import num
-from ..telemetry import telemetry
+from ..telemetry import memory, telemetry
 from ._base import Monitor
 from .lib.chart import Chart
 from .lib.indicator import QuadBar
@@ -68,8 +68,9 @@ class GearMonitor(Monitor):
         # plot the indicators
         gear_text = str(gear-1) if gear > 1 else 'N' if gear == 1 else 'R'
         self._gear_meter.text = gear_text
-        rpm_bar_color = white.a5 if rpm <= 7000 else red.a5 if not engine_limited else red.a8
+        maxRpm = memory.static.maxRpm  # type: int
+        rpm_bar_color = white.a5 if rpm <= maxRpm*0.9 else red.a5 if not engine_limited else red.a8
         self._rpm_bar.plot(
-            num(rpm).normalize(10000).clip(0, 1).f,
+            num(rpm).normalize(maxRpm).clip(0, 1).f,
             color=rpm_bar_color,
         )
