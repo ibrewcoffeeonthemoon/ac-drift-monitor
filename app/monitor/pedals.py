@@ -11,7 +11,7 @@ from .lib.indicator import QuadBar
 
 
 class PedalsMonitor(Monitor):
-    data_keys = (CS.Gas,)
+    data_keys = (CS.Gas, CS.TurboBoost, )
     enabled = config.PedalsMonitor.enabled
     col_index = config.PedalsMonitor.col_index
 
@@ -40,6 +40,10 @@ class PedalsMonitor(Monitor):
             chart=self._chart,
             color=green.a4,
         )
+        self._turbo_bar = QuadBar(
+            chart=self._chart,
+            color=yellow.a4,
+        )
 
     @property
     def width(self) -> int:
@@ -55,8 +59,12 @@ class PedalsMonitor(Monitor):
 
         # fetch telemetry
         gas = ac_api[CS.Gas].last[0]
+        turbo = ac_api[CS.TurboBoost].last[0]
 
         # plot the indicators
         self._gas_bar.plot(
             num(gas).clip(0, 1).f
+        )
+        self._turbo_bar.plot(
+            num(turbo).clip(0, 1).f
         )
