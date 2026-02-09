@@ -24,13 +24,13 @@ class Indicator(metaclass=ABCMeta):
 
         # beginning coordinates
         self._begin = (
-            x_pos+width//2 if centered_x_scale else x_pos+width if inverted_x_scale else x_pos,
-            y_pos+height//2 if centered_y_scale else y_pos if inverted_y_scale else y_pos+height,
+            x_pos+width/2 if centered_x_scale else x_pos+width if inverted_x_scale else x_pos,
+            y_pos+height/2 if centered_y_scale else y_pos if inverted_y_scale else y_pos+height,
         )
         # magnitude of coordinate offset if value is 100%
         self._magnitude = (
-            width//2 if centered_x_scale else width,
-            height//2 if centered_y_scale else height,
+            width/2 if centered_x_scale else width,
+            height/2 if centered_y_scale else height,
         )
         # direction factor (y scale is flipped to convert from monitor direction to human direction)
         self._direction = (

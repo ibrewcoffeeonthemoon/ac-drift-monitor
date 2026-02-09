@@ -2,6 +2,9 @@ from functools import lru_cache
 
 
 class Color(tuple):
+    # fixed slots, no __dict__ for this object, saves memory footprint
+    __slots__ = ()
+
     def __new__(
         cls,
         r: float,
@@ -38,10 +41,6 @@ class Color(tuple):
     def a1(self) -> 'Color': return self.alpha(.1)
     @property
     def transparent(self) -> 'Color': return self.alpha(0)
-
-
-def color(r: float, g: float, b: float, a: float = 1.0) -> Color:
-    return Color(r, g, b, a)
 
 
 # basic colors

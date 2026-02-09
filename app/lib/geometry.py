@@ -7,19 +7,13 @@ class Tuple2i(tuple):
     # fixed slots, no __dict__ for this object, saves memory footprint
     __slots__ = ()
 
-    def __new__(cls, x: int, y: int,) -> 'Tuple2i':
-        return super().__new__(cls, (x, y))
-
-
-def tuple2i(x: int, y: int) -> Tuple2i:
-    return Tuple2i(x, y)
+    def __new__(cls, x: 'int | float', y: 'int | float') -> 'Tuple2i':
+        return super().__new__(cls, (
+            round(x),
+            round(y)
+        ))
 
 
 Vertex = Tuple2i
-vertex = tuple2i
-
 Size = Tuple2i
-size = tuple2i
-
 Position = Tuple2i
-position = tuple2i

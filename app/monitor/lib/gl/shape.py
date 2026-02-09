@@ -2,7 +2,7 @@ import ac
 import acsys
 
 from ....lib.color import *
-from ....lib.geometry import Vertex, vertex
+from ....lib.geometry import Vertex
 
 
 def rectangle(

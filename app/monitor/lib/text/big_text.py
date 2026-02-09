@@ -1,5 +1,5 @@
 from ....lib.color import Color
-from ....lib.geometry import position, size
+from ....lib.geometry import Position, Size
 from ....lib.number import num
 from ._base import Text
 
@@ -25,7 +25,7 @@ class BigText(Text):
         self.text = text
         self.font_color = font_color
         self.font_alignment = 'center'
-        self.size = size(width, height)
+        self.size = Size(width, height)
         self.expected_text_len = expected_text_len
 
     @property
@@ -46,7 +46,7 @@ class BigText(Text):
         # consequential adjustments
         self.font_size = round(min(self._width, self._height)*self._shrink_factor)
         vertical_offset = round(self._height/2-self._font_size*3/4)
-        self.position = position(self._x_pos, self._y_pos+vertical_offset)
+        self.position = Position(self._x_pos, self._y_pos+vertical_offset)
 
 
 def big_text(
