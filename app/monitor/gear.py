@@ -38,8 +38,8 @@ class GearMonitor(Monitor):
             bg_char='',
         )
         self._gear_meter = big_text(
-            '',
             x_pos, y_pos, width, height,
+            text='',
             font_color=white.full,
             expected_text_len=1
         )

@@ -46,8 +46,8 @@ class SpeedMonitor(Monitor):
             color=red.a4,
         )
         self._speed_meter = big_text(
-            '',
             x_pos, y_pos, width, height,
+            text='',
             font_color=white.full,
             expected_text_len=3
         )
@@ -77,4 +77,6 @@ class SpeedMonitor(Monitor):
             self._speed_bar_high.plot(
                 num(speed_kmh).shift(-100).normalize(200).clip(0, 1).f
             )
-        self._speed_meter.text = str(round(speed_kmh))
+        speed_kmh_text = str(round(speed_kmh))
+        self._speed_meter.expected_text_len = len(speed_kmh_text)
+        self._speed_meter.text = speed_kmh_text
