@@ -53,12 +53,9 @@ class SpeedMonitor(Monitor):
         )
 
     @property
-    def width(self) -> int:
-        return self._width
-
+    def width(self) -> int: return self._width
     @property
-    def height(self) -> int:
-        return self._height
+    def height(self) -> int: return self._height
 
     def render(self) -> None:
         # draw axes
