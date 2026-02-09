@@ -1,4 +1,7 @@
 class Number:
+    # fixed slots, no __dict__ for this object, saves memory footprint
+    __slots__ = ('_val', )
+
     def __init__(self, val: float) -> None:
         self._val = val
 
