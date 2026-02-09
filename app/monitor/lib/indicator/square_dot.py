@@ -27,12 +27,11 @@ class SquareDot(Indicator):
         self._color = color
 
     def _coordinates(self, x: float, y: float) -> Vertex:
-        x, y = tuple(
-            round(begin + val*magnitude*direction)
+        return Vertex(*(
+            begin + val*magnitude*direction
             for val, begin, magnitude, direction
             in zip((x, y), self._begin, self._magnitude, self._direction)
-        )
-        return Vertex(x, y)
+        ))
 
     def plot(self, x: float, y: float,) -> None:
         square(

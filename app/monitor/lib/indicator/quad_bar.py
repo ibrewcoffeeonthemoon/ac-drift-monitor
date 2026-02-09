@@ -29,8 +29,8 @@ class QuadBar(Indicator):
         x_mag, y_mag = self._magnitude
         x_dir, y_dir = self._direction
         return (
-            Vertex(self._x_pos, round(y_begin + val*y_mag*y_dir)),
-            Vertex(self._x_pos+self._width, round(y_begin + val*y_mag*y_dir)),
+            Vertex(self._x_pos, y_begin + val*y_mag*y_dir),
+            Vertex(self._x_pos+self._width, y_begin + val*y_mag*y_dir),
             Vertex(self._x_pos+self._width, y_begin),
             Vertex(self._x_pos, y_begin),
         )

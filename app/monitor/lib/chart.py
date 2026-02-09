@@ -54,17 +54,17 @@ class Chart:
         ac.setBackgroundOpacity(window, self._bg_opacity)
 
         # x-axis
-        horizontal_line(Vertex(self.x_pos, self.y_pos+self.height//2), self.width, self._x_axis_color)
+        horizontal_line(Vertex(self.x_pos, self.y_pos+self.height/2), self.width, self._x_axis_color)
         # y-axis
-        vertical_line(Vertex(self.x_pos+self.width//2, self.y_pos), self.height, self._y_axis_color)
+        vertical_line(Vertex(self.x_pos+self.width/2, self.y_pos), self.height, self._y_axis_color)
 
         # draw markers
         for i in range(self._axis_segmnt_count+1):
             # x-axis markers
             vertical_line(
                 Vertex(
-                    round(self.x_pos+i*self.width/self._axis_segmnt_count),
-                    round(self.y_pos+self.height/2-self._x_axis_marker_length_ratio*self.height/2),
+                    self.x_pos+i*self.width/self._axis_segmnt_count,
+                    self.y_pos+self.height/2-self._x_axis_marker_length_ratio*self.height/2,
                 ),
                 round(self._x_axis_marker_length_ratio*self.height),
                 self._x_axis_marker_color,
@@ -72,8 +72,8 @@ class Chart:
             # y-axis markers
             horizontal_line(
                 Vertex(
-                    round(self.x_pos+self.width/2-self._y_axis_marker_length_ratio*self.width/2),
-                    round(self.y_pos+i*self.height/self._axis_segmnt_count)
+                    self.x_pos+self.width/2-self._y_axis_marker_length_ratio*self.width/2,
+                    self.y_pos+i*self.height/self._axis_segmnt_count,
                 ),
                 round(self._y_axis_marker_length_ratio*self.width),
                 self._y_axis_marker_color
