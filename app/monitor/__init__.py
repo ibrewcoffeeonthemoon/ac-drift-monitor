@@ -9,19 +9,19 @@ from .speed import SpeedMonitor
 MONITOR_CLASSES = (
     GForceMonitor,
     SlipRatioMonitor,
+    SlipAngleMonitor,
     SpeedMonitor,
     GearMonitor,
     PedalsMonitor,
-    SlipAngleMonitor,
 )  # type: tuple[type[Monitor], ...]
 
 __all__ = [
     'Monitor',
     'GForceMonitor',
     'SlipRatioMonitor',
+    'SlipAngleMonitor',
     'SpeedMonitor',
     'GearMonitor',
     'PedalsMonitor',
-    'SlipAngleMonitor',
     'MONITOR_CLASSES',
 ]
