@@ -30,6 +30,12 @@ class GForceMonitor:
     box_size = _float('GForceMonitor', 'box_size')
 
 
+class SlipAngleMonitor:
+    enabled = _boolean('SlipAngleMonitor', 'enabled')
+    col_index = _int('SlipAngleMonitor', 'col_index')
+    col_span = _int('SlipAngleMonitor', 'col_span')
+
+
 class SpeedMonitor:
     enabled = _boolean('SpeedMonitor', 'enabled')
     col_index = _int('SpeedMonitor', 'col_index')
