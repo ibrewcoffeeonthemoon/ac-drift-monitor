@@ -1,5 +1,3 @@
-import math
-
 from acsys import CS
 
 import config
