@@ -42,12 +42,19 @@ class PedalsMonitor(Monitor):
         #     )
         #     for i, (color, data_key, inverted) in enumerate(_specs)
         # ]  # type: list[Component]
-        dt = width//4
+        self._components_cls = [
+            ClutchPedal, BrakePedal, GasPedal, TurboBoostPedal,
+        ]  # type: list[type[PedalMonitor]]
+        # self._components = [
+        #     ClutchPedal(x_pos+0*dt, 0, dt, height),
+        #     BrakePedal(x_pos+1*dt, 0, dt, height),
+        #     GasPedal(x_pos+2*dt, 0, dt, height),
+        #     TurboBoostPedal(x_pos+3*dt, 0, dt, height),
+        # ]  # type: list[PedalMonitor]
+        dt = width//len(self._components_cls)
         self._components = [
-            ClutchPedal(x_pos+0*dt, 0, dt, height),
-            BrakePedal(x_pos+1*dt, 0, dt, height),
-            GasPedal(x_pos+2*dt, 0, dt, height),
-            TurboBoostPedal(x_pos+3*dt, 0, dt, height),
+            cls(x_pos+i*dt, y_pos, dt, height)
+            for i, cls in enumerate(self._components_cls)
         ]  # type: list[PedalMonitor]
 
     @property
