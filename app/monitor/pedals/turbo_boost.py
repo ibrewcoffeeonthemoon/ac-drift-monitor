@@ -4,7 +4,7 @@ from ...lib.color import *
 from ._base import PedalMonitor
 
 
-class GasPedal(PedalMonitor):
+class TurboBoostPedal(PedalMonitor):
     def __init__(
         self,
         x_pos: int,
@@ -17,6 +17,6 @@ class GasPedal(PedalMonitor):
             y_pos,
             width,
             height,
-            color=green.a5,
-            data_key=CS.Gas,
+            color=yellow.a5,
+            data_key=CS.TurboBoost,
         )

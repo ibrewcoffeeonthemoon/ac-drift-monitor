@@ -6,6 +6,7 @@ from ...lib.color import *
 from .._base import Monitor
 from ._base import PedalMonitor
 from .gas import GasPedal
+from .turbo_boost import TurboBoostPedal
 
 # _specs = (
 #     (blue.a5, CS.Clutch, True),
@@ -17,7 +18,7 @@ from .gas import GasPedal
 
 class PedalsMonitor(Monitor):
     # data_keys = tuple(m[1] for m in _specs)
-    data_keys = (CS.Gas, )
+    data_keys = (CS.Gas, CS.TurboBoost)
     enabled = config.PedalsMonitor.enabled
     col_index = config.PedalsMonitor.col_index
 
@@ -39,8 +40,10 @@ class PedalsMonitor(Monitor):
         #     )
         #     for i, (color, data_key, inverted) in enumerate(_specs)
         # ]  # type: list[Component]
+        dt = width//2
         self._components = [
-            GasPedal(x_pos, 0, width, height)
+            GasPedal(x_pos, 0, dt, height),
+            TurboBoostPedal(x_pos+dt, 0, dt, height),
         ]  # type: list[PedalMonitor]
 
     @property
