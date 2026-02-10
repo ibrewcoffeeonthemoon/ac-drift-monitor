@@ -19,9 +19,11 @@ class _PedalMonitor(Component):
         height: int,
         color: Color,
         data_key: int,
+        inverted: bool,
     ) -> None:
         self._color = color
         self._data_key = data_key
+        self._inverted = inverted
         self._chart = Chart(
             x_pos,
             y_pos,
@@ -46,13 +48,14 @@ class _PedalMonitor(Component):
         val = ac_api[self._data_key].last[0]
 
         # plot the indicators
+        val = 1-val if self._inverted else val
         self._bar.plot(
             num(val).clip(0, 1).f
         )
 
 
 class PedalsMonitor(Monitor):
-    data_keys = (CS.Brake, CS.Gas, CS.TurboBoost, )
+    data_keys = (CS.Clutch, CS.Brake, CS.Gas, CS.TurboBoost, )
     enabled = config.PedalsMonitor.enabled
     col_index = config.PedalsMonitor.col_index
 
@@ -67,14 +70,18 @@ class PedalsMonitor(Monitor):
         self._height = height = config.App.height
 
         specs = (
-            (red.a5, CS.Brake),
-            (green.a5, CS.Gas),
-            (yellow.a5, CS.TurboBoost),
+            (blue.a5, CS.Clutch, True),
+            (red.a5, CS.Brake, False),
+            (green.a5, CS.Gas, False),
+            (yellow.a5, CS.TurboBoost, False),
         )
         dt = width//len(specs)
         self._components = [
-            _PedalMonitor(x_pos+i*dt, 0, dt, height, color, data_key)
-            for i, (color, data_key) in enumerate(specs)
+            _PedalMonitor(
+                x_pos+i*dt, 0, dt, height,
+                color, data_key, inverted
+            )
+            for i, (color, data_key, inverted) in enumerate(specs)
         ]  # type: list[Component]
 
     @property
