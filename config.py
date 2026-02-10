@@ -46,3 +46,9 @@ class PedalsMonitor:
     enabled = _boolean('PedalsMonitor', 'enabled')
     col_index = _int('PedalsMonitor', 'col_index')
     col_span = _int('PedalsMonitor', 'col_span')
+
+
+class SlipAngleMonitor:
+    enabled = _boolean('SlipAngleMonitor', 'enabled')
+    col_index = _int('SlipAngleMonitor', 'col_index')
+    col_span = _int('SlipAngleMonitor', 'col_span')
