@@ -15,11 +15,9 @@ class PedalMonitor(Component):
         height: int,
         color: Color,
         data_key: int,
-        inverted: bool,
     ) -> None:
         self._color = color
         self._data_key = data_key
-        self._inverted = inverted
         self._chart = Chart(
             x_pos,
             y_pos,
@@ -44,7 +42,6 @@ class PedalMonitor(Component):
         val = ac_api[self._data_key].last[0]
 
         # plot the indicators
-        val = 1-val if self._inverted else val
         self._bar.plot(
             num(val).clip(0, 1).f
         )

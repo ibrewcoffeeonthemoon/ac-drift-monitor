@@ -3,19 +3,21 @@ from acsys import CS
 import config
 
 from ...lib.color import *
-from .._base import Component, Monitor
+from .._base import Monitor
 from ._base import PedalMonitor
+from .gas import GasPedal
 
-_specs = (
-    (blue.a5, CS.Clutch, True),
-    (red.a5, CS.Brake, False),
-    (green.a5, CS.Gas, False),
-    (yellow.a5, CS.TurboBoost, False),
-)
+# _specs = (
+#     (blue.a5, CS.Clutch, True),
+#     (red.a5, CS.Brake, False),
+#     (green.a5, CS.Gas, False),
+#     (yellow.a5, CS.TurboBoost, False),
+# )
 
 
 class PedalsMonitor(Monitor):
-    data_keys = tuple(m[1] for m in _specs)
+    # data_keys = tuple(m[1] for m in _specs)
+    data_keys = (CS.Gas, )
     enabled = config.PedalsMonitor.enabled
     col_index = config.PedalsMonitor.col_index
 
@@ -29,14 +31,17 @@ class PedalsMonitor(Monitor):
         self._width = width = config.App.span_len*config.PedalsMonitor.col_span
         self._height = height = config.App.height
 
-        dt = width//len(_specs)
+        # dt = width//len(_specs)
+        # self._components = [
+        #     PedalMonitor(
+        #         x_pos+i*dt, 0, dt, height,
+        #         color, data_key, inverted
+        #     )
+        #     for i, (color, data_key, inverted) in enumerate(_specs)
+        # ]  # type: list[Component]
         self._components = [
-            PedalMonitor(
-                x_pos+i*dt, 0, dt, height,
-                color, data_key, inverted
-            )
-            for i, (color, data_key, inverted) in enumerate(_specs)
-        ]  # type: list[Component]
+            GasPedal(x_pos, 0, width, height)
+        ]  # type: list[PedalMonitor]
 
     @property
     def width(self) -> int: return self._width
