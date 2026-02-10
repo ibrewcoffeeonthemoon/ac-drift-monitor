@@ -9,6 +9,13 @@ from ._base import Component, Monitor
 from .lib.chart import Chart
 from .lib.indicator import QuadBar
 
+_specs = (
+    (blue.a5, CS.Clutch, True),
+    (red.a5, CS.Brake, False),
+    (green.a5, CS.Gas, False),
+    (yellow.a5, CS.TurboBoost, False),
+)
+
 
 class _PedalMonitor(Component):
     def __init__(
@@ -55,7 +62,7 @@ class _PedalMonitor(Component):
 
 
 class PedalsMonitor(Monitor):
-    data_keys = (CS.Clutch, CS.Brake, CS.Gas, CS.TurboBoost, )
+    data_keys = tuple(m[1] for m in _specs)
     enabled = config.PedalsMonitor.enabled
     col_index = config.PedalsMonitor.col_index
 
@@ -69,19 +76,13 @@ class PedalsMonitor(Monitor):
         self._width = width = config.App.span_len*config.PedalsMonitor.col_span
         self._height = height = config.App.height
 
-        specs = (
-            (blue.a5, CS.Clutch, True),
-            (red.a5, CS.Brake, False),
-            (green.a5, CS.Gas, False),
-            (yellow.a5, CS.TurboBoost, False),
-        )
-        dt = width//len(specs)
+        dt = width//len(_specs)
         self._components = [
             _PedalMonitor(
                 x_pos+i*dt, 0, dt, height,
                 color, data_key, inverted
             )
-            for i, (color, data_key, inverted) in enumerate(specs)
+            for i, (color, data_key, inverted) in enumerate(_specs)
         ]  # type: list[Component]
 
     @property
