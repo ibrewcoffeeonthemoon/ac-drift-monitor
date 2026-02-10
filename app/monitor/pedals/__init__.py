@@ -1,5 +1,3 @@
-from acsys import CS
-
 import config
 
 from ...lib.color import *
@@ -10,17 +8,16 @@ from .clutch import ClutchPedal
 from .gas import GasPedal
 from .turbo_boost import TurboBoostPedal
 
-# _specs = (
-#     (blue.a5, CS.Clutch, True),
-#     (red.a5, CS.Brake, False),
-#     (green.a5, CS.Gas, False),
-#     (yellow.a5, CS.TurboBoost, False),
-# )
+_selected_pedals = (
+    ClutchPedal,
+    BrakePedal,
+    GasPedal,
+    TurboBoostPedal,
+)
 
 
 class PedalsMonitor(Monitor):
-    # data_keys = tuple(m[1] for m in _specs)
-    data_keys = (CS.Clutch, CS.Gas, CS.TurboBoost, CS.Brake)
+    data_keys = tuple(cls.data_key for cls in _selected_pedals)
     enabled = config.PedalsMonitor.enabled
     col_index = config.PedalsMonitor.col_index
 
@@ -34,27 +31,10 @@ class PedalsMonitor(Monitor):
         self._width = width = config.App.span_len*config.PedalsMonitor.col_span
         self._height = height = config.App.height
 
-        # dt = width//len(_specs)
-        # self._components = [
-        #     PedalMonitor(
-        #         x_pos+i*dt, 0, dt, height,
-        #         color, data_key, inverted
-        #     )
-        #     for i, (color, data_key, inverted) in enumerate(_specs)
-        # ]  # type: list[Component]
-        self._components_cls = [
-            ClutchPedal, BrakePedal, GasPedal, TurboBoostPedal,
-        ]  # type: list[type[PedalMonitor]]
-        # self._components = [
-        #     ClutchPedal(x_pos+0*dt, 0, dt, height),
-        #     BrakePedal(x_pos+1*dt, 0, dt, height),
-        #     GasPedal(x_pos+2*dt, 0, dt, height),
-        #     TurboBoostPedal(x_pos+3*dt, 0, dt, height),
-        # ]  # type: list[PedalMonitor]
-        dt = width//len(self._components_cls)
+        dt = width//len(_selected_pedals)
         self._components = [
             cls(x_pos+i*dt, y_pos, dt, height)
-            for i, cls in enumerate(self._components_cls)
+            for i, cls in enumerate(_selected_pedals)
         ]  # type: list[PedalMonitor]
 
     @property
