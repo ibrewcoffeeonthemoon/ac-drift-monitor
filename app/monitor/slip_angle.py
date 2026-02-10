@@ -6,7 +6,7 @@ from ..lib.color import *
 from ..telemetry import ac_api
 from ._base import Monitor
 from .lib.chart import Chart
-from .lib.gl.angle import angle_line
+from .lib.indicator.angle_line import AngleLine
 
 
 class SlipAngleMonitor(Monitor):
@@ -37,6 +37,10 @@ class SlipAngleMonitor(Monitor):
             bg_opacity=0.2,
             bg_char='A',
         )
+        self._angle_line = AngleLine(
+            chart=self._chart,
+            color=cyan.a9,
+        )
 
     @property
     def width(self) -> int: return self._width
@@ -51,11 +55,4 @@ class SlipAngleMonitor(Monitor):
         avg_rear_slipAngle = sum(ac_api[CS.SlipAngle].wma()[-2:])/2
 
         # plot the indicators
-        angle_line(
-            self._chart.x_pos,
-            self._chart.y_pos,
-            self._chart.width,
-            self._chart.height,
-            avg_rear_slipAngle,
-            yellow.full,
-        )
+        self._angle_line.plot(avg_rear_slipAngle)
