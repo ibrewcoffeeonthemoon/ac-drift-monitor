@@ -5,6 +5,9 @@ from ._base import PedalMonitor
 
 
 class TurboBoostPedal(PedalMonitor):
+    color = yellow.a5
+    data_key = CS.TurboBoost
+
     def __init__(
         self,
         x_pos: int,
@@ -17,6 +20,4 @@ class TurboBoostPedal(PedalMonitor):
             y_pos,
             width,
             height,
-            color=yellow.a5,
-            data_key=CS.TurboBoost,
         )

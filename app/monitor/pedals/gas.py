@@ -5,6 +5,9 @@ from ._base import PedalMonitor
 
 
 class GasPedal(PedalMonitor):
+    color = green.a5
+    data_key = CS.Gas
+
     def __init__(
         self,
         x_pos: int,
@@ -17,6 +20,4 @@ class GasPedal(PedalMonitor):
             y_pos,
             width,
             height,
-            color=green.a5,
-            data_key=CS.Gas,
         )

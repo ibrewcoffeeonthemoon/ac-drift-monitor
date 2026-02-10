@@ -5,6 +5,9 @@ from ._base import PedalMonitor
 
 
 class BrakePedal(PedalMonitor):
+    color = red.a5
+    data_key = CS.Brake
+
     def __init__(
         self,
         x_pos: int,
@@ -17,6 +20,4 @@ class BrakePedal(PedalMonitor):
             y_pos,
             width,
             height,
-            color=red.a5,
-            data_key=CS.Brake,
         )

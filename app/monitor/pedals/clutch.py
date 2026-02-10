@@ -7,6 +7,9 @@ from ._base import PedalMonitor
 
 
 class ClutchPedal(PedalMonitor):
+    color = blue.a5
+    data_key = CS.Clutch
+
     def __init__(
         self,
         x_pos: int,
@@ -19,8 +22,6 @@ class ClutchPedal(PedalMonitor):
             y_pos,
             width,
             height,
-            color=blue.a5,
-            data_key=CS.Clutch,
         )
 
     def render(self) -> None:
@@ -28,7 +29,7 @@ class ClutchPedal(PedalMonitor):
         self._chart.draw_axes()
 
         # fetch telemetry
-        val = ac_api[self._data_key].last[0]
+        val = ac_api[self.data_key].last[0]
 
         # plot the indicators
         self._bar.plot(

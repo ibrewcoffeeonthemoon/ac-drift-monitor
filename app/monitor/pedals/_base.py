@@ -7,17 +7,16 @@ from ..lib.indicator import QuadBar
 
 
 class PedalMonitor(Component):
+    color = white.transparent
+    data_key = 0
+
     def __init__(
         self,
         x_pos: int,
         y_pos: int,
         width: int,
         height: int,
-        color: Color,
-        data_key: int,
     ) -> None:
-        self._color = color
-        self._data_key = data_key
         self._chart = Chart(
             x_pos,
             y_pos,
@@ -31,7 +30,7 @@ class PedalMonitor(Component):
         )
         self._bar = QuadBar(
             chart=self._chart,
-            color=self._color,
+            color=self.color,
         )
 
     def render(self) -> None:
@@ -39,7 +38,7 @@ class PedalMonitor(Component):
         self._chart.draw_axes()
 
         # fetch telemetry
-        val = ac_api[self._data_key].last[0]
+        val = ac_api[self.data_key].last[0]
 
         # plot the indicators
         self._bar.plot(
