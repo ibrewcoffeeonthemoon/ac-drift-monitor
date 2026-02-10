@@ -5,12 +5,10 @@ from acsys import CS
 import config
 
 from ..lib.color import *
-from ..lib.geometry import Vertex
-from ..lib.number import num
 from ..telemetry import ac_api
 from ._base import Monitor
 from .lib.chart import Chart
-from .lib.gl.line import line
+from .lib.gl.angle import angle_line
 
 
 class SlipAngleMonitor(Monitor):
@@ -55,14 +53,11 @@ class SlipAngleMonitor(Monitor):
         avg_rear_slipAngle = sum(ac_api[CS.SlipAngle].wma()[-2:])/2
 
         # plot the indicators
-        radian_angle = math.pi * avg_rear_slipAngle/180
-        radius = self.width//2
-        x_start = self._chart.x_pos+radius
-        y_start = self._chart.y_pos+radius
-        x_coord = radius * math.cos(radian_angle)
-        y_coord = radius * math.sin(radian_angle)
-        line(
-            Vertex(x_start+x_coord, y_start-y_coord),
-            Vertex(x_start-x_coord, y_start+y_coord),
-            color=red.full,
+        angle_line(
+            self._chart.x_pos,
+            self._chart.y_pos,
+            self._chart.width,
+            self._chart.height,
+            avg_rear_slipAngle,
+            yellow.full,
         )
