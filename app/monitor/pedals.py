@@ -52,7 +52,7 @@ class _PedalMonitor(Component):
 
 
 class PedalsMonitor(Monitor):
-    data_keys = (CS.Gas, CS.TurboBoost, )
+    data_keys = (CS.Brake, CS.Gas, CS.TurboBoost, )
     enabled = config.PedalsMonitor.enabled
     col_index = config.PedalsMonitor.col_index
 
@@ -67,6 +67,7 @@ class PedalsMonitor(Monitor):
         self._height = height = config.App.height
 
         specs = (
+            (red.a5, CS.Brake),
             (green.a5, CS.Gas),
             (yellow.a5, CS.TurboBoost),
         )
