@@ -46,3 +46,8 @@ class SlipAngleMonitor(Monitor):
     def render(self) -> None:
         # draw axes
         self._chart.draw_axes()
+
+        # fetch telemetry
+        avg_rear_slipAngle = sum(ac_api[CS.SlipAngle].wma()[-2:])/2
+
+        # plot the indicators
