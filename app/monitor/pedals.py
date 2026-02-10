@@ -66,10 +66,14 @@ class PedalsMonitor(Monitor):
         self._width = width = config.App.span_len*config.PedalsMonitor.col_span
         self._height = height = config.App.height
 
-        dt = width//2
+        specs = (
+            (green.a5, CS.Gas),
+            (yellow.a5, CS.TurboBoost),
+        )
+        dt = width//len(specs)
         self._components = [
-            _PedalMonitor(x_pos, 0, dt, height, color=green.a5, data_key=CS.Gas),
-            _PedalMonitor(x_pos+dt, 0, dt, height, color=yellow.a5, data_key=CS.TurboBoost),
+            _PedalMonitor(x_pos+i*dt, 0, dt, height, color, data_key)
+            for i, (color, data_key) in enumerate(specs)
         ]  # type: list[Component]
 
     @property
