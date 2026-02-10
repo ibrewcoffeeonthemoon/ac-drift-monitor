@@ -1,8 +1,8 @@
-import ac
 from acsys import CS
 
 from ...lib.color import *
 from ...lib.number import num
+from ...telemetry import ac_ext
 from ._base import Pedal
 
 
@@ -15,7 +15,7 @@ class HandbrakePedal(Pedal):
         self._chart.draw_axes()
 
         # fetch telemetry
-        val = ac.ext_getHandbrake(0)  # type: float
+        val = ac_ext.handbrake
 
         # plot the indicators
         self._bar.plot(
