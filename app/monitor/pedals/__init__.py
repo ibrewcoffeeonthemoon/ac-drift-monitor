@@ -2,7 +2,7 @@ import config
 
 from ...lib.color import *
 from .._base import Monitor
-from ._base import PedalMonitor
+from ._base import Pedal
 from .brake import BrakePedal
 from .clutch import ClutchPedal
 from .gas import GasPedal
@@ -35,7 +35,7 @@ class PedalsMonitor(Monitor):
         self._components = [
             cls(x_pos+i*dt, y_pos, dt, height)
             for i, cls in enumerate(_selected_pedals)
-        ]  # type: list[PedalMonitor]
+        ]  # type: list[Pedal]
 
     @property
     def width(self) -> int: return self._width

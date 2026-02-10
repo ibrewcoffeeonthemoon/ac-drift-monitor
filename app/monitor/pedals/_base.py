@@ -6,7 +6,7 @@ from ..lib.chart import Chart
 from ..lib.indicator import QuadBar
 
 
-class PedalMonitor(Component):
+class Pedal(Component):
     color = white.transparent
     data_key = 0
 

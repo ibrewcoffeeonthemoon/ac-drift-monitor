@@ -3,10 +3,10 @@ from acsys import CS
 from ...lib.color import *
 from ...lib.number import num
 from ...telemetry import ac_api
-from ._base import PedalMonitor
+from ._base import Pedal
 
 
-class ClutchPedal(PedalMonitor):
+class ClutchPedal(Pedal):
     color = blue.a5
     data_key = CS.Clutch
 
