@@ -2,12 +2,12 @@ from acsys import CS
 
 import config
 
-from ..lib.color import *
-from ..lib.number import num
-from ..telemetry import ac_api
-from ._base import Component, Monitor
-from .lib.chart import Chart
-from .lib.indicator import QuadBar
+from ...lib.color import *
+from ...lib.number import num
+from ...telemetry import ac_api
+from .._base import Component, Monitor
+from ..lib.chart import Chart
+from ..lib.indicator import QuadBar
 
 _specs = (
     (blue.a5, CS.Clutch, True),
