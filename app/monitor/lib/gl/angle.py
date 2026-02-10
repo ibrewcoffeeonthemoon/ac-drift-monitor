@@ -14,9 +14,9 @@ def angle_line(
     color: Color,
 ) -> None:
     radian_angle = math.pi * angle_degree/180
-    x_start = x_pos+width//2
-    y_start = y_pos+height//2
-    radius = max(width, height)//2
+    x_start = x_pos+width/2
+    y_start = y_pos+height/2
+    radius = math.sqrt(width**2 + height**2)/2
     x_coord = radius * math.cos(radian_angle)
     y_coord = radius * math.sin(radian_angle)
     line(
