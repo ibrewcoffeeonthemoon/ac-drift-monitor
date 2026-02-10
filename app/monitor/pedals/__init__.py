@@ -6,10 +6,12 @@ from ._base import Pedal
 from .brake import BrakePedal
 from .clutch import ClutchPedal
 from .gas import GasPedal
+from .handbrake import HandbrakePedal
 from .turbo_boost import TurboBoostPedal
 
 _selected_pedals = (
     ClutchPedal,
+    HandbrakePedal,
     BrakePedal,
     GasPedal,
     TurboBoostPedal,
