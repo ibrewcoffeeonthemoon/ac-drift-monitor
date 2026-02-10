@@ -5,12 +5,12 @@ import config
 from ..lib.color import *
 from ..lib.number import num
 from ..telemetry import ac_api
-from ._base import Monitor
+from ._base import Component, Monitor
 from .lib.chart import Chart
 from .lib.indicator import QuadBar
 
 
-class _TyreSlipRatioMonitor:
+class _TyreSlipRatioMonitor(Component):
     def __init__(
         self,
         i_slipRatio: int,
@@ -84,12 +84,9 @@ class SlipRatioMonitor(Monitor):
         ]
 
     @property
-    def width(self) -> int:
-        return self._width
-
+    def width(self) -> int: return self._width
     @property
-    def height(self) -> int:
-        return self._height
+    def height(self) -> int: return self._height
 
     def render(self) -> None:
         for monitor in self._tyres_slip_ratio_monitors:

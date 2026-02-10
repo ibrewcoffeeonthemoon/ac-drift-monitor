@@ -12,6 +12,7 @@ class Text(metaclass=ABCMeta):
     def __init__(self) -> None:
         self._label = ac.addLabel(window, '')
 
+    ''''''
     @property
     def text(self) -> 'str | None':
         return self._text
@@ -21,6 +22,7 @@ class Text(metaclass=ABCMeta):
         self._text = val
         ac.setText(self._label, val)
 
+    ''''''
     @property
     def font_size(self) -> 'int | None':
         return self._font_size
@@ -30,6 +32,7 @@ class Text(metaclass=ABCMeta):
         self._font_size = val
         ac.setFontSize(self._label, val)
 
+    ''''''
     @property
     def font_color(self) -> 'Color | None':
         return self._font_color
@@ -39,6 +42,7 @@ class Text(metaclass=ABCMeta):
         self._font_color = val
         ac.setFontColor(self._label, *val)
 
+    ''''''
     @property
     def font_alignment(self) -> 'str | None':
         return self._font_alignment
@@ -48,6 +52,7 @@ class Text(metaclass=ABCMeta):
         self._font_alignment = val
         ac.setFontAlignment(self._label, val)
 
+    ''''''
     @property
     def size(self) -> 'Size | None':
         return self._size
@@ -57,6 +62,7 @@ class Text(metaclass=ABCMeta):
         self._size = val
         ac.setSize(self._label, *val)
 
+    ''''''
     @property
     def position(self) -> 'Position | None':
         return self._position

@@ -49,12 +49,9 @@ class GearMonitor(Monitor):
         )
 
     @property
-    def width(self) -> int:
-        return self._width
-
+    def width(self) -> int: return self._width
     @property
-    def height(self) -> int:
-        return self._height
+    def height(self) -> int: return self._height
 
     def render(self) -> None:
         # draw axes
@@ -66,10 +63,18 @@ class GearMonitor(Monitor):
         engine_limited = bool(ac_api[CS.IsEngineLimiterOn].last[0])
 
         # plot the indicators
-        gear_text = str(gear-1) if gear > 1 else 'N' if gear == 1 else 'R'
+        gear_text = (
+            str(gear-1) if gear > 1 else
+            'N' if gear == 1 else
+            'R'
+        )
         self._gear_meter.text = gear_text
         maxRpm = ac_mem.static.maxRpm  # type: int
-        rpm_bar_color = white.a5 if rpm <= maxRpm*0.9 else red.a5 if not engine_limited else red.a8
+        rpm_bar_color = (
+            white.a5 if rpm <= maxRpm*0.9 else
+            red.a5 if not engine_limited else
+            red.a8
+        )
         self._rpm_bar.plot(
             num(rpm).normalize(maxRpm).clip(0, 1).f,
             color=rpm_bar_color,
