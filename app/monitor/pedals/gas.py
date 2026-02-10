@@ -7,17 +7,3 @@ from ._base import Pedal
 class GasPedal(Pedal):
     color = green.a5
     data_key = CS.Gas
-
-    def __init__(
-        self,
-        x_pos: int,
-        y_pos: int,
-        width: int,
-        height: int,
-    ) -> None:
-        super().__init__(
-            x_pos,
-            y_pos,
-            width,
-            height,
-        )
