@@ -10,18 +10,8 @@ class AngleQuad(AngleIndicator):
         self,
         chart: Chart,
         color: Color = yellow.full,
-        inverted_x_scale: bool = False,
-        inverted_y_scale: bool = False,
-        centered_x_scale: bool = False,
-        centered_y_scale: bool = False,
     ) -> None:
-        super().__init__(
-            chart=chart,
-            inverted_x_scale=inverted_x_scale,
-            inverted_y_scale=inverted_y_scale,
-            centered_x_scale=centered_x_scale,
-            centered_y_scale=centered_y_scale,
-        )
+        super().__init__(chart=chart)
         self._color = color
 
     def _vertices(self, angle_degree: float) -> 'tuple[Vertex, Vertex, Vertex, Vertex]':
