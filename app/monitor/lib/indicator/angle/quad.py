@@ -30,6 +30,10 @@ class AngleQuad(AngleIndicator):
             (self._chart.corner_bottom_left, self._chart.corner_bottom_right) if abs(angle_degree) <= 45 else
             (self._chart.corner_bottom_right, self._chart.corner_top_right) if angle_degree > 45 else
             (self._chart.corner_top_left, self._chart.corner_bottom_left)
+        ) if not self._inverted_x_scale else (
+            (self._chart.corner_top_left, self._chart.corner_top_right) if abs(angle_degree) <= 45 else
+            (self._chart.corner_bottom_left, self._chart.corner_top_left) if angle_degree > 45 else
+            (self._chart.corner_top_right, self._chart.corner_bottom_right)
         )
         # counter clockwise direction
         return (vertex1, vertex2, vertex3, vertex4)
