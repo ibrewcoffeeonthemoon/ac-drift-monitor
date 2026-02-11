@@ -3,6 +3,7 @@ from acsys import CS
 import config
 
 from ..lib.color import *
+from ..lib.number import num
 from ..telemetry import ac_api
 from ._base import Monitor
 from .lib.chart import Chart
@@ -39,13 +40,16 @@ class SlipAngleMonitor(Monitor):
         )
         self._slip_angle_quad = AngleQuad(
             chart=self._chart,
-            sensitivity=4,
+            sensitivity=config.SlipAngleMonitor.sensitivity,
             reversed=True,
             color=cyan.a5,
         )
         self._steering_angle_quad = AngleQuad(
             chart=self._chart,
-            sensitivity=4/5,
+            sensitivity=(
+                num(config.SlipAngleMonitor.sensitivity)
+                .normalize(config.SlipAngleMonitor.wheel_degree/180).f
+            ),
             reversed=True,
             color=blue.a5,
         )
