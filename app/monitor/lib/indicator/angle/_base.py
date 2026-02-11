@@ -6,6 +6,23 @@ from .._base import Indicator
 
 
 class AngleIndicator(Indicator):
+    def _quadrant(self, angle_degree: float) -> int:
+        r'''
+        quardant id:
+         \ 1 /
+         2 X 0
+         / 3 \
+        '''
+        shifted = angle_degree + 45
+        normalized = shifted % 360
+        id = int(normalized//90)
+        return id
+
+    def _nearest_corners(self, angle_degree: float) -> 'tuple[Vertex, Vertex, Vertex, Vertex]':
+        id = self._quadrant(angle_degree)
+        c0, c1, c2, c3 = self._chart.corners[id:] + self._chart.corners[:id]
+        return c0, c1, c2, c3
+
     def _edge_intercepts(self, angle_degree: float) -> 'tuple[Vertex, Vertex]':
         x_center, y_center = self._chart.center
         radius = self._chart.diagonal_len
