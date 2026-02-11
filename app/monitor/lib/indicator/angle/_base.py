@@ -1,11 +1,25 @@
 import math
 
+from .....lib.color import *
 from .....lib.geometry import Vertex
 from .....lib.number import num
+from ...chart import Chart
 from .._base import Indicator
 
 
 class AngleIndicator(Indicator):
+    def __init__(
+        self,
+        chart: Chart,
+        scale: float = 1.0,
+        reversed: bool = False,
+        color: Color = yellow.full,
+    ) -> None:
+        super().__init__(chart=chart)
+        self._scale = scale
+        self._reversed = reversed
+        self._color = color
+
     def _quadrant(self, angle_degree: float) -> int:
         r'''
         quardant id:
