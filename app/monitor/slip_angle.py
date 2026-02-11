@@ -44,7 +44,6 @@ class SlipAngleMonitor(Monitor):
         self._steering_angle_quad = AngleQuad(
             chart=self._chart,
             color=blue.a5,
-            inverted_x_scale=False,
         )
 
     @property
