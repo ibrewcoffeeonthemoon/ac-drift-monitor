@@ -38,7 +38,7 @@ class AngleIndicator(Indicator):
         return c0, c1, c2, c3
 
     def _edge_intercepts(self, angle_degree: float) -> 'tuple[Vertex, Vertex]':
-        x_center, y_center = self._chart.center
+        x_center, y_center = self._chart.center.f
         radius = self._chart.diagonal_len
         radian_angle = num(angle_degree).radian().f
         x_coord = radius * math.cos(radian_angle)
