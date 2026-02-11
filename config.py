@@ -34,6 +34,8 @@ class SlipAngleMonitor:
     enabled = _boolean('SlipAngleMonitor', 'enabled')
     col_index = _int('SlipAngleMonitor', 'col_index')
     col_span = _int('SlipAngleMonitor', 'col_span')
+    sensitivity = _float('SlipAngleMonitor', 'sensitivity')
+    wheel_degree = _int('SlipAngleMonitor', 'wheel_degree')
 
 
 class SpeedMonitor:

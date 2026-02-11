@@ -11,12 +11,12 @@ class AngleIndicator(Indicator):
     def __init__(
         self,
         chart: Chart,
-        scale: float = 1.0,
+        sensitivity: float = 1.0,
         reversed: bool = False,
         color: Color = yellow.full,
     ) -> None:
         super().__init__(chart=chart)
-        self._scale = scale
+        self._sensitivity = sensitivity
         self._reversed = reversed
         self._color = color
 
