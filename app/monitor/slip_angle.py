@@ -44,7 +44,7 @@ class SlipAngleMonitor(Monitor):
         self._steering_angle_quad = AngleQuad(
             chart=self._chart,
             color=blue.a5,
-            inverted_x_scale=True,
+            inverted_x_scale=False,
         )
 
     @property
@@ -61,5 +61,5 @@ class SlipAngleMonitor(Monitor):
         steer_angle_degree = ac_api[CS.Steer].last[0]
 
         # plot the indicators
-        self._slip_angle_quad.plot(avg_rear_slipAngle_degree)
-        self._steering_angle_quad.plot(steer_angle_degree/5)
+        self._slip_angle_quad.plot(-avg_rear_slipAngle_degree)
+        self._steering_angle_quad.plot(-steer_angle_degree/5)
