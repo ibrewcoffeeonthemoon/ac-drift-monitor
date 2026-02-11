@@ -26,7 +26,7 @@ class SquareDot(Indicator):
         self._dot_size = dot_size
         self._color = color
 
-    def _coordinates(self, x: float, y: float) -> Vertex:
+    def _vertices(self, x: float, y: float) -> Vertex:
         return Vertex(*(
             begin + val*magnitude*direction
             for val, begin, magnitude, direction
@@ -35,7 +35,7 @@ class SquareDot(Indicator):
 
     def plot(self, x: float, y: float,) -> None:
         square(
-            self._coordinates(x, y),
+            self._vertices(x, y),
             length=self._dot_size,
             color=self._color
         )

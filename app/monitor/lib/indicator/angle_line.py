@@ -27,7 +27,7 @@ class AngleLine(Indicator):
         )
         self._color = color
 
-    def _coordinates(self, angle_degree: float) -> 'tuple[Vertex, Vertex]':
+    def _vertices(self, angle_degree: float) -> 'tuple[Vertex, Vertex]':
         radian_angle = math.pi * angle_degree/180
         x_center = self._x_pos+self._width/2
         y_center = self._y_pos+self._height/2
@@ -47,6 +47,6 @@ class AngleLine(Indicator):
 
     def plot(self, val: float, color: 'Color | None' = None) -> None:
         line(
-            *self._coordinates(val),
+            *self._vertices(val),
             color=color or self._color
         )

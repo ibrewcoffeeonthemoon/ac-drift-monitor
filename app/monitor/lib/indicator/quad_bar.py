@@ -24,7 +24,7 @@ class QuadBar(Indicator):
         )
         self._color = color
 
-    def _coordinates(self, val: float) -> 'tuple[Vertex, Vertex, Vertex, Vertex]':
+    def _vertices(self, val: float) -> 'tuple[Vertex, Vertex, Vertex, Vertex]':
         x_begin, y_begin = self._begin
         x_mag, y_mag = self._magnitude
         x_dir, y_dir = self._direction
@@ -37,6 +37,6 @@ class QuadBar(Indicator):
 
     def plot(self, val: float, color: 'Color | None' = None) -> None:
         quadrilateral(
-            *self._coordinates(val),
+            *self._vertices(val),
             color=color or self._color
         )
