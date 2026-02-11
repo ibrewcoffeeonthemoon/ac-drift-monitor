@@ -1,6 +1,6 @@
-from ....lib.color import *
-from ..chart import Chart
-from ..gl.line import line
+from .....lib.color import *
+from ...chart import Chart
+from ...gl.line import line
 from ._base import AngleIndicator
 
 

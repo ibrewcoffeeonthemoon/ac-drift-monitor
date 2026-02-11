@@ -6,8 +6,7 @@ from ..lib.color import *
 from ..telemetry import ac_api
 from ._base import Monitor
 from .lib.chart import Chart
-from .lib.indicator.angle_line import AngleLine
-from .lib.indicator.angle_quad import AngleQuad
+from .lib.indicator import AngleLine, AngleQuad
 
 
 class SlipAngleMonitor(Monitor):

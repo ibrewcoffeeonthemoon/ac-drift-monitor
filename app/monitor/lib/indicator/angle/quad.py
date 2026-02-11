@@ -1,7 +1,7 @@
-from ....lib.color import *
-from ....lib.geometry import Vertex
-from ..chart import Chart
-from ..gl.shape import quadrilateral
+from .....lib.color import *
+from .....lib.geometry import Vertex
+from ...chart import Chart
+from ...gl.shape import quadrilateral
 from ._base import AngleIndicator
 
 
