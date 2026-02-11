@@ -7,10 +7,10 @@ class Indicator(metaclass=ABCMeta):
     def __init__(
         self,
         chart: Chart,
-        inverted_x_scale: bool,
-        inverted_y_scale: bool,
-        centered_x_scale: bool,
-        centered_y_scale: bool,
+        inverted_x_scale: bool = False,
+        inverted_y_scale: bool = False,
+        centered_x_scale: bool = False,
+        centered_y_scale: bool = False,
     ) -> None:
         self._chart = chart
         self._x_pos = x_pos = chart.x_pos
