@@ -1,3 +1,5 @@
+import math
+
 import ac
 
 from ...lib.color import *
@@ -32,6 +34,8 @@ class Chart:
         self.corner_top_right = Vertex(x_pos+width, y_pos)
         self.corner_bottom_left = Vertex(x_pos, y_pos+height)
         self.corner_bottom_right = Vertex(x_pos+width, y_pos+height)
+        self.center = Vertex(x_pos+width/2, y_pos+height/2)
+        self.diagonal_len = math.sqrt(width**2 + height**2)/2
         self._x_axis_color = x_axis_color
         self._y_axis_color = y_axis_color
         self._x_axis_marker_color = x_axis_marker_color
