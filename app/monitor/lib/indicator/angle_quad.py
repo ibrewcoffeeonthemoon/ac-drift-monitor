@@ -29,8 +29,7 @@ class AngleQuad(Indicator):
 
     def _vertices(self, angle_degree: float) -> 'tuple[Vertex, Vertex, Vertex, Vertex]':
         radian_angle = math.pi * angle_degree/180
-        x_center = self._x_pos+self._width/2
-        y_center = self._y_pos+self._height/2
+        x_center, y_center = self._chart.center
         radius = math.sqrt(self._width**2 + self._height**2)/2
         x_coord = radius * math.cos(radian_angle)
         y_coord = radius * math.sin(radian_angle)
