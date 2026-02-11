@@ -5,7 +5,7 @@ from ._base import AngleIndicator
 
 class AngleLine(AngleIndicator):
     def plot(self, val: float, color: 'Color | None' = None) -> None:
-        val = val * self._scale
+        val = val * self._sensitivity
         val = -val if self._reversed else val
         line(
             *self._edge_intercepts(val),

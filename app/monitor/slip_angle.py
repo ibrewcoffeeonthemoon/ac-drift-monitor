@@ -39,13 +39,13 @@ class SlipAngleMonitor(Monitor):
         )
         self._slip_angle_quad = AngleQuad(
             chart=self._chart,
-            scale=4,
+            sensitivity=4,
             reversed=True,
             color=cyan.a5,
         )
         self._steering_angle_quad = AngleQuad(
             chart=self._chart,
-            scale=4/5,
+            sensitivity=4/5,
             reversed=True,
             color=blue.a5,
         )

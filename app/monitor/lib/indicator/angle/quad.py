@@ -11,7 +11,7 @@ class AngleQuad(AngleIndicator):
         return (vertex0, vertex1, vertex2, vertex3)
 
     def plot(self, val: float, color: 'Color | None' = None) -> None:
-        val = val * self._scale
+        val = val * self._sensitivity
         val = -val if self._reversed else val
         quadrilateral(
             *self._vertices(val),
