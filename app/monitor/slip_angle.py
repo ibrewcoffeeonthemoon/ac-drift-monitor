@@ -6,7 +6,7 @@ from ..lib.color import *
 from ..telemetry import ac_api
 from ._base import Monitor
 from .lib.chart import Chart
-from .lib.indicator import AngleLine, AngleQuad
+from .lib.indicator import AngleQuad
 
 
 class SlipAngleMonitor(Monitor):
@@ -41,9 +41,10 @@ class SlipAngleMonitor(Monitor):
             chart=self._chart,
             color=cyan.a5,
         )
-        self._steering_angle_line = AngleLine(
+        self._steering_angle_quad = AngleQuad(
             chart=self._chart,
-            color=blue.a9,
+            color=blue.a5,
+            inverted_x_scale=True,
         )
 
     @property
@@ -61,4 +62,4 @@ class SlipAngleMonitor(Monitor):
 
         # plot the indicators
         self._slip_angle_quad.plot(avg_rear_slipAngle_degree)
-        self._steering_angle_line.plot(steer_angle_degree/5)
+        self._steering_angle_quad.plot(steer_angle_degree/5)
