@@ -6,7 +6,7 @@ from ..lib.color import *
 from ..lib.number import num
 from ..telemetry import ac_api
 from ._base import Monitor
-from .lib.canvas import Chart
+from .lib.canvas import Chart, Region
 from .lib.indicator import QuadBar
 from .lib.text.big_text import big_text
 
@@ -25,23 +25,20 @@ class SpeedMonitor(Monitor):
 
         self._width = width = config.App.span_len*config.SpeedMonitor.col_span
         self._height = height = config.App.height
-
+        self._region = Region(x_pos, y_pos, width, height)
         self._chart = Chart(
-            x_pos,
-            y_pos,
-            width,
-            height,
+            self._region,
             x_axis_marker_color=white.transparent,
             axis_segment_count=8,
             y_axis_marker_length_ratio=1.0,
             bg_char='',
         )
         self._speed_bar_low = QuadBar(
-            region=self._chart.region,
+            region=self._region,
             color=green.a2,
         )
         self._speed_bar_high = QuadBar(
-            region=self._chart.region,
+            region=self._region,
             color=red.a4,
         )
         self._speed_meter = big_text(

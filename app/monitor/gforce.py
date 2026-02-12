@@ -5,7 +5,7 @@ import config
 from ..lib.color import *
 from ..telemetry import ac_api
 from ._base import Monitor
-from .lib.canvas import Chart
+from .lib.canvas import Chart, Region
 from .lib.indicator import QuadBar, SquareDot
 
 
@@ -23,12 +23,9 @@ class GForceMonitor(Monitor):
 
         self._width = width = config.App.span_len*config.GForceMonitor.col_span
         self._height = height = config.App.height
-
+        self._region = Region(x_pos, y_pos, width, height)
         self._chart = Chart(
-            x_pos,
-            y_pos,
-            width,
-            height,
+            self._region,
             x_axis_color=white.a7,
             y_axis_color=white.a7,
             axis_segment_count=8,
@@ -37,7 +34,7 @@ class GForceMonitor(Monitor):
             bg_char='G',
         )
         self._gforce_square_dot = SquareDot(
-            region=self._chart.region,
+            region=self._region,
             dot_size=round(config.GForceMonitor.box_size*self.height),
             scale=config.GForceMonitor.gforce_scale,
             inverted_y_scale=True,
@@ -49,10 +46,10 @@ class GForceMonitor(Monitor):
                 scale=config.GForceMonitor.slip_ratio_scale,
             )
             for region in (
-                self._chart.region.top_left,
-                self._chart.region.top_right,
-                self._chart.region.bottom_left,
-                self._chart.region.bottom_right,
+                self._region.top_left,
+                self._region.top_right,
+                self._region.bottom_left,
+                self._region.bottom_right,
             )
         ) if config.GForceMonitor.slip_ratio_enabled else None
 

@@ -13,10 +13,7 @@ from .region import Region
 class Chart:
     def __init__(
         self,
-        x_pos: float,
-        y_pos: float,
-        width: float,
-        height: float,
+        region: Region,
         x_axis_color: Color = white.transparent,
         y_axis_color: Color = white.transparent,
         x_axis_marker_color: Color = white.a1,
@@ -26,7 +23,7 @@ class Chart:
         y_axis_marker_length_ratio: float = 0.05,
         bg_char: str = '',
     ) -> None:
-        self.region = Region(x_pos, y_pos, width, height)
+        self._region = region
         self._x_axis_color = x_axis_color
         self._y_axis_color = y_axis_color
         self._x_axis_marker_color = x_axis_marker_color
@@ -39,10 +36,10 @@ class Chart:
 
         if len(bg_char) > 0:
             big_text(
-                x_pos,
-                y_pos,
-                width,
-                height,
+                self._region.x_pos,
+                self._region.y_pos,
+                self._region.width,
+                self._region.height,
                 text=self._bg_char,
                 font_color=white.alpha(self._bg_opacity),
                 expected_text_len=1,
@@ -53,12 +50,12 @@ class Chart:
         ac.setBackgroundOpacity(window, self._bg_opacity)
 
         # unpack
-        x_pos, y_pos, width, height = self.region.bounds
+        x_pos, y_pos, width, height = self._region.bounds
 
         # x-axis
-        horizontal_line(self.region.midpoint_left, width, self._x_axis_color)
+        horizontal_line(self._region.midpoint_left, width, self._x_axis_color)
         # y-axis
-        vertical_line(self.region.midpoint_top, height, self._y_axis_color)
+        vertical_line(self._region.midpoint_top, height, self._y_axis_color)
 
         # draw markers
         for i in range(self._axis_segmnt_count+1):

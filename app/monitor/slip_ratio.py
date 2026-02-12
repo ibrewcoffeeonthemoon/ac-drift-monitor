@@ -6,7 +6,7 @@ from ..lib.color import *
 from ..lib.number import num
 from ..telemetry import ac_api
 from ._base import Component, Monitor
-from .lib.canvas import Chart
+from .lib.canvas import Chart, Region
 from .lib.indicator import QuadBar
 
 
@@ -21,11 +21,9 @@ class _TyreSlipRatioMonitor(Component):
     ) -> None:
         self._i_slipRatio = i_slipRatio
 
+        self._region = Region(x_pos, y_pos, width, height)
         self._chart = Chart(
-            x_pos,
-            y_pos,
-            width,
-            height,
+            self._region,
             x_axis_marker_color=white.transparent,
             axis_segment_count=4,
             x_axis_marker_length_ratio=1.0,
@@ -33,7 +31,7 @@ class _TyreSlipRatioMonitor(Component):
             bg_char='S',
         )
         self._quad_bar = QuadBar(
-            region=self._chart.region,
+            region=self._region,
             color=red.a4,
             centered_y_scale=True,
         )
