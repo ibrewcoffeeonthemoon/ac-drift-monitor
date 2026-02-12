@@ -19,6 +19,8 @@ class AngleIndicator(Indicator):
         self._sensitivity = sensitivity
         self._reversed = reversed
         self._color = color
+        theta = math.degrees(math.atan2(chart.height, chart.width))
+        self._quadrant_boundries = (theta, 180-theta, 180+theta, 360-theta)
 
     def _quadrant(self, angle_degree: float) -> int:
         r'''
@@ -27,10 +29,14 @@ class AngleIndicator(Indicator):
          2 X 0
          / 3 \
         '''
-        shifted = angle_degree + 45
-        normalized = shifted % 360
-        id = int(normalized//90)
-        return id
+        b0, b1, b2, b3 = self._quadrant_boundries
+        remainder = angle_degree % 360
+        return (
+            0 if b3 <= remainder or remainder < b0 else
+            1 if b0 <= remainder < b1 else
+            2 if b1 <= remainder < b2 else
+            3
+        )
 
     def _nearest_corners(self, angle_degree: float) -> 'tuple[Vertex, Vertex, Vertex, Vertex]':
         id = self._quadrant(angle_degree)
