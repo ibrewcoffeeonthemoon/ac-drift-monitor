@@ -43,7 +43,7 @@ class GearMonitor(Monitor):
             expected_text_len=1
         )
         self._rpm_bar = QuadBar(
-            region=self._chart,
+            region=self._chart.region,
             color=white.a5,
         )
 

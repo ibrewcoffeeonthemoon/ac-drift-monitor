@@ -37,11 +37,11 @@ class SpeedMonitor(Monitor):
             bg_char='',
         )
         self._speed_bar_low = QuadBar(
-            region=self._chart,
+            region=self._chart.region,
             color=green.a2,
         )
         self._speed_bar_high = QuadBar(
-            region=self._chart,
+            region=self._chart.region,
             color=red.a4,
         )
         self._speed_meter = big_text(

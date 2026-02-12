@@ -37,7 +37,7 @@ class GForceMonitor(Monitor):
             bg_char='G',
         )
         self._gforce_square_dot = SquareDot(
-            region=self._chart,
+            region=self._chart.region,
             dot_size=round(config.GForceMonitor.box_size*self.height),
             scale=config.GForceMonitor.gforce_scale,
             inverted_y_scale=True,
@@ -49,10 +49,10 @@ class GForceMonitor(Monitor):
                 scale=config.GForceMonitor.slip_ratio_scale,
             )
             for region in (
-                self._chart.top_left,
-                self._chart.top_right,
-                self._chart.bottom_left,
-                self._chart.bottom_right,
+                self._chart.region.top_left,
+                self._chart.region.top_right,
+                self._chart.region.bottom_left,
+                self._chart.region.bottom_right,
             )
         ) if config.GForceMonitor.slip_ratio_enabled else None
 

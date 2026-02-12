@@ -10,7 +10,7 @@ from ..text import big_text
 from ._base import Region
 
 
-class Chart(Region):
+class Chart:
     def __init__(
         self,
         x_pos: float,
@@ -26,7 +26,11 @@ class Chart(Region):
         y_axis_marker_length_ratio: float = 0.05,
         bg_char: str = '',
     ) -> None:
-        super().__init__(x_pos, y_pos, width, height)
+        self.region = Region(x_pos, y_pos, width, height)
+        self.x_pos = x_pos
+        self.y_pos = y_pos
+        self.width = width
+        self.height = height
         self._x_axis_color = x_axis_color
         self._y_axis_color = y_axis_color
         self._x_axis_marker_color = x_axis_marker_color
@@ -77,27 +81,3 @@ class Chart(Region):
                 round(self._y_axis_marker_length_ratio*self.width),
                 self._y_axis_marker_color
             )
-
-    @property
-    def top_half(self) -> Region:
-        return Region(self.x_pos, self.y_pos, self.width, self.height/2)
-
-    @property
-    def bottom_half(self) -> Region:
-        return Region(self.x_pos, self.center.y, self.width, self.height/2)
-
-    @property
-    def top_left(self) -> Region:
-        return Region(self.x_pos, self.y_pos, self.width/2, self.height/2)
-
-    @property
-    def top_right(self) -> Region:
-        return Region(self.center.x, self.y_pos, self.width/2, self.height/2)
-
-    @property
-    def bottom_left(self) -> Region:
-        return Region(self.x_pos, self.center.y, self.width/2, self.height/2)
-
-    @property
-    def bottom_right(self) -> Region:
-        return Region(self.center.x, self.center.y, self.width/2, self.height/2)
