@@ -45,17 +45,3 @@ class BigText(Text):
         self.font_size = round(min(self._width, self._height)*self._shrink_factor)
         vertical_offset = round(self._height/2-self._font_size*3/4)
         self.position = Position(self._x_pos, self._y_pos+vertical_offset)
-
-
-def big_text(
-    region: Region,
-    text: str,
-    font_color: Color,
-    expected_text_len: int,
-) -> BigText:
-    return BigText(
-        region,
-        text=text,
-        font_color=font_color,
-        expected_text_len=expected_text_len,
-    )

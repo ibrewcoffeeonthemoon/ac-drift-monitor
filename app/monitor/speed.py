@@ -8,7 +8,7 @@ from ..telemetry import ac_api
 from ._base import Monitor
 from .lib.canvas import Chart, Region
 from .lib.indicator import QuadBar
-from .lib.text.big_text import big_text
+from .lib.text.big_text import BigText
 
 
 class SpeedMonitor(Monitor):
@@ -41,7 +41,7 @@ class SpeedMonitor(Monitor):
             region=self._region,
             color=red.a4,
         )
-        self._speed_meter = big_text(
+        self._speed_meter = BigText(
             self._region,
             text='',
             font_color=white.full,

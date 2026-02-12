@@ -6,7 +6,7 @@ from ....lib.color import *
 from ....lib.geometry import Vertex
 from ....window import window
 from ..gl.line import horizontal_line, vertical_line
-from ..text import big_text
+from ..text import BigText
 from .region import Region
 
 
@@ -35,7 +35,7 @@ class Chart:
         self._bg_char = bg_char
 
         if len(bg_char) > 0:
-            big_text(
+            BigText(
                 self._region,
                 text=self._bg_char,
                 font_color=white.alpha(self._bg_opacity),

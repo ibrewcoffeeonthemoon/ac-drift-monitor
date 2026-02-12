@@ -8,7 +8,7 @@ from ..telemetry import ac_api, ac_mem
 from ._base import Monitor
 from .lib.canvas import Chart, Region
 from .lib.indicator import QuadBar
-from .lib.text.big_text import big_text
+from .lib.text.big_text import BigText
 
 
 class GearMonitor(Monitor):
@@ -33,7 +33,7 @@ class GearMonitor(Monitor):
             y_axis_marker_length_ratio=1.0,
             bg_char='',
         )
-        self._gear_meter = big_text(
+        self._gear_meter = BigText(
             self._region,
             text='',
             font_color=white.full,
