@@ -1,22 +1,22 @@
 from abc import ABCMeta, abstractmethod
 
-from ..chart import Chart
+from ..canvas import Region
 
 
 class Indicator(metaclass=ABCMeta):
     def __init__(
         self,
-        chart: Chart,
+        region: Region,
         inverted_x_scale: bool = False,
         inverted_y_scale: bool = False,
         centered_x_scale: bool = False,
         centered_y_scale: bool = False,
     ) -> None:
-        self._chart = chart
-        self._x_pos = x_pos = chart.x_pos
-        self._y_pos = y_pos = chart.y_pos
-        self._width = width = chart.width
-        self._height = height = chart.height
+        self._region = region
+        self._x_pos = x_pos = region.x_pos
+        self._y_pos = y_pos = region.y_pos
+        self._width = width = region.width
+        self._height = height = region.height
         self._inverted_x_scale = inverted_x_scale
         self._inverted_y_scale = inverted_y_scale
         self._centered_x_scale = centered_x_scale

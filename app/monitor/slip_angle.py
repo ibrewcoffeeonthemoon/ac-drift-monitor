@@ -6,7 +6,7 @@ from ..lib.color import *
 from ..lib.number import num
 from ..telemetry import ac_api
 from ._base import Monitor
-from .lib.chart import CartesianChart
+from .lib.canvas import Chart, Region
 from .lib.indicator import AngleQuad
 
 
@@ -24,12 +24,9 @@ class SlipAngleMonitor(Monitor):
 
         self._width = width = config.App.span_len*config.SlipAngleMonitor.col_span
         self._height = height = config.App.height
-
-        self._chart = CartesianChart(
-            x_pos,
-            y_pos,
-            width,
-            height,
+        self._region = Region(x_pos, y_pos, width, height)
+        self._chart = Chart(
+            self._region,
             x_axis_color=white.a7,
             y_axis_color=white.a7,
             axis_segment_count=8,
@@ -38,13 +35,13 @@ class SlipAngleMonitor(Monitor):
             bg_char='A',
         )
         self._slip_angle_quad = AngleQuad(
-            chart=self._chart,
+            region=self._region,
             sensitivity=config.SlipAngleMonitor.sensitivity,
             reversed=True,
             color=cyan.a5,
         )
         self._steering_angle_quad = AngleQuad(
-            chart=self._chart,
+            region=self._region,
             sensitivity=(
                 num(config.SlipAngleMonitor.sensitivity)
                 .normalize(config.SlipAngleMonitor.wheel_degree/180).f
