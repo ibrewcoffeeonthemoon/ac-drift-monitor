@@ -5,7 +5,7 @@ import config
 from ..lib.color import *
 from ..telemetry import ac_api
 from ._base import Monitor
-from .lib.chart import CartesianChart
+from .lib.chart import CartesianChart, VirtualChart
 from .lib.indicator import QuadBar, SquareDot
 
 
@@ -43,7 +43,7 @@ class GForceMonitor(Monitor):
             inverted_y_scale=True,
         )
         self._slip_ratio_quad_bar = QuadBar(
-            chart=self._chart,
+            chart=VirtualChart(x_pos, y_pos+height/2, width, height/2),
             color=red.a4,
             scale=config.GForceMonitor.slip_ratio_scale,
         ) if config.GForceMonitor.slip_ratio_enabled else None
