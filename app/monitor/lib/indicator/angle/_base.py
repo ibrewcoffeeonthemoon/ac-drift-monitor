@@ -49,6 +49,6 @@ class AngleIndicator(Indicator):
         )
         vertex2 = Vertex(
             num(x_center-x_coord).clip(self._x_pos, self._x_pos+self._width).f,
-            num(y_center+y_coord).clip(self._y_pos, self._y_pos+self._width).f,
+            num(y_center+y_coord).clip(self._y_pos, self._y_pos+self._height).f,
         )
         return (vertex1, vertex2)
