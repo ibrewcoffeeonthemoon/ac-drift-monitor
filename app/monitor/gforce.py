@@ -5,7 +5,7 @@ import config
 from ..lib.color import *
 from ..telemetry import ac_api
 from ._base import Monitor
-from .lib.chart import CartesianChart
+from .lib.chart import Chart
 from .lib.indicator import QuadBar, SquareDot
 
 
@@ -24,7 +24,7 @@ class GForceMonitor(Monitor):
         self._width = width = config.App.span_len*config.GForceMonitor.col_span
         self._height = height = config.App.height
 
-        self._chart = CartesianChart(
+        self._chart = Chart(
             x_pos,
             y_pos,
             width,

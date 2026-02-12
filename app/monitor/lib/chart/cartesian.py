@@ -10,7 +10,7 @@ from ..text import big_text
 from ._base import Region
 
 
-class CartesianChart(Region):
+class Chart(Region):
     def __init__(
         self,
         x_pos: float,

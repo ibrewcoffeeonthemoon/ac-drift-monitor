@@ -1,7 +1,7 @@
 from ._base import Region
-from .cartesian import CartesianChart
+from .cartesian import Chart
 
 __all__ = [
     'Region',
-    'CartesianChart',
+    'Chart',
 ]

@@ -6,7 +6,7 @@ from ..lib.color import *
 from ..lib.number import num
 from ..telemetry import ac_api, ac_mem
 from ._base import Monitor
-from .lib.chart import CartesianChart
+from .lib.chart import Chart
 from .lib.indicator import QuadBar
 from .lib.text.big_text import big_text
 
@@ -26,7 +26,7 @@ class GearMonitor(Monitor):
         self._width = width = config.App.span_len*config.GearMonitor.col_span
         self._height = height = config.App.height
 
-        self._chart = CartesianChart(
+        self._chart = Chart(
             x_pos,
             y_pos,
             width,

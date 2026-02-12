@@ -2,7 +2,7 @@ from ...lib.color import *
 from ...lib.number import num
 from ...telemetry import ac_api
 from .._base import Component
-from ..lib.chart import CartesianChart
+from ..lib.chart import Chart
 from ..lib.indicator import QuadBar
 
 
@@ -17,7 +17,7 @@ class Pedal(Component):
         width: float,
         height: float,
     ) -> None:
-        self._chart = CartesianChart(
+        self._chart = Chart(
             x_pos,
             y_pos,
             width,
