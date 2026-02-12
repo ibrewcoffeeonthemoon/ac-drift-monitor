@@ -42,7 +42,7 @@ class SpeedMonitor(Monitor):
             color=red.a4,
         )
         self._speed_meter = big_text(
-            x_pos, y_pos, width, height,
+            self._region,
             text='',
             font_color=white.full,
             expected_text_len=3
