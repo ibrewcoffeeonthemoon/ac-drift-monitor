@@ -10,7 +10,7 @@ from .lib.indicator import QuadBar, SquareDot
 
 
 class GForceMonitor(Monitor):
-    data_keys = (CS.AccG, CS.SlipRatio, )
+    data_keys = (CS.AccG, CS.NdSlip, )
     enabled = config.GForceMonitor.enabled
     col_index = config.GForceMonitor.col_index
 
@@ -42,10 +42,18 @@ class GForceMonitor(Monitor):
             scale=config.GForceMonitor.gforce_scale,
             inverted_y_scale=True,
         )
-        self._slip_ratio_quad_bar = QuadBar(
-            chart=self._chart,
-            color=red.a4,
-            scale=config.GForceMonitor.slip_ratio_scale,
+        self._slip_ratio_quad_bars = tuple(
+            QuadBar(
+                chart=region,
+                color=red.a4,
+                scale=config.GForceMonitor.slip_ratio_scale,
+            )
+            for region in (
+                self._chart.top_left,
+                self._chart.top_right,
+                self._chart.bottom_left,
+                self._chart.bottom_right,
+            )
         ) if config.GForceMonitor.slip_ratio_enabled else None
 
     @property
@@ -58,9 +66,12 @@ class GForceMonitor(Monitor):
         self._gforce_square_dot.plot(x=x_accG, y=z_accG,)
 
     def _render_slip_ratio_quad_bar(self) -> None:
-        avg_rear_slipRatio = sum(ac_api[CS.SlipRatio].wma()[-2:])/2
-        if self._slip_ratio_quad_bar is not None:
-            self._slip_ratio_quad_bar.plot(avg_rear_slipRatio)
+        fl, fr, rl, rr = ac_api[CS.NdSlip].wma()
+        if self._slip_ratio_quad_bars is not None:
+            self._slip_ratio_quad_bars[0].plot(fl)
+            self._slip_ratio_quad_bars[1].plot(fr)
+            self._slip_ratio_quad_bars[2].plot(rl)
+            self._slip_ratio_quad_bars[3].plot(rr)
 
     def render(self) -> None:
         # draw axes

@@ -8,6 +8,7 @@ from ....window import window
 from ..gl.line import horizontal_line, vertical_line
 from ..text import big_text
 from ._base import Chart
+from .virtual import VirtualChart
 
 
 class CartesianChart(Chart):
@@ -77,3 +78,27 @@ class CartesianChart(Chart):
                 round(self._y_axis_marker_length_ratio*self.width),
                 self._y_axis_marker_color
             )
+
+    @property
+    def top_half(self) -> VirtualChart:
+        return VirtualChart(self.x_pos, self.y_pos, self.width, self.height/2)
+
+    @property
+    def bottom_half(self) -> VirtualChart:
+        return VirtualChart(self.x_pos, self.center.y, self.width, self.height/2)
+
+    @property
+    def top_left(self) -> VirtualChart:
+        return VirtualChart(self.x_pos, self.y_pos, self.width/2, self.height/2)
+
+    @property
+    def top_right(self) -> VirtualChart:
+        return VirtualChart(self.center.x, self.y_pos, self.width/2, self.height/2)
+
+    @property
+    def bottom_left(self) -> VirtualChart:
+        return VirtualChart(self.x_pos, self.center.y, self.width/2, self.height/2)
+
+    @property
+    def bottom_right(self) -> VirtualChart:
+        return VirtualChart(self.center.x, self.center.y, self.width/2, self.height/2)
