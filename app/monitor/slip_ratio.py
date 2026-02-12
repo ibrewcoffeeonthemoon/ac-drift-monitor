@@ -67,8 +67,8 @@ class _TyreSlipRatioMonitor(Component):
 
 class SlipRatioMonitor(Monitor):
     data_keys = (CS.SlipRatio, )
-    enabled = config.SlipRatioMonitor.enabled
-    col_index = config.SlipRatioMonitor.col_index
+    enabled = config.TyreInfoMonitor.enabled
+    col_index = config.TyreInfoMonitor.col_index
 
     def __init__(
         self,
@@ -77,7 +77,7 @@ class SlipRatioMonitor(Monitor):
     ) -> None:
         super().__init__(x_pos, y_pos)
 
-        self._width = width = config.App.span_len*config.SlipRatioMonitor.col_span
+        self._width = width = config.App.span_len*config.TyreInfoMonitor.col_span
         self._height = height = config.App.height
 
         self._tyres_slip_ratio_monitors = [
