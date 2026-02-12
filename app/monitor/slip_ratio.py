@@ -11,7 +11,7 @@ from .lib.indicator import QuadBar
 from .lib.text import BigText
 
 
-class _TyreSlipRatioMonitor(Component):
+class _EachTyreInfoMonitor(Component):
     def __init__(
         self,
         i_slipRatio: int,
@@ -65,7 +65,7 @@ class _TyreSlipRatioMonitor(Component):
         self._pressure_text.text = str(round(pressure, 1))
 
 
-class SlipRatioMonitor(Monitor):
+class TyreInfoMonitor(Monitor):
     data_keys = (CS.SlipRatio, )
     enabled = config.TyreInfoMonitor.enabled
     col_index = config.TyreInfoMonitor.col_index
@@ -81,7 +81,7 @@ class SlipRatioMonitor(Monitor):
         self._height = height = config.App.height
 
         self._tyres_slip_ratio_monitors = [
-            _TyreSlipRatioMonitor(
+            _EachTyreInfoMonitor(
                 i_slipRatio=i,
                 x_pos=_x_pos,
                 y_pos=_y_pos,

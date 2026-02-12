@@ -3,12 +3,12 @@ from .gear import GearMonitor
 from .gforce import GForceMonitor
 from .pedals import PedalsMonitor
 from .slip_angle import SlipAngleMonitor
-from .slip_ratio import SlipRatioMonitor
+from .slip_ratio import TyreInfoMonitor
 from .speed import SpeedMonitor
 
 MONITOR_CLASSES = (
     GForceMonitor,
-    SlipRatioMonitor,
+    TyreInfoMonitor,
     SlipAngleMonitor,
     SpeedMonitor,
     GearMonitor,
@@ -18,7 +18,7 @@ MONITOR_CLASSES = (
 __all__ = [
     'Monitor',
     'GForceMonitor',
-    'SlipRatioMonitor',
+    'TyreInfoMonitor',
     'SlipAngleMonitor',
     'SpeedMonitor',
     'GearMonitor',
