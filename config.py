@@ -28,6 +28,7 @@ class GForceMonitor:
     col_index = _int('GForceMonitor', 'col_index')
     col_span = _int('GForceMonitor', 'col_span')
     box_size = _float('GForceMonitor', 'box_size')
+    gforce_scale = _float('GForceMonitor', 'gforce_scale')
 
 
 class SlipAngleMonitor:

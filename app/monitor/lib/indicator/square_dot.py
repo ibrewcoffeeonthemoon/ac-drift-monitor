@@ -1,5 +1,6 @@
 from ....lib.color import *
 from ....lib.geometry import Vertex
+from ....lib.number import num
 from ..chart import Chart
 from ..gl.shape import square
 from ._base import Indicator
@@ -11,6 +12,7 @@ class SquareDot(Indicator):
         chart: Chart,
         dot_size: int = 30,
         color: Color = red.full,
+        scale: float = 1.0,
         inverted_x_scale: bool = False,
         inverted_y_scale: bool = False,
         centered_x_scale: bool = True,
@@ -25,6 +27,7 @@ class SquareDot(Indicator):
         )
         self._dot_size = dot_size
         self._color = color
+        self._scale = scale
 
     def _vertices(self, x: float, y: float) -> Vertex:
         return Vertex(*(
@@ -35,7 +38,10 @@ class SquareDot(Indicator):
 
     def plot(self, x: float, y: float,) -> None:
         square(
-            self._vertices(x, y),
+            self._vertices(
+                x=num(x).normalize(self._scale).clip(-1, 1).f,
+                y=num(y).normalize(self._scale).clip(-1, 1).f,
+            ),
             length=self._dot_size,
             color=self._color
         )
