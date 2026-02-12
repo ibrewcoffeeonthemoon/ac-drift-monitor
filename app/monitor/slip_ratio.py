@@ -30,7 +30,6 @@ class _TyreSlipRatioMonitor(Component):
             axis_segment_count=4,
             x_axis_marker_length_ratio=1.0,
             y_axis_marker_length_ratio=1.0,
-            bg_opacity=0.2,
             bg_char='S',
         )
         self._quad_bar = QuadBar(

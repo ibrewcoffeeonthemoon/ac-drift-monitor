@@ -25,7 +25,6 @@ class Pedal(Component):
             x_axis_marker_color=white.transparent,
             axis_segment_count=8,
             y_axis_marker_length_ratio=1.0,
-            bg_opacity=0.4,
             bg_char='',
         )
         self._bar = QuadBar(
