@@ -325,7 +325,7 @@ def setRange(min: float, max: float, maxPoint: float = 0.0) -> int:
     ...
 
 
-def setSize(object: Any, width: int, height: int) -> int:
+def setSize(object: Any, width: float, height: float) -> int:
     ...
 
 

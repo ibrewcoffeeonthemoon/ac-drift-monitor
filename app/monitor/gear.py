@@ -6,7 +6,7 @@ from ..lib.color import *
 from ..lib.number import num
 from ..telemetry import ac_api, ac_mem
 from ._base import Monitor
-from .lib.chart import Chart
+from .lib.chart import CartesianChart
 from .lib.indicator import QuadBar
 from .lib.text.big_text import big_text
 
@@ -18,15 +18,15 @@ class GearMonitor(Monitor):
 
     def __init__(
         self,
-        x_pos: int,
-        y_pos: int,
+        x_pos: float,
+        y_pos: float,
     ) -> None:
         super().__init__(x_pos, y_pos)
 
         self._width = width = config.App.span_len*config.GearMonitor.col_span
         self._height = height = config.App.height
 
-        self._chart = Chart(
+        self._chart = CartesianChart(
             x_pos,
             y_pos,
             width,
@@ -34,7 +34,6 @@ class GearMonitor(Monitor):
             x_axis_marker_color=white.transparent,
             axis_segment_count=8,
             y_axis_marker_length_ratio=1.0,
-            bg_opacity=0.4,
             bg_char='',
         )
         self._gear_meter = big_text(
@@ -49,9 +48,9 @@ class GearMonitor(Monitor):
         )
 
     @property
-    def width(self) -> int: return self._width
+    def width(self) -> float: return self._width
     @property
-    def height(self) -> int: return self._height
+    def height(self) -> float: return self._height
 
     def render(self) -> None:
         # draw axes
@@ -69,7 +68,7 @@ class GearMonitor(Monitor):
             'R'
         )
         self._gear_meter.text = gear_text
-        maxRpm = ac_mem.static.maxRpm  # type: int
+        maxRpm = ac_mem.static.maxRpm  # type: float
         rpm_bar_color = (
             white.a5 if rpm <= maxRpm*0.9 else
             red.a5 if not engine_limited else

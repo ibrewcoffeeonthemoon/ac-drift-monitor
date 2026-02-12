@@ -3,10 +3,9 @@ from acsys import CS
 import config
 
 from ..lib.color import *
-from ..lib.number import num
 from ..telemetry import ac_api
 from ._base import Monitor
-from .lib.chart import Chart
+from .lib.chart import CartesianChart
 from .lib.indicator import QuadBar, SquareDot
 
 
@@ -17,15 +16,15 @@ class GForceMonitor(Monitor):
 
     def __init__(
         self,
-        x_pos: int,
-        y_pos: int,
+        x_pos: float,
+        y_pos: float,
     ) -> None:
         super().__init__(x_pos, y_pos)
 
         self._width = width = config.App.span_len*config.GForceMonitor.col_span
         self._height = height = config.App.height
 
-        self._chart = Chart(
+        self._chart = CartesianChart(
             x_pos,
             y_pos,
             width,
@@ -35,37 +34,38 @@ class GForceMonitor(Monitor):
             axis_segment_count=8,
             x_axis_marker_length_ratio=1.0,
             y_axis_marker_length_ratio=1.0,
-            bg_opacity=0.2,
             bg_char='G',
         )
-        self._quad_bar = QuadBar(
-            chart=self._chart,
-            color=red.a4,
-        )
-        self._square_dot = SquareDot(
+        self._gforce_square_dot = SquareDot(
             chart=self._chart,
             dot_size=round(config.GForceMonitor.box_size*self.height),
+            scale=config.GForceMonitor.gforce_scale,
             inverted_y_scale=True,
         )
+        self._slip_ratio_quad_bar = QuadBar(
+            chart=self._chart,
+            color=red.a4,
+            scale=config.GForceMonitor.slip_ratio_scale,
+        ) if config.GForceMonitor.slip_ratio_enabled else None
 
     @property
-    def width(self) -> int: return self._width
+    def width(self) -> float: return self._width
     @property
-    def height(self) -> int: return self._height
+    def height(self) -> float: return self._height
+
+    def _render_gforce_square_dot(self) -> None:
+        x_accG, _, z_accG = ac_api[CS.AccG].wma()
+        self._gforce_square_dot.plot(x=x_accG, y=z_accG,)
+
+    def _render_slip_ratio_quad_bar(self) -> None:
+        avg_rear_slipRatio = sum(ac_api[CS.SlipRatio].wma()[-2:])/2
+        if self._slip_ratio_quad_bar is not None:
+            self._slip_ratio_quad_bar.plot(avg_rear_slipRatio)
 
     def render(self) -> None:
         # draw axes
         self._chart.draw_axes()
 
-        # fetch telemetry
-        avg_rear_slipRatio = sum(ac_api[CS.SlipRatio].wma()[-2:])/2
-        x_accG, _, z_accG = ac_api[CS.AccG].wma()
-
-        # plot the indicators
-        self._quad_bar.plot(
-            num(avg_rear_slipRatio).normalize(3.0).clip(0, 1).f
-        )
-        self._square_dot.plot(
-            x=num(x_accG).normalize(1.2).clip(-1, 1).f,
-            y=num(z_accG).normalize(1.2).clip(-1, 1).f,
-        )
+        # fetch telemetry and plot the indicators
+        self._render_gforce_square_dot()
+        self._render_slip_ratio_quad_bar()

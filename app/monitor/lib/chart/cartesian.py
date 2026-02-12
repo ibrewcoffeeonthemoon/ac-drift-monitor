@@ -1,19 +1,22 @@
 import ac
 
-from ...lib.color import *
-from ...lib.geometry import Vertex
-from ...window import window
-from .gl.line import horizontal_line, vertical_line
-from .text import big_text
+import config
+
+from ....lib.color import *
+from ....lib.geometry import Vertex
+from ....window import window
+from ..gl.line import horizontal_line, vertical_line
+from ..text import big_text
+from ._base import Chart
 
 
-class Chart:
+class CartesianChart(Chart):
     def __init__(
         self,
-        x_pos: int,
-        y_pos: int,
-        width: int,
-        height: int,
+        x_pos: float,
+        y_pos: float,
+        width: float,
+        height: float,
         x_axis_color: Color = white.transparent,
         y_axis_color: Color = white.transparent,
         x_axis_marker_color: Color = white.a1,
@@ -21,13 +24,9 @@ class Chart:
         axis_segment_count: int = 8,
         x_axis_marker_length_ratio: float = 0.05,
         y_axis_marker_length_ratio: float = 0.05,
-        bg_opacity: float = 0.2,
         bg_char: str = '',
     ) -> None:
-        self.x_pos = x_pos
-        self.y_pos = y_pos
-        self.width = width
-        self.height = height
+        super().__init__(x_pos, y_pos, width, height)
         self._x_axis_color = x_axis_color
         self._y_axis_color = y_axis_color
         self._x_axis_marker_color = x_axis_marker_color
@@ -35,7 +34,7 @@ class Chart:
         self._axis_segmnt_count = axis_segment_count
         self._x_axis_marker_length_ratio = x_axis_marker_length_ratio
         self._y_axis_marker_length_ratio = y_axis_marker_length_ratio
-        self._bg_opacity = bg_opacity
+        self._bg_opacity = config.App.bg_opacity
         self._bg_char = bg_char
 
         if len(bg_char) > 0:

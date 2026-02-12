@@ -12,24 +12,24 @@ def line(
 ) -> None:
     ac.glColor4f(*color)
     ac.glBegin(acsys.GL.Lines)
-    ac.glVertex2f(*vertex1)
-    ac.glVertex2f(*vertex2)
+    ac.glVertex2f(*vertex1.f)
+    ac.glVertex2f(*vertex2.f)
     ac.glEnd()
 
 
 def horizontal_line(
     vertex1: Vertex,
-    length: int,
+    length: float,
     color: Color = white.full,
 ) -> None:
-    x_pos, y_pos = vertex1
+    x_pos, y_pos = vertex1.f
     line(Vertex(x_pos, y_pos), Vertex(x_pos+length, y_pos), color)
 
 
 def vertical_line(
     vertex1: Vertex,
-    length: int,
+    length: float,
     color: Color = white.full,
 ) -> None:
-    x_pos, y_pos = vertex1
+    x_pos, y_pos = vertex1.f
     line(Vertex(x_pos, y_pos), Vertex(x_pos, y_pos+length), color)

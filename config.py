@@ -13,8 +13,9 @@ _str = parser.get
 
 
 class App:
-    height = _int('App', 'height')
-    span_len = height//2
+    height = _float('App', 'height')
+    bg_opacity = _float('App', 'bg_opacity')
+    span_len = height/2
 
 
 class SlipRatioMonitor:
@@ -28,6 +29,17 @@ class GForceMonitor:
     col_index = _int('GForceMonitor', 'col_index')
     col_span = _int('GForceMonitor', 'col_span')
     box_size = _float('GForceMonitor', 'box_size')
+    gforce_scale = _float('GForceMonitor', 'gforce_scale')
+    slip_ratio_enabled = _boolean('GForceMonitor', 'slip_ratio_enabled')
+    slip_ratio_scale = _float('GForceMonitor', 'slip_ratio_scale')
+
+
+class SlipAngleMonitor:
+    enabled = _boolean('SlipAngleMonitor', 'enabled')
+    col_index = _int('SlipAngleMonitor', 'col_index')
+    col_span = _int('SlipAngleMonitor', 'col_span')
+    sensitivity = _float('SlipAngleMonitor', 'sensitivity')
+    wheel_degree = _float('SlipAngleMonitor', 'wheel_degree')
 
 
 class SpeedMonitor:

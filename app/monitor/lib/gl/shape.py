@@ -7,15 +7,15 @@ from ....lib.geometry import Vertex
 
 def rectangle(
     vertex_center: Vertex,
-    width: int,
-    height: int,
+    width: float,
+    height: float,
     color: Color = white.full,
 ) -> None:
-    x_pos, y_pos = vertex_center
+    x_pos, y_pos = vertex_center.i
     ac.glColor4f(*color)
     ac.glQuad(
-        x_pos - width//2,
-        y_pos - height//2,
+        x_pos - width/2,
+        y_pos - height/2,
         width,
         height,
     )
@@ -23,7 +23,7 @@ def rectangle(
 
 def square(
     vertex_center: Vertex,
-    length: int,
+    length: float,
     color: Color = white.full,
 ) -> None:
     rectangle(vertex_center, length, length, color)
@@ -38,8 +38,8 @@ def quadrilateral(
 ) -> None:
     ac.glColor4f(*color)
     ac.glBegin(acsys.GL.Quads)
-    ac.glVertex2f(*vertex1)
-    ac.glVertex2f(*vertex2)
-    ac.glVertex2f(*vertex3)
-    ac.glVertex2f(*vertex4)
+    ac.glVertex2f(*vertex1.f)
+    ac.glVertex2f(*vertex2.f)
+    ac.glVertex2f(*vertex3.f)
+    ac.glVertex2f(*vertex4.f)
     ac.glEnd()

@@ -6,7 +6,7 @@ from ..lib.color import *
 from ..lib.number import num
 from ..telemetry import ac_api
 from ._base import Monitor
-from .lib.chart import Chart
+from .lib.chart import CartesianChart
 from .lib.indicator import QuadBar
 from .lib.text.big_text import big_text
 
@@ -18,15 +18,15 @@ class SpeedMonitor(Monitor):
 
     def __init__(
         self,
-        x_pos: int,
-        y_pos: int,
+        x_pos: float,
+        y_pos: float,
     ) -> None:
         super().__init__(x_pos, y_pos)
 
         self._width = width = config.App.span_len*config.SpeedMonitor.col_span
         self._height = height = config.App.height
 
-        self._chart = Chart(
+        self._chart = CartesianChart(
             x_pos,
             y_pos,
             width,
@@ -34,7 +34,6 @@ class SpeedMonitor(Monitor):
             x_axis_marker_color=white.transparent,
             axis_segment_count=8,
             y_axis_marker_length_ratio=1.0,
-            bg_opacity=0.4,
             bg_char='',
         )
         self._speed_bar_low = QuadBar(
@@ -53,9 +52,9 @@ class SpeedMonitor(Monitor):
         )
 
     @property
-    def width(self) -> int: return self._width
+    def width(self) -> float: return self._width
     @property
-    def height(self) -> int: return self._height
+    def height(self) -> float: return self._height
 
     def render(self) -> None:
         # draw axes

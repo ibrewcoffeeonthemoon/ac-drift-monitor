@@ -60,7 +60,7 @@ class Text(metaclass=ABCMeta):
     @size.setter
     def size(self, val: Size) -> None:
         self._size = val
-        ac.setSize(self._label, *val)
+        ac.setSize(self._label, *val.i)
 
     ''''''
     @property
@@ -70,4 +70,4 @@ class Text(metaclass=ABCMeta):
     @position.setter
     def position(self, val: Position) -> None:
         self._position = val
-        ac.setPosition(self._label, *val)
+        ac.setPosition(self._label, *val.f)

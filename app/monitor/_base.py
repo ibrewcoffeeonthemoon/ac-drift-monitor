@@ -16,17 +16,17 @@ class Monitor(Component):
 
     def __init__(
         self,
-        x_pos: int,
-        y_pos: int,
+        x_pos: float,
+        y_pos: float,
     ) -> None:
         ac_api.register(*self.data_keys)
 
     @property
     @abstractmethod
-    def width(self) -> int:
+    def width(self) -> float:
         ...
 
     @property
     @abstractmethod
-    def height(self) -> int:
+    def height(self) -> float:
         ...

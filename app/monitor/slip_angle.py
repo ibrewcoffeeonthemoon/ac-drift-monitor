@@ -1,0 +1,71 @@
+from acsys import CS
+
+import config
+
+from ..lib.color import *
+from ..lib.number import num
+from ..telemetry import ac_api
+from ._base import Monitor
+from .lib.chart import CartesianChart
+from .lib.indicator import AngleQuad
+
+
+class SlipAngleMonitor(Monitor):
+    data_keys = (CS.SlipAngle, CS.Steer)
+    enabled = config.SlipAngleMonitor.enabled
+    col_index = config.SlipAngleMonitor.col_index
+
+    def __init__(
+        self,
+        x_pos: float,
+        y_pos: float,
+    ) -> None:
+        super().__init__(x_pos, y_pos)
+
+        self._width = width = config.App.span_len*config.SlipAngleMonitor.col_span
+        self._height = height = config.App.height
+
+        self._chart = CartesianChart(
+            x_pos,
+            y_pos,
+            width,
+            height,
+            x_axis_color=white.a7,
+            y_axis_color=white.a7,
+            axis_segment_count=8,
+            x_axis_marker_length_ratio=1.0,
+            y_axis_marker_length_ratio=1.0,
+            bg_char='A',
+        )
+        self._slip_angle_quad = AngleQuad(
+            chart=self._chart,
+            sensitivity=config.SlipAngleMonitor.sensitivity,
+            reversed=True,
+            color=cyan.a5,
+        )
+        self._steering_angle_quad = AngleQuad(
+            chart=self._chart,
+            sensitivity=(
+                num(config.SlipAngleMonitor.sensitivity)
+                .normalize(config.SlipAngleMonitor.wheel_degree/180).f
+            ),
+            reversed=True,
+            color=blue.a5,
+        )
+
+    @property
+    def width(self) -> float: return self._width
+    @property
+    def height(self) -> float: return self._height
+
+    def render(self) -> None:
+        # draw axes
+        self._chart.draw_axes()
+
+        # fetch telemetry
+        avg_rear_slipAngle_degree = sum(ac_api[CS.SlipAngle].wma()[-2:])/2
+        steer_angle_degree = ac_api[CS.Steer].last[0]
+
+        # plot the indicators
+        self._slip_angle_quad.plot(avg_rear_slipAngle_degree)
+        self._steering_angle_quad.plot(steer_angle_degree)

@@ -3,17 +3,33 @@ NOTE: on python 3.3.5, tuple subclass is roughly 2.5x to 3x slower than native t
 """
 
 
-class Tuple2i(tuple):
-    # fixed slots, no __dict__ for this object, saves memory footprint
-    __slots__ = ()
+class ValuePair:
+    __slots__ = ('x', 'y')
 
-    def __new__(cls, x: 'int | float', y: 'int | float') -> 'Tuple2i':
-        return super().__new__(cls, (
-            round(x),
-            round(y)
-        ))
+    def __init__(
+        self,
+        x: float,
+        y: float,
+    ) -> None:
+        self.x = x
+        self.y = y
+
+    @property
+    def f(self) -> 'tuple[float, float]':
+        return self.x, self.y
+
+    @property
+    def i(self) -> 'tuple[int, int]':
+        return round(self.x), round(self.y)
 
 
-Vertex = Tuple2i
-Size = Tuple2i
-Position = Tuple2i
+class Vertex(ValuePair):
+    pass
+
+
+class Size(ValuePair):
+    pass
+
+
+class Position(ValuePair):
+    pass

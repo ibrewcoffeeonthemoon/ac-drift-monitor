@@ -1,3 +1,6 @@
+import math
+
+
 class Number:
     # fixed slots, no __dict__ for this object, saves memory footprint
     __slots__ = ('_val', )
@@ -27,6 +30,14 @@ class Number:
 
     def clip(self, lower: float, upper: float) -> 'Number':
         self._val = min(max(self._val, lower), upper)
+        return self
+
+    def degree(self) -> 'Number':
+        self._val = math.degrees(self._val)
+        return self
+
+    def radian(self) -> 'Number':
+        self._val = math.radians(self._val)
         return self
 
 
