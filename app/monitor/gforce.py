@@ -42,17 +42,16 @@ class GForceMonitor(Monitor):
             scale=config.GForceMonitor.gforce_scale,
             inverted_y_scale=True,
         )
-        self._slip_ratio_quad_bars = (
+        self._slip_ratio_quad_bars = tuple(
             QuadBar(
-                chart=self._chart.bottom_left,
+                chart=region,
                 color=red.a4,
                 scale=config.GForceMonitor.slip_ratio_scale,
-            ),
-            QuadBar(
-                chart=self._chart.bottom_right,
-                color=red.a4,
-                scale=config.GForceMonitor.slip_ratio_scale,
-            ),
+            )
+            for region in (
+                self._chart.bottom_left,
+                self._chart.bottom_right,
+            )
         ) if config.GForceMonitor.slip_ratio_enabled else None
 
     @property
