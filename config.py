@@ -30,6 +30,7 @@ class GForceMonitor:
     box_size = _float('GForceMonitor', 'box_size')
     gforce_scale = _float('GForceMonitor', 'gforce_scale')
     slip_ratio_enabled = _boolean('GForceMonitor', 'slip_ratio_enabled')
+    slip_ratio_scale = _float('GForceMonitor', 'slip_ratio_scale')
 
 
 class SlipAngleMonitor:

@@ -3,7 +3,6 @@ from acsys import CS
 import config
 
 from ..lib.color import *
-from ..lib.number import num
 from ..telemetry import ac_api
 from ._base import Monitor
 from .lib.chart import Chart
@@ -47,6 +46,7 @@ class GForceMonitor(Monitor):
         self._slip_ratio_quad_bar = QuadBar(
             chart=self._chart,
             color=red.a4,
+            scale=config.GForceMonitor.slip_ratio_scale,
         ) if config.GForceMonitor.slip_ratio_enabled else None
 
     @property
@@ -61,9 +61,7 @@ class GForceMonitor(Monitor):
     def _render_slip_ratio_quad_bar(self) -> None:
         avg_rear_slipRatio = sum(ac_api[CS.SlipRatio].wma()[-2:])/2
         if self._slip_ratio_quad_bar is not None:
-            self._slip_ratio_quad_bar.plot(
-                num(avg_rear_slipRatio).normalize(3.0).clip(0, 1).f
-            )
+            self._slip_ratio_quad_bar.plot(avg_rear_slipRatio)
 
     def render(self) -> None:
         # draw axes
