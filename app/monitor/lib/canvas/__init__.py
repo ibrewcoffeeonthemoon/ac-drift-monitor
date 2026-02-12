@@ -1,5 +1,5 @@
-from ._base import Region
 from .chart import Chart
+from .region import Region
 
 __all__ = [
     'Region',

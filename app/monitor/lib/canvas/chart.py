@@ -7,7 +7,7 @@ from ....lib.geometry import Vertex
 from ....window import window
 from ..gl.line import horizontal_line, vertical_line
 from ..text import big_text
-from ._base import Region
+from .region import Region
 
 
 class Chart:
