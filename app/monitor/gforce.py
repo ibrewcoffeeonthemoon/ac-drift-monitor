@@ -10,7 +10,7 @@ from .lib.indicator import QuadBar, SquareDot
 
 
 class GForceMonitor(Monitor):
-    data_keys = (CS.AccG, CS.SlipRatio, )
+    data_keys = (CS.AccG, CS.NdSlip, )
     enabled = config.GForceMonitor.enabled
     col_index = config.GForceMonitor.col_index
 
@@ -58,7 +58,8 @@ class GForceMonitor(Monitor):
         self._gforce_square_dot.plot(x=x_accG, y=z_accG,)
 
     def _render_slip_ratio_quad_bar(self) -> None:
-        avg_rear_slipRatio = sum(ac_api[CS.SlipRatio].wma()[-2:])/2
+        fl, fr, rl, rr = ac_api[CS.NdSlip].wma()
+        avg_rear_slipRatio = (rl+rr)/2
         if self._slip_ratio_quad_bar is not None:
             self._slip_ratio_quad_bar.plot(avg_rear_slipRatio)
 
