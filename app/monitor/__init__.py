@@ -3,8 +3,8 @@ from .gear import GearMonitor
 from .gforce import GForceMonitor
 from .pedals import PedalsMonitor
 from .slip_angle import SlipAngleMonitor
-from .slip_ratio import TyreInfoMonitor
 from .speed import SpeedMonitor
+from .tyre_info import TyreInfoMonitor
 
 MONITOR_CLASSES = (
     GForceMonitor,
