@@ -42,10 +42,17 @@ class GForceMonitor(Monitor):
             scale=config.GForceMonitor.gforce_scale,
             inverted_y_scale=True,
         )
-        self._slip_ratio_quad_bar = QuadBar(
-            chart=self._chart.bottom_half,
-            color=red.a4,
-            scale=config.GForceMonitor.slip_ratio_scale,
+        self._slip_ratio_quad_bars = (
+            QuadBar(
+                chart=self._chart.bottom_left,
+                color=red.a4,
+                scale=config.GForceMonitor.slip_ratio_scale,
+            ),
+            QuadBar(
+                chart=self._chart.bottom_right,
+                color=red.a4,
+                scale=config.GForceMonitor.slip_ratio_scale,
+            ),
         ) if config.GForceMonitor.slip_ratio_enabled else None
 
     @property
@@ -59,9 +66,9 @@ class GForceMonitor(Monitor):
 
     def _render_slip_ratio_quad_bar(self) -> None:
         fl, fr, rl, rr = ac_api[CS.NdSlip].wma()
-        avg_rear_slipRatio = (rl+rr)/2
-        if self._slip_ratio_quad_bar is not None:
-            self._slip_ratio_quad_bar.plot(avg_rear_slipRatio)
+        if self._slip_ratio_quad_bars is not None:
+            self._slip_ratio_quad_bars[0].plot(rl)
+            self._slip_ratio_quad_bars[1].plot(rr)
 
     def render(self) -> None:
         # draw axes
