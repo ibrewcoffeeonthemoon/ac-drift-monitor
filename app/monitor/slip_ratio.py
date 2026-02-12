@@ -4,10 +4,11 @@ import config
 
 from ..lib.color import *
 from ..lib.number import num
-from ..telemetry import ac_api
+from ..telemetry import ac_api, ac_mem
 from ._base import Component, Monitor
 from .lib.canvas import Chart, Region
 from .lib.indicator import QuadBar
+from .lib.text import BigText
 
 
 class _TyreSlipRatioMonitor(Component):
@@ -28,12 +29,23 @@ class _TyreSlipRatioMonitor(Component):
             axis_segment_count=4,
             x_axis_marker_length_ratio=1.0,
             y_axis_marker_length_ratio=1.0,
-            bg_char='S',
         )
         self._quad_bar = QuadBar(
             region=self._region,
             color=red.a4,
             centered_y_scale=True,
+        )
+        self._temperature_text = BigText(
+            region=self._region.top_half,
+            text='',
+            font_color=white.full,
+            expected_text_len=3,
+        )
+        self._pressure_text = BigText(
+            region=self._region.bottom_half,
+            text='',
+            font_color=white.full,
+            expected_text_len=3,
         )
 
     def render(self) -> None:
@@ -42,11 +54,15 @@ class _TyreSlipRatioMonitor(Component):
 
         # fetch telemetry
         slipRatio = ac_api[CS.SlipRatio].wma()[self._i_slipRatio]
+        temperature = ac_mem.physics.tyreCoreTemperature[self._i_slipRatio]  # type: float
+        pressure = ac_mem.physics.wheelsPressure[self._i_slipRatio]  # type: float
 
         # plot the indicators
         self._quad_bar.plot(
             num(slipRatio).normalize(3.0).clip(-1, 1).f
         )
+        self._temperature_text.text = str(round(temperature, 1))
+        self._pressure_text.text = str(round(pressure, 1))
 
 
 class SlipRatioMonitor(Monitor):
