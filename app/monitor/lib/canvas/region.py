@@ -15,6 +15,7 @@ class Region:
         self.y_pos = y_pos
         self.width = width
         self.height = height
+        self.bounds = (x_pos, y_pos, width, height)
         self.corner_top_left = Vertex(x_pos, y_pos)
         self.corner_top_right = Vertex(x_pos+width, y_pos)
         self.corner_bottom_left = Vertex(x_pos, y_pos+height)
@@ -25,6 +26,10 @@ class Region:
             self.corner_bottom_left,
             self.corner_bottom_right,
         )
+        self.midpoint_top = Vertex(x_pos+width/2, y_pos)
+        self.midpoint_bottom = Vertex(x_pos+width/2, y_pos+height)
+        self.midpoint_left = Vertex(x_pos, y_pos+height/2)
+        self.midpoint_right = Vertex(x_pos+width, y_pos+height/2)
         self.center = Vertex(x_pos+width/2, y_pos+height/2)
         self.diagonal_len = math.sqrt(width**2 + height**2)
 

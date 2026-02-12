@@ -27,10 +27,6 @@ class Chart:
         bg_char: str = '',
     ) -> None:
         self.region = Region(x_pos, y_pos, width, height)
-        self.x_pos = x_pos
-        self.y_pos = y_pos
-        self.width = width
-        self.height = height
         self._x_axis_color = x_axis_color
         self._y_axis_color = y_axis_color
         self._x_axis_marker_color = x_axis_marker_color
@@ -43,10 +39,10 @@ class Chart:
 
         if len(bg_char) > 0:
             big_text(
-                self.x_pos,
-                self.y_pos,
-                self.width,
-                self.height,
+                x_pos,
+                y_pos,
+                width,
+                height,
                 text=self._bg_char,
                 font_color=white.alpha(self._bg_opacity),
                 expected_text_len=1,
@@ -56,28 +52,31 @@ class Chart:
         # set layouts, styles
         ac.setBackgroundOpacity(window, self._bg_opacity)
 
+        # unpack
+        x_pos, y_pos, width, height = self.region.bounds
+
         # x-axis
-        horizontal_line(Vertex(self.x_pos, self.y_pos+self.height/2), self.width, self._x_axis_color)
+        horizontal_line(self.region.midpoint_left, width, self._x_axis_color)
         # y-axis
-        vertical_line(Vertex(self.x_pos+self.width/2, self.y_pos), self.height, self._y_axis_color)
+        vertical_line(self.region.midpoint_top, height, self._y_axis_color)
 
         # draw markers
         for i in range(self._axis_segmnt_count+1):
             # x-axis markers
             vertical_line(
                 Vertex(
-                    self.x_pos+i*self.width/self._axis_segmnt_count,
-                    self.y_pos+self.height/2-self._x_axis_marker_length_ratio*self.height/2,
+                    x_pos+i*width/self._axis_segmnt_count,
+                    y_pos+height/2-self._x_axis_marker_length_ratio*height/2,
                 ),
-                round(self._x_axis_marker_length_ratio*self.height),
+                round(self._x_axis_marker_length_ratio*height),
                 self._x_axis_marker_color,
             )
             # y-axis markers
             horizontal_line(
                 Vertex(
-                    self.x_pos+self.width/2-self._y_axis_marker_length_ratio*self.width/2,
-                    self.y_pos+i*self.height/self._axis_segmnt_count,
+                    x_pos+width/2-self._y_axis_marker_length_ratio*width/2,
+                    y_pos+i*height/self._axis_segmnt_count,
                 ),
-                round(self._y_axis_marker_length_ratio*self.width),
+                round(self._y_axis_marker_length_ratio*width),
                 self._y_axis_marker_color
             )
