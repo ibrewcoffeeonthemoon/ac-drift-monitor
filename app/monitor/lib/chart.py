@@ -2,6 +2,8 @@ import math
 
 import ac
 
+import config
+
 from ...lib.color import *
 from ...lib.geometry import Vertex
 from ...window import window
@@ -23,7 +25,6 @@ class Chart:
         axis_segment_count: int = 8,
         x_axis_marker_length_ratio: float = 0.05,
         y_axis_marker_length_ratio: float = 0.05,
-        bg_opacity: float = 0.2,
         bg_char: str = '',
     ) -> None:
         self.x_pos = x_pos
@@ -49,7 +50,7 @@ class Chart:
         self._axis_segmnt_count = axis_segment_count
         self._x_axis_marker_length_ratio = x_axis_marker_length_ratio
         self._y_axis_marker_length_ratio = y_axis_marker_length_ratio
-        self._bg_opacity = bg_opacity
+        self._bg_opacity = config.App.bg_opacity
         self._bg_char = bg_char
 
         if len(bg_char) > 0:

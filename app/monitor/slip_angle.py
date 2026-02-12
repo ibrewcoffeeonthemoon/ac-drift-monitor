@@ -35,7 +35,6 @@ class SlipAngleMonitor(Monitor):
             axis_segment_count=8,
             x_axis_marker_length_ratio=1.0,
             y_axis_marker_length_ratio=1.0,
-            bg_opacity=0.2,
             bg_char='A',
         )
         self._slip_angle_quad = AngleQuad(

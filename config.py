@@ -14,6 +14,7 @@ _str = parser.get
 
 class App:
     height = _int('App', 'height')
+    bg_opacity = _float('App', 'bg_opacity')
     span_len = height//2
 
 
