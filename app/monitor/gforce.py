@@ -49,6 +49,8 @@ class GForceMonitor(Monitor):
                 scale=config.GForceMonitor.slip_ratio_scale,
             )
             for region in (
+                self._chart.top_left,
+                self._chart.top_right,
                 self._chart.bottom_left,
                 self._chart.bottom_right,
             )
@@ -66,8 +68,10 @@ class GForceMonitor(Monitor):
     def _render_slip_ratio_quad_bar(self) -> None:
         fl, fr, rl, rr = ac_api[CS.NdSlip].wma()
         if self._slip_ratio_quad_bars is not None:
-            self._slip_ratio_quad_bars[0].plot(rl)
-            self._slip_ratio_quad_bars[1].plot(rr)
+            self._slip_ratio_quad_bars[0].plot(fl)
+            self._slip_ratio_quad_bars[1].plot(fr)
+            self._slip_ratio_quad_bars[2].plot(rl)
+            self._slip_ratio_quad_bars[3].plot(rr)
 
     def render(self) -> None:
         # draw axes

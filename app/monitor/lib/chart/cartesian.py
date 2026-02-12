@@ -88,6 +88,14 @@ class CartesianChart(Chart):
         return VirtualChart(self.x_pos, self.center.y, self.width, self.height/2)
 
     @property
+    def top_left(self) -> VirtualChart:
+        return VirtualChart(self.x_pos, self.y_pos, self.width/2, self.height/2)
+
+    @property
+    def top_right(self) -> VirtualChart:
+        return VirtualChart(self.center.x, self.y_pos, self.width/2, self.height/2)
+
+    @property
     def bottom_left(self) -> VirtualChart:
         return VirtualChart(self.x_pos, self.center.y, self.width/2, self.height/2)
 
