@@ -8,7 +8,6 @@ from ....window import window
 from ..gl.line import horizontal_line, vertical_line
 from ..text import big_text
 from ._base import Region
-from .virtual import VirtualChart
 
 
 class CartesianChart(Region):
@@ -80,25 +79,25 @@ class CartesianChart(Region):
             )
 
     @property
-    def top_half(self) -> VirtualChart:
-        return VirtualChart(self.x_pos, self.y_pos, self.width, self.height/2)
+    def top_half(self) -> Region:
+        return Region(self.x_pos, self.y_pos, self.width, self.height/2)
 
     @property
-    def bottom_half(self) -> VirtualChart:
-        return VirtualChart(self.x_pos, self.center.y, self.width, self.height/2)
+    def bottom_half(self) -> Region:
+        return Region(self.x_pos, self.center.y, self.width, self.height/2)
 
     @property
-    def top_left(self) -> VirtualChart:
-        return VirtualChart(self.x_pos, self.y_pos, self.width/2, self.height/2)
+    def top_left(self) -> Region:
+        return Region(self.x_pos, self.y_pos, self.width/2, self.height/2)
 
     @property
-    def top_right(self) -> VirtualChart:
-        return VirtualChart(self.center.x, self.y_pos, self.width/2, self.height/2)
+    def top_right(self) -> Region:
+        return Region(self.center.x, self.y_pos, self.width/2, self.height/2)
 
     @property
-    def bottom_left(self) -> VirtualChart:
-        return VirtualChart(self.x_pos, self.center.y, self.width/2, self.height/2)
+    def bottom_left(self) -> Region:
+        return Region(self.x_pos, self.center.y, self.width/2, self.height/2)
 
     @property
-    def bottom_right(self) -> VirtualChart:
-        return VirtualChart(self.center.x, self.center.y, self.width/2, self.height/2)
+    def bottom_right(self) -> Region:
+        return Region(self.center.x, self.center.y, self.width/2, self.height/2)
