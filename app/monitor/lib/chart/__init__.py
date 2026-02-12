@@ -1,5 +1,5 @@
 from ._base import Region
-from .cartesian import Chart
+from .chart import Chart
 
 __all__ = [
     'Region',
