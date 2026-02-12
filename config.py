@@ -18,10 +18,10 @@ class App:
     span_len = height/2
 
 
-class SlipRatioMonitor:
-    enabled = _boolean('SlipRatioMonitor', 'enabled')
-    col_index = _int('SlipRatioMonitor', 'col_index')
-    col_span = _int('SlipRatioMonitor', 'col_span')
+class TyreInfoMonitor:
+    enabled = _boolean('TyreInfoMonitor', 'enabled')
+    col_index = _int('TyreInfoMonitor', 'col_index')
+    col_span = _int('TyreInfoMonitor', 'col_span')
 
 
 class GForceMonitor:
