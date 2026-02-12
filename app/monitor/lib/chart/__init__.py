@@ -4,11 +4,11 @@ import ac
 
 import config
 
-from ...lib.color import *
-from ...lib.geometry import Vertex
-from ...window import window
-from .gl.line import horizontal_line, vertical_line
-from .text import big_text
+from ....lib.color import *
+from ....lib.geometry import Vertex
+from ....window import window
+from ..gl.line import horizontal_line, vertical_line
+from ..text import big_text
 
 
 class Chart:
