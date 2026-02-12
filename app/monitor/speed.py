@@ -6,7 +6,7 @@ from ..lib.color import *
 from ..lib.number import num
 from ..telemetry import ac_api
 from ._base import Monitor
-from .lib.chart import Chart
+from .lib.chart import CartesianChart
 from .lib.indicator import QuadBar
 from .lib.text.big_text import big_text
 
@@ -26,7 +26,7 @@ class SpeedMonitor(Monitor):
         self._width = width = config.App.span_len*config.SpeedMonitor.col_span
         self._height = height = config.App.height
 
-        self._chart = Chart(
+        self._chart = CartesianChart(
             x_pos,
             y_pos,
             width,

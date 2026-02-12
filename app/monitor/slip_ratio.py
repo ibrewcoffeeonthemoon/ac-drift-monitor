@@ -6,7 +6,7 @@ from ..lib.color import *
 from ..lib.number import num
 from ..telemetry import ac_api
 from ._base import Component, Monitor
-from .lib.chart import Chart
+from .lib.chart import CartesianChart
 from .lib.indicator import QuadBar
 
 
@@ -21,7 +21,7 @@ class _TyreSlipRatioMonitor(Component):
     ) -> None:
         self._i_slipRatio = i_slipRatio
 
-        self._chart = Chart(
+        self._chart = CartesianChart(
             x_pos,
             y_pos,
             width,
