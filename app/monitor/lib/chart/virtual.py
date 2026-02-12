@@ -1,5 +1,5 @@
-from ._base import Chart
+from ._base import Region
 
 
-class VirtualChart(Chart):
+class VirtualChart(Region):
     pass

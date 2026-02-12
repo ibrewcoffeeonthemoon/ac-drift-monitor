@@ -7,11 +7,11 @@ from ....lib.geometry import Vertex
 from ....window import window
 from ..gl.line import horizontal_line, vertical_line
 from ..text import big_text
-from ._base import Chart
+from ._base import Region
 from .virtual import VirtualChart
 
 
-class CartesianChart(Chart):
+class CartesianChart(Region):
     def __init__(
         self,
         x_pos: float,

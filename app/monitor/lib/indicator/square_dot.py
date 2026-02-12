@@ -1,7 +1,7 @@
 from ....lib.color import *
 from ....lib.geometry import Vertex
 from ....lib.number import num
-from ..chart import Chart
+from ..chart import Region
 from ..gl.shape import square
 from ._base import Indicator
 
@@ -9,7 +9,7 @@ from ._base import Indicator
 class SquareDot(Indicator):
     def __init__(
         self,
-        chart: Chart,
+        chart: Region,
         dot_size: float = 30,
         color: Color = red.full,
         scale: float = 1.0,

@@ -3,7 +3,7 @@ import math
 from ....lib.geometry import Vertex
 
 
-class Chart:
+class Region:
     def __init__(
         self,
         x_pos: float,

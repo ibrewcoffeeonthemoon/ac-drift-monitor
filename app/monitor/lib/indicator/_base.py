@@ -1,12 +1,12 @@
 from abc import ABCMeta, abstractmethod
 
-from ..chart import Chart
+from ..chart import Region
 
 
 class Indicator(metaclass=ABCMeta):
     def __init__(
         self,
-        chart: Chart,
+        chart: Region,
         inverted_x_scale: bool = False,
         inverted_y_scale: bool = False,
         centered_x_scale: bool = False,

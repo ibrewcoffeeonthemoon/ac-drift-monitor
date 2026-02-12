@@ -3,14 +3,14 @@ import math
 from .....lib.color import *
 from .....lib.geometry import Vertex
 from .....lib.number import num
-from ...chart import Chart
+from ...chart import Region
 from .._base import Indicator
 
 
 class AngleIndicator(Indicator):
     def __init__(
         self,
-        chart: Chart,
+        chart: Region,
         sensitivity: float = 1.0,
         reversed: bool = False,
         color: Color = yellow.full,

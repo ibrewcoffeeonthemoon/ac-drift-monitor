@@ -1,9 +1,9 @@
-from ._base import Chart
+from ._base import Region
 from .cartesian import CartesianChart
 from .virtual import VirtualChart
 
 __all__ = [
-    'Chart',
+    'Region',
     'CartesianChart',
     'VirtualChart',
 ]
