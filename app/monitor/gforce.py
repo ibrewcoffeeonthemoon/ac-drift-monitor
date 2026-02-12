@@ -37,14 +37,14 @@ class GForceMonitor(Monitor):
             bg_char='G',
         )
         self._gforce_square_dot = SquareDot(
-            chart=self._chart,
+            region=self._chart,
             dot_size=round(config.GForceMonitor.box_size*self.height),
             scale=config.GForceMonitor.gforce_scale,
             inverted_y_scale=True,
         )
         self._slip_ratio_quad_bars = tuple(
             QuadBar(
-                chart=region,
+                region=region,
                 color=red.a4,
                 scale=config.GForceMonitor.slip_ratio_scale,
             )

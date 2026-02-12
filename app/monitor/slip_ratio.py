@@ -33,7 +33,7 @@ class _TyreSlipRatioMonitor(Component):
             bg_char='S',
         )
         self._quad_bar = QuadBar(
-            chart=self._chart,
+            region=self._chart,
             color=red.a4,
             centered_y_scale=True,
         )

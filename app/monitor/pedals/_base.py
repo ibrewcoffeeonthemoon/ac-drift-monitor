@@ -28,7 +28,7 @@ class Pedal(Component):
             bg_char='',
         )
         self._bar = QuadBar(
-            chart=self._chart,
+            region=self._chart,
             color=self.color,
         )
 

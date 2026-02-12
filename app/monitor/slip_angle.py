@@ -38,13 +38,13 @@ class SlipAngleMonitor(Monitor):
             bg_char='A',
         )
         self._slip_angle_quad = AngleQuad(
-            chart=self._chart,
+            region=self._chart,
             sensitivity=config.SlipAngleMonitor.sensitivity,
             reversed=True,
             color=cyan.a5,
         )
         self._steering_angle_quad = AngleQuad(
-            chart=self._chart,
+            region=self._chart,
             sensitivity=(
                 num(config.SlipAngleMonitor.sensitivity)
                 .normalize(config.SlipAngleMonitor.wheel_degree/180).f
