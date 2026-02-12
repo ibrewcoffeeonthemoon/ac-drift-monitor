@@ -33,11 +33,11 @@ class Number:
         return self
 
     def degree(self) -> 'Number':
-        self._val = self._val * 180/math.pi
+        self._val = math.degrees(self._val)
         return self
 
     def radian(self) -> 'Number':
-        self._val = self._val * math.pi/180
+        self._val = math.radians(self._val)
         return self
 
 
