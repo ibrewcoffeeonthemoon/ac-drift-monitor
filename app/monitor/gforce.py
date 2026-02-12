@@ -38,32 +38,37 @@ class GForceMonitor(Monitor):
             bg_opacity=0.2,
             bg_char='G',
         )
-        self._quad_bar = QuadBar(
-            chart=self._chart,
-            color=red.a4,
-        )
         self._square_dot = SquareDot(
             chart=self._chart,
             dot_size=round(config.GForceMonitor.box_size*self.height),
             scale=config.GForceMonitor.gforce_scale,
             inverted_y_scale=True,
         )
+        self._quad_bar = QuadBar(
+            chart=self._chart,
+            color=red.a4,
+        ) if config.GForceMonitor.slip_ratio_enabled else None
 
     @property
     def width(self) -> int: return self._width
     @property
     def height(self) -> int: return self._height
 
+    def _render_square_dot(self) -> None:
+        x_accG, _, z_accG = ac_api[CS.AccG].wma()
+        self._square_dot.plot(x=x_accG, y=z_accG,)
+
+    def _render_slip_ratio_quad_bar(self) -> None:
+        avg_rear_slipRatio = sum(ac_api[CS.SlipRatio].wma()[-2:])/2
+        if self._quad_bar is not None:
+            self._quad_bar.plot(
+                num(avg_rear_slipRatio).normalize(3.0).clip(0, 1).f
+            )
+
     def render(self) -> None:
         # draw axes
         self._chart.draw_axes()
 
-        # fetch telemetry
-        avg_rear_slipRatio = sum(ac_api[CS.SlipRatio].wma()[-2:])/2
-        x_accG, _, z_accG = ac_api[CS.AccG].wma()
-
-        # plot the indicators
-        self._quad_bar.plot(
-            num(avg_rear_slipRatio).normalize(3.0).clip(0, 1).f
-        )
-        self._square_dot.plot(x=x_accG, y=z_accG,)
+        # fetch telemetry and plot the indicators
+        self._render_square_dot()
+        self._render_slip_ratio_quad_bar()
