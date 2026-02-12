@@ -13,9 +13,9 @@ _str = parser.get
 
 
 class App:
-    height = _int('App', 'height')
+    height = _float('App', 'height')
     bg_opacity = _float('App', 'bg_opacity')
-    span_len = height//2
+    span_len = height/2
 
 
 class SlipRatioMonitor:
@@ -39,7 +39,7 @@ class SlipAngleMonitor:
     col_index = _int('SlipAngleMonitor', 'col_index')
     col_span = _int('SlipAngleMonitor', 'col_span')
     sensitivity = _float('SlipAngleMonitor', 'sensitivity')
-    wheel_degree = _int('SlipAngleMonitor', 'wheel_degree')
+    wheel_degree = _float('SlipAngleMonitor', 'wheel_degree')
 
 
 class SpeedMonitor:

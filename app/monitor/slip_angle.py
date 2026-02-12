@@ -6,7 +6,7 @@ from ..lib.color import *
 from ..lib.number import num
 from ..telemetry import ac_api
 from ._base import Monitor
-from .lib.chart import Chart
+from .lib.chart import CartesianChart
 from .lib.indicator import AngleQuad
 
 
@@ -17,15 +17,15 @@ class SlipAngleMonitor(Monitor):
 
     def __init__(
         self,
-        x_pos: int,
-        y_pos: int,
+        x_pos: float,
+        y_pos: float,
     ) -> None:
         super().__init__(x_pos, y_pos)
 
         self._width = width = config.App.span_len*config.SlipAngleMonitor.col_span
         self._height = height = config.App.height
 
-        self._chart = Chart(
+        self._chart = CartesianChart(
             x_pos,
             y_pos,
             width,
@@ -54,9 +54,9 @@ class SlipAngleMonitor(Monitor):
         )
 
     @property
-    def width(self) -> int: return self._width
+    def width(self) -> float: return self._width
     @property
-    def height(self) -> int: return self._height
+    def height(self) -> float: return self._height
 
     def render(self) -> None:
         # draw axes

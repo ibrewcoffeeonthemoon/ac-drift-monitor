@@ -6,7 +6,7 @@ from ..lib.color import *
 from ..lib.number import num
 from ..telemetry import ac_api
 from ._base import Component, Monitor
-from .lib.chart import Chart
+from .lib.chart import CartesianChart
 from .lib.indicator import QuadBar
 
 
@@ -14,14 +14,14 @@ class _TyreSlipRatioMonitor(Component):
     def __init__(
         self,
         i_slipRatio: int,
-        x_pos: int,
-        y_pos: int,
-        width: int,
-        height: int,
+        x_pos: float,
+        y_pos: float,
+        width: float,
+        height: float,
     ) -> None:
         self._i_slipRatio = i_slipRatio
 
-        self._chart = Chart(
+        self._chart = CartesianChart(
             x_pos,
             y_pos,
             width,
@@ -58,8 +58,8 @@ class SlipRatioMonitor(Monitor):
 
     def __init__(
         self,
-        x_pos: int,
-        y_pos: int,
+        x_pos: float,
+        y_pos: float,
     ) -> None:
         super().__init__(x_pos, y_pos)
 
@@ -71,21 +71,21 @@ class SlipRatioMonitor(Monitor):
                 i_slipRatio=i,
                 x_pos=_x_pos,
                 y_pos=_y_pos,
-                width=width//2,
-                height=height//2,
+                width=width/2,
+                height=height/2,
             )
             for i, (_x_pos, _y_pos) in enumerate((
                 (x_pos, y_pos),
-                (x_pos+width//2, y_pos),
-                (x_pos, y_pos+height//2),
-                (x_pos+width//2, y_pos+height//2),
+                (x_pos+width/2, y_pos),
+                (x_pos, y_pos+height/2),
+                (x_pos+width/2, y_pos+height/2),
             ))
         ]
 
     @property
-    def width(self) -> int: return self._width
+    def width(self) -> float: return self._width
     @property
-    def height(self) -> int: return self._height
+    def height(self) -> float: return self._height
 
     def render(self) -> None:
         for monitor in self._tyres_slip_ratio_monitors:

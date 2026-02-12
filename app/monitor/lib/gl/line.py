@@ -19,7 +19,7 @@ def line(
 
 def horizontal_line(
     vertex1: Vertex,
-    length: int,
+    length: float,
     color: Color = white.full,
 ) -> None:
     x_pos, y_pos = vertex1.f
@@ -28,7 +28,7 @@ def horizontal_line(
 
 def vertical_line(
     vertex1: Vertex,
-    length: int,
+    length: float,
     color: Color = white.full,
 ) -> None:
     x_pos, y_pos = vertex1.f

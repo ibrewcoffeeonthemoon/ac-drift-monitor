@@ -7,10 +7,10 @@ from ._base import Text
 class BigText(Text):
     def __init__(
         self,
-        x_pos: int,
-        y_pos: int,
-        width: int,
-        height: int,
+        x_pos: float,
+        y_pos: float,
+        width: float,
+        height: float,
         text: str,
         font_color: Color,
         expected_text_len: int,
@@ -50,10 +50,10 @@ class BigText(Text):
 
 
 def big_text(
-    x_pos: int,
-    y_pos: int,
-    width: int,
-    height: int,
+    x_pos: float,
+    y_pos: float,
+    width: float,
+    height: float,
     text: str,
     font_color: Color,
     expected_text_len: int,

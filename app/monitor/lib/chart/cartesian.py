@@ -1,23 +1,22 @@
-import math
-
 import ac
 
 import config
 
-from ...lib.color import *
-from ...lib.geometry import Vertex
-from ...window import window
-from .gl.line import horizontal_line, vertical_line
-from .text import big_text
+from ....lib.color import *
+from ....lib.geometry import Vertex
+from ....window import window
+from ..gl.line import horizontal_line, vertical_line
+from ..text import big_text
+from ._base import Chart
 
 
-class Chart:
+class CartesianChart(Chart):
     def __init__(
         self,
-        x_pos: int,
-        y_pos: int,
-        width: int,
-        height: int,
+        x_pos: float,
+        y_pos: float,
+        width: float,
+        height: float,
         x_axis_color: Color = white.transparent,
         y_axis_color: Color = white.transparent,
         x_axis_marker_color: Color = white.a1,
@@ -27,22 +26,7 @@ class Chart:
         y_axis_marker_length_ratio: float = 0.05,
         bg_char: str = '',
     ) -> None:
-        self.x_pos = x_pos
-        self.y_pos = y_pos
-        self.width = width
-        self.height = height
-        self.corner_top_left = Vertex(x_pos, y_pos)
-        self.corner_top_right = Vertex(x_pos+width, y_pos)
-        self.corner_bottom_left = Vertex(x_pos, y_pos+height)
-        self.corner_bottom_right = Vertex(x_pos+width, y_pos+height)
-        self.corners = (
-            self.corner_top_right,
-            self.corner_top_left,
-            self.corner_bottom_left,
-            self.corner_bottom_right,
-        )
-        self.center = Vertex(x_pos+width/2, y_pos+height/2)
-        self.diagonal_len = math.sqrt(width**2 + height**2)
+        super().__init__(x_pos, y_pos, width, height)
         self._x_axis_color = x_axis_color
         self._y_axis_color = y_axis_color
         self._x_axis_marker_color = x_axis_marker_color

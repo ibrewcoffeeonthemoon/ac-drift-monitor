@@ -5,7 +5,7 @@ import config
 from ..lib.color import *
 from ..telemetry import ac_api
 from ._base import Monitor
-from .lib.chart import Chart
+from .lib.chart import CartesianChart
 from .lib.indicator import QuadBar, SquareDot
 
 
@@ -16,15 +16,15 @@ class GForceMonitor(Monitor):
 
     def __init__(
         self,
-        x_pos: int,
-        y_pos: int,
+        x_pos: float,
+        y_pos: float,
     ) -> None:
         super().__init__(x_pos, y_pos)
 
         self._width = width = config.App.span_len*config.GForceMonitor.col_span
         self._height = height = config.App.height
 
-        self._chart = Chart(
+        self._chart = CartesianChart(
             x_pos,
             y_pos,
             width,
@@ -49,9 +49,9 @@ class GForceMonitor(Monitor):
         ) if config.GForceMonitor.slip_ratio_enabled else None
 
     @property
-    def width(self) -> int: return self._width
+    def width(self) -> float: return self._width
     @property
-    def height(self) -> int: return self._height
+    def height(self) -> float: return self._height
 
     def _render_gforce_square_dot(self) -> None:
         x_accG, _, z_accG = ac_api[CS.AccG].wma()

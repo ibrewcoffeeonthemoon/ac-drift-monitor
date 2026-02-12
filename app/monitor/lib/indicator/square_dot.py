@@ -10,7 +10,7 @@ class SquareDot(Indicator):
     def __init__(
         self,
         chart: Chart,
-        dot_size: int = 30,
+        dot_size: float = 30,
         color: Color = red.full,
         scale: float = 1.0,
         inverted_x_scale: bool = False,
