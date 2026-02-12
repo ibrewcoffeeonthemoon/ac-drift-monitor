@@ -12,10 +12,10 @@ class Pedal(Component):
 
     def __init__(
         self,
-        x_pos: int,
-        y_pos: int,
-        width: int,
-        height: int,
+        x_pos: float,
+        y_pos: float,
+        width: float,
+        height: float,
     ) -> None:
         self._chart = CartesianChart(
             x_pos,

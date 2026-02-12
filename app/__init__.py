@@ -16,7 +16,7 @@ class _App:
         # set layouts, styles
         ac.setSize(
             window,
-            round(sum(c.width for c in self._monitors)),
+            sum(c.width for c in self._monitors),
             config.App.height,
         )
         ac.setTitle(window, '')
@@ -24,11 +24,11 @@ class _App:
         ac.drawBorder(window, False)
 
     @property
-    def _x_current(self) -> int:
+    def _x_current(self) -> float:
         return sum(c.width for c in self._monitors)
 
     @property
-    def _y_current(self) -> int:
+    def _y_current(self) -> float:
         return 0
 
     def _attach(self, cls: 'type[Monitor]') -> None:

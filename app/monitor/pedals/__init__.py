@@ -25,24 +25,24 @@ class PedalsMonitor(Monitor):
 
     def __init__(
         self,
-        x_pos: int,
-        y_pos: int,
+        x_pos: float,
+        y_pos: float,
     ) -> None:
         super().__init__(x_pos, y_pos)
 
         self._width = width = config.App.span_len*config.PedalsMonitor.col_span
         self._height = height = config.App.height
 
-        dt = width//len(_selected_pedals)
+        dt = width/len(_selected_pedals)
         self._components = [
             cls(x_pos+i*dt, y_pos, dt, height)
             for i, cls in enumerate(_selected_pedals)
         ]  # type: list[Pedal]
 
     @property
-    def width(self) -> int: return self._width
+    def width(self) -> float: return self._width
     @property
-    def height(self) -> int: return self._height
+    def height(self) -> float: return self._height
 
     def render(self) -> None:
         for component in self._components:

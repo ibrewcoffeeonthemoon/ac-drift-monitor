@@ -18,8 +18,8 @@ class GearMonitor(Monitor):
 
     def __init__(
         self,
-        x_pos: int,
-        y_pos: int,
+        x_pos: float,
+        y_pos: float,
     ) -> None:
         super().__init__(x_pos, y_pos)
 
@@ -48,9 +48,9 @@ class GearMonitor(Monitor):
         )
 
     @property
-    def width(self) -> int: return self._width
+    def width(self) -> float: return self._width
     @property
-    def height(self) -> int: return self._height
+    def height(self) -> float: return self._height
 
     def render(self) -> None:
         # draw axes
@@ -68,7 +68,7 @@ class GearMonitor(Monitor):
             'R'
         )
         self._gear_meter.text = gear_text
-        maxRpm = ac_mem.static.maxRpm  # type: int
+        maxRpm = ac_mem.static.maxRpm  # type: float
         rpm_bar_color = (
             white.a5 if rpm <= maxRpm*0.9 else
             red.a5 if not engine_limited else

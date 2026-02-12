@@ -13,10 +13,10 @@ from ._base import Chart
 class CartesianChart(Chart):
     def __init__(
         self,
-        x_pos: int,
-        y_pos: int,
-        width: int,
-        height: int,
+        x_pos: float,
+        y_pos: float,
+        width: float,
+        height: float,
         x_axis_color: Color = white.transparent,
         y_axis_color: Color = white.transparent,
         x_axis_marker_color: Color = white.a1,

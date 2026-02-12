@@ -6,10 +6,10 @@ from ....lib.geometry import Vertex
 class Chart:
     def __init__(
         self,
-        x_pos: int,
-        y_pos: int,
-        width: int,
-        height: int,
+        x_pos: float,
+        y_pos: float,
+        width: float,
+        height: float,
     ) -> None:
         self.x_pos = x_pos
         self.y_pos = y_pos
