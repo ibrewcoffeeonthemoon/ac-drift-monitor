@@ -5,7 +5,7 @@ import config
 from ..lib.color import *
 from ..telemetry import ac_api
 from ._base import Monitor
-from .lib.chart import Chart
+from .lib.canvas import Chart
 from .lib.indicator import QuadBar, SquareDot
 
 

@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
 
-from ..chart import Region
+from ..canvas import Region
 
 
 class Indicator(metaclass=ABCMeta):

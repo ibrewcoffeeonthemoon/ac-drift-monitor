@@ -3,7 +3,7 @@ import math
 from .....lib.color import *
 from .....lib.geometry import Vertex
 from .....lib.number import num
-from ...chart import Region
+from ...canvas import Region
 from .._base import Indicator
 
 

@@ -6,7 +6,7 @@ from ..lib.color import *
 from ..lib.number import num
 from ..telemetry import ac_api, ac_mem
 from ._base import Monitor
-from .lib.chart import Chart
+from .lib.canvas import Chart
 from .lib.indicator import QuadBar
 from .lib.text.big_text import big_text
 

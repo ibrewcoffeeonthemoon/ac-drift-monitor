@@ -2,7 +2,7 @@ from ...lib.color import *
 from ...lib.number import num
 from ...telemetry import ac_api
 from .._base import Component
-from ..lib.chart import Chart
+from ..lib.canvas import Chart
 from ..lib.indicator import QuadBar
 
 
