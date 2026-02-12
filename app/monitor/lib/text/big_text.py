@@ -1,31 +1,29 @@
 from ....lib.color import Color
 from ....lib.geometry import Position, Size
 from ....lib.number import num
+from ..canvas.region import Region
 from ._base import Text
 
 
 class BigText(Text):
     def __init__(
         self,
-        x_pos: float,
-        y_pos: float,
-        width: float,
-        height: float,
+        region: Region,
         text: str,
         font_color: Color,
         expected_text_len: int,
     ) -> None:
         super().__init__()
-        self._x_pos = x_pos
-        self._y_pos = y_pos
-        self._width = width
-        self._height = height
+        self._x_pos = region.x_pos
+        self._y_pos = region.y_pos
+        self._width = region.width
+        self._height = region.height
         self._expected_text_len = None  # type: 'int | None'
         # init label
         self.text = text
         self.font_color = font_color
         self.font_alignment = 'center'
-        self.size = Size(width, height)
+        self.size = Size(self._width, self._height)
         self.expected_text_len = expected_text_len
 
     @property
@@ -50,19 +48,13 @@ class BigText(Text):
 
 
 def big_text(
-    x_pos: float,
-    y_pos: float,
-    width: float,
-    height: float,
+    region: Region,
     text: str,
     font_color: Color,
     expected_text_len: int,
 ) -> BigText:
     return BigText(
-        x_pos,
-        y_pos,
-        width,
-        height,
+        region,
         text=text,
         font_color=font_color,
         expected_text_len=expected_text_len,
