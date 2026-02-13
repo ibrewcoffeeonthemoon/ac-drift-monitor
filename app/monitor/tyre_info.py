@@ -1,5 +1,3 @@
-from acsys import CS
-
 import config
 
 from ..lib.color import *
@@ -9,18 +7,15 @@ from .lib.canvas import Region
 from .lib.text import BigText
 
 
-class _EachTyreInfoMonitor(Component):
+class _TyreMonitor(Component):
     def __init__(
         self,
-        i_slipRatio: int,
-        x_pos: float,
-        y_pos: float,
-        width: float,
-        height: float,
+        i: int,
+        region: Region,
     ) -> None:
-        self._i_slipRatio = i_slipRatio
+        self._i = i
 
-        self._region = Region(x_pos, y_pos, width, height)
+        self._region = region
         self._temperature_text = BigText(
             region=self._region.top_half,
             text='',
@@ -36,8 +31,8 @@ class _EachTyreInfoMonitor(Component):
 
     def render(self) -> None:
         # fetch telemetry
-        temperature = ac_mem.physics.tyreCoreTemperature[self._i_slipRatio]  # type: float
-        pressure = ac_mem.physics.wheelsPressure[self._i_slipRatio]  # type: float
+        temperature = ac_mem.physics.tyreCoreTemperature[self._i]  # type: float
+        pressure = ac_mem.physics.wheelsPressure[self._i]  # type: float
 
         # plot the indicators
         self._temperature_text.text = str(round(temperature, 1))
@@ -58,20 +53,15 @@ class TyreInfoMonitor(Monitor):
 
         self._width = width = config.App.span_len*config.TyreInfoMonitor.col_span
         self._height = height = config.App.height
+        self._region = Region(x_pos, y_pos, width, height)
 
-        self._tyres_slip_ratio_monitors = [
-            _EachTyreInfoMonitor(
-                i_slipRatio=i,
-                x_pos=_x_pos,
-                y_pos=_y_pos,
-                width=width/2,
-                height=height/2,
-            )
-            for i, (_x_pos, _y_pos) in enumerate((
-                (x_pos, y_pos),
-                (x_pos+width/2, y_pos),
-                (x_pos, y_pos+height/2),
-                (x_pos+width/2, y_pos+height/2),
+        self._tyre_monitors = [
+            _TyreMonitor(i, region)
+            for i, region in enumerate((
+                self._region.top_left,
+                self._region.top_right,
+                self._region.bottom_left,
+                self._region.bottom_right,
             ))
         ]
 
@@ -81,5 +71,5 @@ class TyreInfoMonitor(Monitor):
     def height(self) -> float: return self._height
 
     def render(self) -> None:
-        for monitor in self._tyres_slip_ratio_monitors:
+        for monitor in self._tyre_monitors:
             monitor.render()
