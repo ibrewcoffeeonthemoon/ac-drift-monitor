@@ -57,8 +57,8 @@ class TyreInfoMonitor(Monitor):
     ) -> None:
         super().__init__(x_pos, y_pos)
 
-        self._width = width = config.App.span_len*config.TyreInfoMonitor.col_span
-        self._height = height = config.App.height
+        self.width = width = config.App.span_len*config.TyreInfoMonitor.col_span
+        self.height = height = config.App.height
         self._region = Region(x_pos, y_pos, width, height)
         self._chart = Chart(
             self._region,
@@ -78,11 +78,6 @@ class TyreInfoMonitor(Monitor):
                 self._region.bottom_right,
             ))
         ]
-
-    @property
-    def width(self) -> float: return self._width
-    @property
-    def height(self) -> float: return self._height
 
     def render(self) -> None:
         self._chart.draw_axes()
