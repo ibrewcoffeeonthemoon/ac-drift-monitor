@@ -11,13 +11,11 @@ class _TyreMonitor(Component):
     def __init__(
         self,
         i: int,
-        name: str,
         region: Region,
     ) -> None:
         self._i = i
 
         self._region = region
-        # BigText(self._region, name, white.a1, 5, 'center')
         self._temperature_text = BigText(
             region=self._region.top,
             text='',
@@ -72,12 +70,12 @@ class TyreInfoMonitor(Monitor):
             x_axis_marker_length_ratio=0.0,
         )
         self._tyre_monitors = [
-            _TyreMonitor(i, name, region)
-            for i, (name, region) in enumerate((
-                ('FL', self._region.top_left),
-                ('FR', self._region.top_right),
-                ('RL', self._region.bottom_left),
-                ('RR', self._region.bottom_right),
+            _TyreMonitor(i, region)
+            for i, region in enumerate((
+                self._region.top_left,
+                self._region.top_right,
+                self._region.bottom_left,
+                self._region.bottom_right,
             ))
         ]
 
