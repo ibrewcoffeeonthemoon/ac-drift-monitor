@@ -10,7 +10,7 @@ def line(
     vertex2: Vertex,
     color: Color = white.full,
 ) -> None:
-    ac.glColor4f(*color)
+    ac.glColor4f(color.r, color.g, color.b, color.a)
     ac.glBegin(acsys.GL.Lines)
     ac.glVertex2f(*vertex1.f)
     ac.glVertex2f(*vertex2.f)

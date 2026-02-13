@@ -12,7 +12,7 @@ def rectangle(
     color: Color = white.full,
 ) -> None:
     x_pos, y_pos = vertex_center.i
-    ac.glColor4f(*color)
+    ac.glColor4f(color.r, color.g, color.b, color.a)
     ac.glQuad(
         x_pos - width/2,
         y_pos - height/2,
@@ -36,7 +36,7 @@ def quadrilateral(
     vertex4: Vertex,
     color: Color = white.full,
 ) -> None:
-    ac.glColor4f(*color)
+    ac.glColor4f(color.r, color.g, color.b, color.a)
     ac.glBegin(acsys.GL.Quads)
     ac.glVertex2f(*vertex1.f)
     ac.glVertex2f(*vertex2.f)

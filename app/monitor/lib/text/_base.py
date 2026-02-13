@@ -40,7 +40,7 @@ class Text(metaclass=ABCMeta):
     @font_color.setter
     def font_color(self, val: Color) -> None:
         self._font_color = val
-        ac.setFontColor(self._label, *val)
+        ac.setFontColor(self._label, val.r, val.g, val.b, val.a)
 
     ''''''
     @property
