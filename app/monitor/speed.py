@@ -23,8 +23,8 @@ class SpeedMonitor(Monitor):
     ) -> None:
         super().__init__(x_pos, y_pos)
 
-        self._width = width = config.App.span_len*config.SpeedMonitor.col_span
-        self._height = height = config.App.height
+        self.width = width = config.App.span_len*config.SpeedMonitor.col_span
+        self.height = height = config.App.height
         self._region = Region(x_pos, y_pos, width, height)
         self._chart = Chart(
             self._region,
@@ -48,11 +48,6 @@ class SpeedMonitor(Monitor):
             font_color=white.full,
             expected_text_len=3
         )
-
-    @property
-    def width(self) -> float: return self._width
-    @property
-    def height(self) -> float: return self._height
 
     def render(self) -> None:
         # draw axes

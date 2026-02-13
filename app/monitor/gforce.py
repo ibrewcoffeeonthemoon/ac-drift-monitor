@@ -21,8 +21,8 @@ class GForceMonitor(Monitor):
     ) -> None:
         super().__init__(x_pos, y_pos)
 
-        self._width = width = config.App.span_len*config.GForceMonitor.col_span
-        self._height = height = config.App.height
+        self.width = width = config.App.span_len*config.GForceMonitor.col_span
+        self.height = height = config.App.height
         self._region = Region(x_pos, y_pos, width, height)
         self._chart = Chart(
             self._region,
@@ -53,11 +53,6 @@ class GForceMonitor(Monitor):
                 self._region.bottom_right,
             )
         ) if config.GForceMonitor.slip_ratio_enabled else None
-
-    @property
-    def width(self) -> float: return self._width
-    @property
-    def height(self) -> float: return self._height
 
     def _render_gforce_square_dot(self) -> None:
         x_accG, _, z_accG = ac_api[CS.AccG].wma()
