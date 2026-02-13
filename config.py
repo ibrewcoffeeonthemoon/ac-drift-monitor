@@ -22,6 +22,10 @@ class TyreInfoMonitor:
     enabled = _boolean('TyreInfoMonitor', 'enabled')
     col_index = _int('TyreInfoMonitor', 'col_index')
     col_span = _int('TyreInfoMonitor', 'col_span')
+    temperature_low = _float('TyreInfoMonitor', 'temperature_low')
+    temperature_high = _float('TyreInfoMonitor', 'temperature_high')
+    pressure_low = _float('TyreInfoMonitor', 'pressure_low')
+    pressure_high = _float('TyreInfoMonitor', 'pressure_high')
 
 
 class GForceMonitor:

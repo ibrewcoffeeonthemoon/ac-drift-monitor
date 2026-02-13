@@ -16,10 +16,20 @@ class _TyreMonitor(Component):
     ) -> None:
         self._i = i
         self._region = region
-        self._temperature_heat_tile = HeatTile(region.top, low=25, high=125)
+
+        self._temperature_heat_tile = HeatTile(
+            region.top,
+            low=config.TyreInfoMonitor.temperature_low,
+            high=config.TyreInfoMonitor.temperature_high,
+        )
         self._temperature_text = BigText(region.top, '', white.full, 3)
         BigText(region.top.right.right, '°c', white.a7, 3, 'left')
-        self._pressure_heat_tile = HeatTile(region.bottom, low=25, high=45)
+
+        self._pressure_heat_tile = HeatTile(
+            region.bottom,
+            low=config.TyreInfoMonitor.pressure_low,
+            high=config.TyreInfoMonitor.pressure_high,
+        )
         self._pressure_text = BigText(region.bottom, '', white.full, 3)
         BigText(region.bottom.right.right, 'psi', white.a7, 3, 'left')
 
