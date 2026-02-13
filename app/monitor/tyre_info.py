@@ -1,10 +1,7 @@
-import ac
-
 import config
 
 from ..lib.color import *
 from ..telemetry import ac_mem
-from ..window import window
 from ._base import Component, Monitor
 from .lib.canvas import Chart, Region
 from .lib.indicator.heat_tile import HeatTile
@@ -22,7 +19,7 @@ class _TyreMonitor(Component):
         self._temperature_heat_tile = HeatTile(region.top, low=25, high=125)
         self._temperature_text = BigText(region.top, '', white.full, 3)
         BigText(region.top.right.right, '°c', white.a7, 3, 'left')
-        self._pressure_heat_tile = HeatTile(region.bottom, low=20, high=40)
+        self._pressure_heat_tile = HeatTile(region.bottom, low=25, high=45)
         self._pressure_text = BigText(region.bottom, '', white.full, 3)
         BigText(region.bottom.right.right, 'psi', white.a7, 3, 'left')
 
