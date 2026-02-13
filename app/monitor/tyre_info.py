@@ -21,6 +21,7 @@ class _TyreMonitor(Component):
             region.top,
             low=config.TyreInfoMonitor.temperature_low,
             high=config.TyreInfoMonitor.temperature_high,
+            alpha=config.TyreInfoMonitor.color_opacity,
         )
         self._temperature_text = BigText(region.top, '', white.full, 3)
         BigText(region.top.right.right, '°c', white.a7, 3, 'left')
@@ -29,6 +30,7 @@ class _TyreMonitor(Component):
             region.bottom,
             low=config.TyreInfoMonitor.pressure_low,
             high=config.TyreInfoMonitor.pressure_high,
+            alpha=config.TyreInfoMonitor.color_opacity,
         )
         self._pressure_text = BigText(region.bottom, '', white.full, 3)
         BigText(region.bottom.right.right, 'psi', white.a7, 3, 'left')

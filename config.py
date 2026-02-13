@@ -26,6 +26,7 @@ class TyreInfoMonitor:
     temperature_high = _float('TyreInfoMonitor', 'temperature_high')
     pressure_low = _float('TyreInfoMonitor', 'pressure_low')
     pressure_high = _float('TyreInfoMonitor', 'pressure_high')
+    color_opacity = _float('TyreInfoMonitor', 'color_opacity')
 
 
 class GForceMonitor:
