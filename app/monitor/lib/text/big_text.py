@@ -30,7 +30,7 @@ class BigText(Text):
     def _shrink_factor(self) -> float:
         if not self.expected_text_len:
             return 1.0
-        return num(1.0 - (self.expected_text_len - 1) * 0.25).clip(0.5, 1.0).f
+        return num(1.0 - (self.expected_text_len - 1) * 0.25).clip(0.4, 1.0).f
 
     @property
     def expected_text_len(self) -> 'int | None':

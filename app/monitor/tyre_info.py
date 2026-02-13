@@ -20,14 +20,16 @@ class _TyreMonitor(Component):
             region=self._region.top_half,
             text='',
             font_color=white.full,
-            expected_text_len=3,
+            expected_text_len=4,
         )
+        BigText(self._region.top_half.bottom_right, '°c', white.a5, 3)
         self._pressure_text = BigText(
             region=self._region.bottom_half,
             text='',
             font_color=white.full,
-            expected_text_len=3,
+            expected_text_len=4,
         )
+        BigText(self._region.bottom_half.bottom_right, 'psi', white.a5, 3)
 
     def render(self) -> None:
         # fetch telemetry
