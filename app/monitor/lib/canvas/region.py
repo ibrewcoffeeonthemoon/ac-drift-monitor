@@ -33,22 +33,24 @@ class Region:
         self.center = Vertex(x_pos+width/2, y_pos+height/2)
         self.diagonal_len = math.sqrt(width**2 + height**2)
 
+    # 1/2
     @property
-    def top_half(self) -> 'Region':
+    def top(self) -> 'Region':
         return type(self)(self.x_pos, self.y_pos, self.width, self.height/2)
 
     @property
-    def bottom_half(self) -> 'Region':
+    def bottom(self) -> 'Region':
         return type(self)(self.x_pos, self.center.y, self.width, self.height/2)
 
     @property
-    def left_half(self) -> 'Region':
+    def left(self) -> 'Region':
         return type(self)(self.x_pos, self.y_pos, self.width/2, self.height)
 
     @property
-    def right_half(self) -> 'Region':
+    def right(self) -> 'Region':
         return type(self)(self.center.x, self.y_pos, self.width/2, self.height)
 
+    # 1/4
     @property
     def top_left(self) -> 'Region':
         return type(self)(self.x_pos, self.y_pos, self.width/2, self.height/2)
