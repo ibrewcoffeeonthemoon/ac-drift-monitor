@@ -28,8 +28,9 @@ class GearMonitor(Monitor):
         self._region = Region(x_pos, y_pos, width, height)
         self._chart = Chart(
             self._region,
-            x_axis_marker_color=white.transparent,
-            axis_segment_count=8,
+            x_axis_segment_count=1,
+            y_axis_segment_count=8,
+            x_axis_marker_length_ratio=1.0,
             y_axis_marker_length_ratio=1.0,
             bg_char='',
         )

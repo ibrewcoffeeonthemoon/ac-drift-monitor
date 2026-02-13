@@ -12,6 +12,7 @@ class BigText(Text):
         text: str,
         font_color: Color,
         expected_text_len: int,
+        font_alignment: str = 'center',
     ) -> None:
         super().__init__()
         self._x_pos = region.x_pos
@@ -22,7 +23,7 @@ class BigText(Text):
         # init label
         self.text = text
         self.font_color = font_color
-        self.font_alignment = 'center'
+        self.font_alignment = font_alignment
         self.size = Size(self._width, self._height)
         self.expected_text_len = expected_text_len
 
@@ -30,7 +31,7 @@ class BigText(Text):
     def _shrink_factor(self) -> float:
         if not self.expected_text_len:
             return 1.0
-        return num(1.0 - (self.expected_text_len - 1) * 0.25).clip(0.5, 1.0).f
+        return num(1.0 - (self.expected_text_len - 1) * 0.25).clip(0.4, 1.0).f
 
     @property
     def expected_text_len(self) -> 'int | None':
