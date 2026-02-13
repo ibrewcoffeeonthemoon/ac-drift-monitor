@@ -66,6 +66,10 @@ class TyreInfoMonitor(Monitor):
             self._region,
             x_axis_color=white.a7,
             y_axis_color=white.a7,
+            y_axis_segment_count=4,
+            y_axis_marker_color=white.a5,
+            y_axis_marker_length_ratio=1.0,
+            x_axis_marker_length_ratio=0.0,
         )
         self._tyre_monitors = [
             _TyreMonitor(i, name, region)
