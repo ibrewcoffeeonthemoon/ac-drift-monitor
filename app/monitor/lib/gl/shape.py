@@ -6,26 +6,22 @@ from ....lib.geometry import Vertex
 
 
 def rectangle(
-    center: Vertex,
+    vertex: Vertex,
     width: float,
     height: float,
     color: Color = white.full,
 ) -> None:
     ac.glColor4f(color.r, color.g, color.b, color.a)
-    ac.glQuad(
-        center.x - width/2,
-        center.y - height/2,
-        width,
-        height,
-    )
+    ac.glQuad(vertex.x, vertex.y, width, height)
 
 
-def square(
+def centered_square(
     center: Vertex,
     length: float,
     color: Color = white.full,
 ) -> None:
-    rectangle(center, length, length, color)
+    ac.glColor4f(color.r, color.g, color.b, color.a)
+    ac.glQuad(center.x - length/2, center.y - length/2, length, length)
 
 
 def quadrilateral(

@@ -2,7 +2,7 @@ from ....lib.color import *
 from ....lib.geometry import Vertex
 from ....lib.number import num
 from ..canvas import Region
-from ..gl.shape import square
+from ..gl.shape import centered_square
 from ._base import Indicator
 
 
@@ -37,7 +37,7 @@ class SquareDot(Indicator):
         ))
 
     def plot(self, x: float, y: float,) -> None:
-        square(
+        centered_square(
             self._vertices(
                 x=num(x).normalize(self._scale).clip(-1, 1).f,
                 y=num(y).normalize(self._scale).clip(-1, 1).f,
