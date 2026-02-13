@@ -44,7 +44,8 @@ class AngleIndicator(Indicator):
         return c0, c1, c2, c3
 
     def _edge_intercepts(self, angle_degree: float) -> 'tuple[Vertex, Vertex]':
-        x_center, y_center = self._region.center.f
+        x_center = self._region.center.x
+        y_center = self._region.center.y
         radius = self._region.diagonal_len/2
         radian_angle = num(angle_degree).radian().f
         x_coord = radius * math.cos(radian_angle)
