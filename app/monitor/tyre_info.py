@@ -1,7 +1,7 @@
 import config
+from app.lib.color import *
+from app.telemetry import ac_mem
 
-from ..lib.color import *
-from ..telemetry import ac_mem
 from ._base import Component, Monitor
 from .lib.canvas import Chart, Region
 from .lib.indicator.heat_tile import HeatTile

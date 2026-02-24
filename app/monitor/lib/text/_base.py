@@ -2,9 +2,9 @@ from abc import ABCMeta, abstractmethod
 
 import ac
 
-from ....lib.color import Color
-from ....lib.geometry import Position, Size
-from ....window import window
+from app.lib.color import Color
+from app.lib.geometry import Position, Size
+from app.window import window
 
 
 class Text(metaclass=ABCMeta):

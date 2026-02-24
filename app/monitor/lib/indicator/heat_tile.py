@@ -1,7 +1,8 @@
-from ....lib.color import *
-from ....lib.number import num
-from ..canvas import Region
-from ..gl.shape import rectangle
+from app.lib.color import *
+from app.lib.number import num
+from app.monitor.lib.canvas import Region
+from app.monitor.lib.gl.shape import rectangle
+
 from ._base import Indicator
 
 

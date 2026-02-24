@@ -1,6 +1,6 @@
 import math
 
-from ....lib.geometry import Vertex
+from app.lib.geometry import Vertex
 
 
 class Region:

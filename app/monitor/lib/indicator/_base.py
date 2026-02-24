@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
 
-from ..canvas import Region
+from app.monitor.lib.canvas import Region
 
 
 class Indicator(metaclass=ABCMeta):

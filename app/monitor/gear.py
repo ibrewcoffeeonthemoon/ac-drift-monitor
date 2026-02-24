@@ -1,10 +1,10 @@
 from acsys import CS
 
 import config
+from app.lib.color import *
+from app.lib.number import num
+from app.telemetry import ac_api, ac_mem
 
-from ..lib.color import *
-from ..lib.number import num
-from ..telemetry import ac_api, ac_mem
 from ._base import Monitor
 from .lib.canvas import Chart, Region
 from .lib.indicator import QuadBar

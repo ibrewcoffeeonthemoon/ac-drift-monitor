@@ -1,7 +1,8 @@
-from ....lib.color import Color
-from ....lib.geometry import Position, Size
-from ....lib.number import num
-from ..canvas.region import Region
+from app.lib.color import Color
+from app.lib.geometry import Position, Size
+from app.lib.number import num
+from app.monitor.lib.canvas.region import Region
+
 from ._base import Text
 
 

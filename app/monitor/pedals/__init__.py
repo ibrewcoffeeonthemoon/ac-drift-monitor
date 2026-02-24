@@ -1,7 +1,7 @@
 import config
+from app.lib.color import *
+from app.monitor._base import Monitor
 
-from ...lib.color import *
-from .._base import Monitor
 from ._base import Pedal as Pedal
 from .brake import BrakePedal
 from .clutch import ClutchPedal

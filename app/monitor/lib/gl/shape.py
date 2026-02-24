@@ -1,8 +1,8 @@
 import ac
 import acsys
 
-from ....lib.color import *
-from ....lib.geometry import Vertex
+from app.lib.color import *
+from app.lib.geometry import Vertex
 
 
 def rectangle(

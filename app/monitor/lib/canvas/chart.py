@@ -1,12 +1,12 @@
 import ac
 
 import config
+from app.lib.color import *
+from app.lib.geometry import Vertex
+from app.monitor.lib.gl.line import horizontal_line, vertical_line
+from app.monitor.lib.text import BigText
+from app.window import window
 
-from ....lib.color import *
-from ....lib.geometry import Vertex
-from ....window import window
-from ..gl.line import horizontal_line, vertical_line
-from ..text import BigText
 from .region import Region
 
 

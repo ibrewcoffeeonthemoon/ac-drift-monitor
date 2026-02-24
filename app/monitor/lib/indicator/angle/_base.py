@@ -1,10 +1,10 @@
 import math
 
-from .....lib.color import *
-from .....lib.geometry import Vertex
-from .....lib.number import num
-from ...canvas import Region
-from .._base import Indicator
+from app.lib.color import *
+from app.lib.geometry import Vertex
+from app.lib.number import num
+from app.monitor.lib.canvas import Region
+from app.monitor.lib.indicator._base import Indicator
 
 
 class AngleIndicator(Indicator):

@@ -1,9 +1,9 @@
-from ...lib.color import *
-from ...lib.number import num
-from ...telemetry import ac_api
-from .._base import Component
-from ..lib.canvas import Chart, Region
-from ..lib.indicator import QuadBar
+from app.lib.color import *
+from app.lib.number import num
+from app.monitor._base import Component
+from app.monitor.lib.canvas import Chart, Region
+from app.monitor.lib.indicator import QuadBar
+from app.telemetry import ac_api
 
 
 class Pedal(Component):

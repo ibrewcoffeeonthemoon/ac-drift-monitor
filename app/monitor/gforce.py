@@ -1,9 +1,9 @@
 from acsys import CS
 
 import config
+from app.lib.color import *
+from app.telemetry import ac_api
 
-from ..lib.color import *
-from ..telemetry import ac_api
 from ._base import Monitor
 from .lib.canvas import Chart, Region
 from .lib.indicator import QuadBar, SquareDot

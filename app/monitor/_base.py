@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
 
-from ..telemetry import ac_api
+from app.telemetry import ac_api
 
 
 class Component(metaclass=ABCMeta):
