@@ -1,6 +1,5 @@
 from typing import Any, Callable
 
-
 def addButton(object: Any, text: str) -> int:
     ...
 
@@ -149,7 +148,7 @@ def getCarRealTimeLeaderboardPosition(carId: int) -> int:
     ...
 
 
-def getCarState(carId: int, infoId: int, param: str = "") -> Any:
+def getCarState(carId: int, infoId: int, param: str = '') -> Any:
     ...
 
 
@@ -353,13 +352,13 @@ def setVisible(object: Any, visible: bool) -> int:
     ...
 
 
-"""
+'''
 Python Apps – New functions
 leBluem edited this page on Aug 31, 2024 · 7 revisions
 CSP adds some new functions for Python apps, and here is the full list of them with argument names and return types. Each time function requires a vector argument, such as vec2, vec3 or vec4, you can pass either a corresponding amount of numbers directly, or pass them packed in a tuple.
 
 See also official and inofficial python docs: https://assettocorsamods.net/threads/doc-python-doc.59/ Shared memory reference: https://assettocorsamods.net/threads/doc-shared-memory-reference.58/ A getting started guide: https://assettocorsamods.net/threads/getting-started-with-ac-app-developing.716/#post-2892
-"""
+'''
 
 vec2 = tuple[float, float]
 vec3 = tuple[float, float, float]

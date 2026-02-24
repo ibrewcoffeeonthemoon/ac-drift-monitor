@@ -1,4 +1,3 @@
-import typing
 
 # GL: Constants for glBegin
 

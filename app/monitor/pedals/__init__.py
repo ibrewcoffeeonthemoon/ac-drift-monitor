@@ -2,7 +2,7 @@ import config
 
 from ...lib.color import *
 from .._base import Monitor
-from ._base import Pedal
+from ._base import Pedal as Pedal
 from .brake import BrakePedal
 from .clutch import ClutchPedal
 from .gas import GasPedal
