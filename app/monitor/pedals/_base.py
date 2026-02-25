@@ -1,9 +1,9 @@
-from ...lib.color import *
-from ...lib.number import num
-from ...telemetry import ac_api
-from .._base import Component
-from ..lib.chart import CartesianChart
-from ..lib.indicator import QuadBar
+from app.lib.color import *
+from app.lib.number import num
+from app.monitor._base import Component
+from app.monitor.lib.canvas import Chart, Region
+from app.monitor.lib.indicator import QuadBar
+from app.telemetry import ac_api
 
 
 class Pedal(Component):
@@ -17,18 +17,17 @@ class Pedal(Component):
         width: float,
         height: float,
     ) -> None:
-        self._chart = CartesianChart(
-            x_pos,
-            y_pos,
-            width,
-            height,
-            x_axis_marker_color=white.transparent,
-            axis_segment_count=8,
+        self._region = Region(x_pos, y_pos, width, height)
+        self._chart = Chart(
+            self._region,
+            x_axis_segment_count=1,
+            y_axis_segment_count=1,
+            x_axis_marker_length_ratio=1.0,
             y_axis_marker_length_ratio=1.0,
             bg_char='',
         )
         self._bar = QuadBar(
-            chart=self._chart,
+            region=self._region,
             color=self.color,
         )
 

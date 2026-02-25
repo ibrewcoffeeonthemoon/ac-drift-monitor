@@ -1,15 +1,16 @@
-from ....lib.color import *
-from ....lib.geometry import Vertex
-from ....lib.number import num
-from ..chart import Chart
-from ..gl.shape import square
+from app.lib.color import *
+from app.lib.geometry import Vertex
+from app.lib.number import num
+from app.monitor.lib.canvas import Region
+from app.monitor.lib.gl.shape import centered_square
+
 from ._base import Indicator
 
 
 class SquareDot(Indicator):
     def __init__(
         self,
-        chart: Chart,
+        region: Region,
         dot_size: float = 30,
         color: Color = red.full,
         scale: float = 1.0,
@@ -19,7 +20,7 @@ class SquareDot(Indicator):
         centered_y_scale: bool = True,
     ) -> None:
         super().__init__(
-            chart=chart,
+            region=region,
             inverted_x_scale=inverted_x_scale,
             inverted_y_scale=inverted_y_scale,
             centered_x_scale=centered_x_scale,
@@ -37,7 +38,7 @@ class SquareDot(Indicator):
         ))
 
     def plot(self, x: float, y: float,) -> None:
-        square(
+        centered_square(
             self._vertices(
                 x=num(x).normalize(self._scale).clip(-1, 1).f,
                 y=num(y).normalize(self._scale).clip(-1, 1).f,

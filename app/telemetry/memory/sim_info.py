@@ -25,7 +25,6 @@ Do whatever you want with this code!
 WBR, Rombik :)
 """
 import ctypes
-import functools
 import mmap
 from ctypes import c_float, c_int32, c_wchar
 
@@ -157,9 +156,9 @@ class SPageFileStatic(ctypes.Structure):
 
 class SimInfo:
     def __init__(self):
-        self._acpmf_physics = mmap.mmap(0, ctypes.sizeof(SPageFilePhysics), "acpmf_physics")
-        self._acpmf_graphics = mmap.mmap(0, ctypes.sizeof(SPageFileGraphic), "acpmf_graphics")
-        self._acpmf_static = mmap.mmap(0, ctypes.sizeof(SPageFileStatic), "acpmf_static")
+        self._acpmf_physics = mmap.mmap(0, ctypes.sizeof(SPageFilePhysics), 'acpmf_physics')
+        self._acpmf_graphics = mmap.mmap(0, ctypes.sizeof(SPageFileGraphic), 'acpmf_graphics')
+        self._acpmf_static = mmap.mmap(0, ctypes.sizeof(SPageFileStatic), 'acpmf_static')
         self.physics = SPageFilePhysics.from_buffer(self._acpmf_physics)
         self.graphics = SPageFileGraphic.from_buffer(self._acpmf_graphics)
         self.static = SPageFileStatic.from_buffer(self._acpmf_static)
@@ -192,7 +191,7 @@ def do_test():
             value = getattr(struct, field)
             if not isinstance(value, (str, float, int)):
                 value = list(value)
-            print(" {} -> {} {}".format(field, type(value), value))
+            print(' {} -> {} {}'.format(field, type(value), value))
 
 
 if __name__ == '__main__':

@@ -1,25 +1,25 @@
 import math
 
-from .....lib.color import *
-from .....lib.geometry import Vertex
-from .....lib.number import num
-from ...chart import Chart
-from .._base import Indicator
+from app.lib.color import *
+from app.lib.geometry import Vertex
+from app.lib.number import num
+from app.monitor.lib.canvas import Region
+from app.monitor.lib.indicator._base import Indicator
 
 
 class AngleIndicator(Indicator):
     def __init__(
         self,
-        chart: Chart,
+        region: Region,
         sensitivity: float = 1.0,
         reversed: bool = False,
         color: Color = yellow.full,
     ) -> None:
-        super().__init__(chart=chart)
+        super().__init__(region=region)
         self._sensitivity = sensitivity
         self._reversed = reversed
         self._color = color
-        theta = math.degrees(math.atan2(chart.height, chart.width))
+        theta = math.degrees(math.atan2(region.height, region.width))
         self._quadrant_boundries = (theta, 180-theta, 180+theta, 360-theta)
 
     def _quadrant(self, angle_degree: float) -> int:
@@ -40,12 +40,13 @@ class AngleIndicator(Indicator):
 
     def _nearest_corners(self, angle_degree: float) -> 'tuple[Vertex, Vertex, Vertex, Vertex]':
         id = self._quadrant(angle_degree)
-        c0, c1, c2, c3 = self._chart.corners[id:] + self._chart.corners[:id]
+        c0, c1, c2, c3 = self._region.corners[id:] + self._region.corners[:id]
         return c0, c1, c2, c3
 
     def _edge_intercepts(self, angle_degree: float) -> 'tuple[Vertex, Vertex]':
-        x_center, y_center = self._chart.center.f
-        radius = self._chart.diagonal_len/2
+        x_center = self._region.center.x
+        y_center = self._region.center.y
+        radius = self._region.diagonal_len/2
         radian_angle = num(angle_degree).radian().f
         x_coord = radius * math.cos(radian_angle)
         y_coord = radius * math.sin(radian_angle)

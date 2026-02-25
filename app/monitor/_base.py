@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
 
-from ..telemetry import ac_api
+from app.telemetry import ac_api
 
 
 class Component(metaclass=ABCMeta):
@@ -14,19 +14,13 @@ class Monitor(Component):
     enabled = True
     col_index = 0
 
+    width = 0.0
+    height = 0.0
+
+    @abstractmethod
     def __init__(
         self,
         x_pos: float,
         y_pos: float,
     ) -> None:
         ac_api.register(*self.data_keys)
-
-    @property
-    @abstractmethod
-    def width(self) -> float:
-        ...
-
-    @property
-    @abstractmethod
-    def height(self) -> float:
-        ...

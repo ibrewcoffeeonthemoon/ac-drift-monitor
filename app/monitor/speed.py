@@ -1,14 +1,14 @@
 from acsys import CS
 
 import config
+from app.lib.color import *
+from app.lib.number import num
+from app.telemetry import ac_api
 
-from ..lib.color import *
-from ..lib.number import num
-from ..telemetry import ac_api
 from ._base import Monitor
-from .lib.chart import CartesianChart
+from .lib.canvas import Chart, Region
 from .lib.indicator import QuadBar
-from .lib.text.big_text import big_text
+from .lib.text.big_text import BigText
 
 
 class SpeedMonitor(Monitor):
@@ -23,38 +23,31 @@ class SpeedMonitor(Monitor):
     ) -> None:
         super().__init__(x_pos, y_pos)
 
-        self._width = width = config.App.span_len*config.SpeedMonitor.col_span
-        self._height = height = config.App.height
-
-        self._chart = CartesianChart(
-            x_pos,
-            y_pos,
-            width,
-            height,
-            x_axis_marker_color=white.transparent,
-            axis_segment_count=8,
+        self.width = width = config.App.span_len*config.SpeedMonitor.col_span
+        self.height = height = config.App.height
+        self._region = Region(x_pos, y_pos, width, height)
+        self._chart = Chart(
+            self._region,
+            x_axis_segment_count=1,
+            y_axis_segment_count=8,
+            x_axis_marker_length_ratio=1.0,
             y_axis_marker_length_ratio=1.0,
             bg_char='',
         )
         self._speed_bar_low = QuadBar(
-            chart=self._chart,
+            region=self._region,
             color=green.a2,
         )
         self._speed_bar_high = QuadBar(
-            chart=self._chart,
+            region=self._region,
             color=red.a4,
         )
-        self._speed_meter = big_text(
-            x_pos, y_pos, width, height,
+        self._speed_meter = BigText(
+            self._region,
             text='',
             font_color=white.full,
             expected_text_len=3
         )
-
-    @property
-    def width(self) -> float: return self._width
-    @property
-    def height(self) -> float: return self._height
 
     def render(self) -> None:
         # draw axes

@@ -1,38 +1,38 @@
-from ....lib.color import Color
-from ....lib.geometry import Position, Size
-from ....lib.number import num
+from app.lib.color import Color
+from app.lib.geometry import Position, Size
+from app.lib.number import num
+from app.monitor.lib.canvas.region import Region
+
 from ._base import Text
 
 
 class BigText(Text):
     def __init__(
         self,
-        x_pos: float,
-        y_pos: float,
-        width: float,
-        height: float,
+        region: Region,
         text: str,
         font_color: Color,
         expected_text_len: int,
+        font_alignment: str = 'center',
     ) -> None:
         super().__init__()
-        self._x_pos = x_pos
-        self._y_pos = y_pos
-        self._width = width
-        self._height = height
+        self._x_pos = region.x_pos
+        self._y_pos = region.y_pos
+        self._width = region.width
+        self._height = region.height
         self._expected_text_len = None  # type: 'int | None'
         # init label
         self.text = text
         self.font_color = font_color
-        self.font_alignment = 'center'
-        self.size = Size(width, height)
+        self.font_alignment = font_alignment
+        self.size = Size(self._width, self._height)
         self.expected_text_len = expected_text_len
 
     @property
     def _shrink_factor(self) -> float:
         if not self.expected_text_len:
             return 1.0
-        return num(1.0 - (self.expected_text_len - 1) * 0.25).clip(0.5, 1.0).f
+        return num(1.0 - (self.expected_text_len - 1) * 0.25).clip(0.4, 1.0).f
 
     @property
     def expected_text_len(self) -> 'int | None':
@@ -47,23 +47,3 @@ class BigText(Text):
         self.font_size = round(min(self._width, self._height)*self._shrink_factor)
         vertical_offset = round(self._height/2-self._font_size*3/4)
         self.position = Position(self._x_pos, self._y_pos+vertical_offset)
-
-
-def big_text(
-    x_pos: float,
-    y_pos: float,
-    width: float,
-    height: float,
-    text: str,
-    font_color: Color,
-    expected_text_len: int,
-) -> BigText:
-    return BigText(
-        x_pos,
-        y_pos,
-        width,
-        height,
-        text=text,
-        font_color=font_color,
-        expected_text_len=expected_text_len,
-    )

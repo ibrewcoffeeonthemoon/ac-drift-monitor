@@ -35,7 +35,7 @@ class _App:
         if cls.enabled:
             self._monitors.append(cls(
                 x_pos=self._x_current,
-                y_pos=self._y_current
+                y_pos=self._y_current,
             ))
 
     def render(self) -> None:

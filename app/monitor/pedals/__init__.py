@@ -1,8 +1,8 @@
 import config
+from app.lib.color import *
+from app.monitor._base import Monitor
 
-from ...lib.color import *
-from .._base import Monitor
-from ._base import Pedal
+from ._base import Pedal as Pedal
 from .brake import BrakePedal
 from .clutch import ClutchPedal
 from .gas import GasPedal
@@ -30,19 +30,14 @@ class PedalsMonitor(Monitor):
     ) -> None:
         super().__init__(x_pos, y_pos)
 
-        self._width = width = config.App.span_len*config.PedalsMonitor.col_span
-        self._height = height = config.App.height
+        self.width = width = config.App.span_len*config.PedalsMonitor.col_span
+        self.height = height = config.App.height
 
         dt = width/len(_selected_pedals)
         self._components = [
             cls(x_pos+i*dt, y_pos, dt, height)
             for i, cls in enumerate(_selected_pedals)
         ]  # type: list[Pedal]
-
-    @property
-    def width(self) -> float: return self._width
-    @property
-    def height(self) -> float: return self._height
 
     def render(self) -> None:
         for component in self._components:

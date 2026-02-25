@@ -1,12 +1,12 @@
 from acsys import CS
 
 import config
+from app.lib.color import *
+from app.lib.number import num
+from app.telemetry import ac_api
 
-from ..lib.color import *
-from ..lib.number import num
-from ..telemetry import ac_api
 from ._base import Monitor
-from .lib.chart import CartesianChart
+from .lib.canvas import Chart, Region
 from .lib.indicator import AngleQuad
 
 
@@ -22,29 +22,27 @@ class SlipAngleMonitor(Monitor):
     ) -> None:
         super().__init__(x_pos, y_pos)
 
-        self._width = width = config.App.span_len*config.SlipAngleMonitor.col_span
-        self._height = height = config.App.height
-
-        self._chart = CartesianChart(
-            x_pos,
-            y_pos,
-            width,
-            height,
+        self.width = width = config.App.span_len*config.SlipAngleMonitor.col_span
+        self.height = height = config.App.height
+        self._region = Region(x_pos, y_pos, width, height)
+        self._chart = Chart(
+            self._region,
             x_axis_color=white.a7,
             y_axis_color=white.a7,
-            axis_segment_count=8,
+            x_axis_segment_count=4,
+            y_axis_segment_count=4,
             x_axis_marker_length_ratio=1.0,
             y_axis_marker_length_ratio=1.0,
             bg_char='A',
         )
         self._slip_angle_quad = AngleQuad(
-            chart=self._chart,
+            region=self._region,
             sensitivity=config.SlipAngleMonitor.sensitivity,
             reversed=True,
             color=cyan.a5,
         )
         self._steering_angle_quad = AngleQuad(
-            chart=self._chart,
+            region=self._region,
             sensitivity=(
                 num(config.SlipAngleMonitor.sensitivity)
                 .normalize(config.SlipAngleMonitor.wheel_degree/180).f
@@ -52,11 +50,6 @@ class SlipAngleMonitor(Monitor):
             reversed=True,
             color=blue.a5,
         )
-
-    @property
-    def width(self) -> float: return self._width
-    @property
-    def height(self) -> float: return self._height
 
     def render(self) -> None:
         # draw axes
