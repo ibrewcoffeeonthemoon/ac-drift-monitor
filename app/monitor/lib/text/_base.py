@@ -2,9 +2,9 @@ from abc import ABCMeta, abstractmethod
 
 import ac
 
-from ....lib.color import Color
-from ....lib.geometry import Position, Size
-from ....window import window
+from app.lib.color import Color
+from app.lib.geometry import Position, Size
+from app.window import window
 
 
 class Text(metaclass=ABCMeta):
@@ -40,7 +40,7 @@ class Text(metaclass=ABCMeta):
     @font_color.setter
     def font_color(self, val: Color) -> None:
         self._font_color = val
-        ac.setFontColor(self._label, *val)
+        ac.setFontColor(self._label, val.r, val.g, val.b, val.a)
 
     ''''''
     @property
@@ -60,7 +60,7 @@ class Text(metaclass=ABCMeta):
     @size.setter
     def size(self, val: Size) -> None:
         self._size = val
-        ac.setSize(self._label, *val.i)
+        ac.setSize(self._label, val.width, val.height)
 
     ''''''
     @property
@@ -70,4 +70,4 @@ class Text(metaclass=ABCMeta):
     @position.setter
     def position(self, val: Position) -> None:
         self._position = val
-        ac.setPosition(self._label, *val.f)
+        ac.setPosition(self._label, val.x_pos, val.y_pos)

@@ -1,5 +1,6 @@
-from .....lib.color import *
-from ...gl.line import line
+from app.lib.color import *
+from app.monitor.lib.gl.line import line
+
 from ._base import AngleIndicator
 
 

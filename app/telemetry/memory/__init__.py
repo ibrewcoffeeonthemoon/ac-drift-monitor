@@ -9,7 +9,7 @@ _dll_dir = _dll_dir_64 if platform.architecture()[0] == '64bit' else _dll_dir_32
 sys.path.insert(0, _dll_dir)
 
 # append dll_dir before this import
-from .sim_info import info as memory  # noqa: no auto sorting
+from .sim_info import info as memory  # noqa: I001, no auto sort
 
 __all__ = [
     'memory',

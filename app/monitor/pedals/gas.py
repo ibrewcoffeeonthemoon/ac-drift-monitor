@@ -1,6 +1,7 @@
 from acsys import CS
 
-from ...lib.color import *
+from app.lib.color import *
+
 from ._base import Pedal
 
 

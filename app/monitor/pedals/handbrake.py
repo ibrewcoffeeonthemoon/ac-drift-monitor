@@ -1,8 +1,9 @@
 from acsys import CS
 
-from ...lib.color import *
-from ...lib.number import num
-from ...telemetry import ac_ext
+from app.lib.color import *
+from app.lib.number import num
+from app.telemetry import ac_ext
+
 from ._base import Pedal
 
 
