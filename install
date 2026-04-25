@@ -1,0 +1,7 @@
+#!/bin/sh
+
+src_dir="$(dirname "$(realpath "$0")")"
+dst_dir="$HOME/.local/share/Steam/steamapps/common/assettocorsa/apps/python/ac-drift-monitor"
+
+ln -sfn $src_dir $dst_dir
+ls -l $dst_dir
